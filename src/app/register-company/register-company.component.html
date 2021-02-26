@@ -1,0 +1,403 @@
+<body>
+  <main class="main">
+    <div class="container mt-2 border">
+      <form [formGroup]="form" (submit)="registerCompany()">
+        <div class="mt-4 d-flex justify-content-center">
+          <p
+            style="
+              font-family: 'Calibri Light';
+              font-weight: bold;
+              font-size: 30px;
+            "
+          >
+            Регистрация на фирма
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 py-5">
+            <div class=" ">
+              <div
+                class="card-body border"
+                style="
+                  background: linear-gradient(
+                    90deg,
+                    rgba(2, 120, 37, 1) 0%,
+                    rgba(104, 181, 91, 1) 100%
+                  );
+                  border-radius: 15px;
+                "
+              >
+                <h5 style="color: white">
+                  <i
+                    style="color: white"
+                    class="fa fa-check-circle fa-1x mr-4"
+                  ></i
+                  >Открийте подходящите кандидати
+                </h5>
+                <h5 style="color: white">
+                  <i
+                    style="color: white"
+                    class="fa fa-check-circle fa-1x mr-4"
+                  ></i
+                  >Бърза и лесна регистрация
+                </h5>
+                <h5 style="color: white">
+                  <i
+                    style="color: white"
+                    class="fa fa-check-circle fa-1x mr-4"
+                  ></i
+                  >Всяка обява получава между 10 и 20 кандидатури
+                </h5>
+                <h5 style="color: white">
+                  <i
+                    style="color: white"
+                    class="fa fa-check-circle fa-1x mr-4"
+                  ></i
+                  >Публикувайте и управлявайте вашите обяви за работа и
+                  кандидатурите по тях
+                </h5>
+                <h5 style="color: white">
+                  <i
+                    style="color: white"
+                    class="fa fa-check-circle fa-1x mr-4"
+                  ></i
+                  >Публикуването на обяви е напълно безплатно
+                </h5>
+                <h5 style="color: white">
+                  <i
+                    style="color: white"
+                    class="fa fa-check-circle fa-1x mr-4"
+                  ></i
+                  >Подреждайте и организирайте кандидатурите
+                </h5>
+              </div>
+              <div class="container">
+                <h5>Необходима Ви е помощ?</h5>
+                <p>
+                  Можете да се свържете с нас всеки делничен ден от 8:30 до
+                  17:30<br />
+                  <i class="fa fa-phone mr-2"></i>Тел: +123456789<br />
+                  <i class="fa fa-envelope mr-2"></i>Email: example@gmail.com
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 py-5">
+            <h5 style="padding-left: 100px">Данни за фирмата/организацията</h5>
+            <hr class="w-75" />
+            <div class="row" style="padding-left: 120px">
+              <div class="form-group">
+                <label for="name" class="form-label"
+                  >Юридическо има на фирмата*<br />
+                  <span style="font-size: 11px">
+                    Моля, попълнете коректно тип на фирмата/организацията.
+                  </span></label
+                >
+                <input
+                  id="name"
+                  name="name"
+                  class="form-control"
+                  type="text"
+                  style="width: 350px"
+                  formControlName="name"
+                />
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="f.name.touched && f.name.errors?.required"
+                >
+                  Полето е задължително.
+                </div>
+                <div
+                  class="alert alert-danger w-100 mt-1"
+                  *ngIf="f.name.errors?.minlength"
+                >
+                  Името на фирмата/организацията трябва да съдържа поне 1
+                  символ.
+                </div>
+                <div
+                  class="alert alert-danger w-100 mt-1"
+                  *ngIf="f.name.errors?.maxlength"
+                >
+                  Името на фирмата/организацията трябва да бъде с не повече от
+                  25 символа.
+                </div>
+                <label for="bulstat" class="form-label mt-1">Булстат*</label>
+                <input
+                  id="bulstat"
+                  name="bulstat"
+                  placeholder="1234567890"
+                  class="form-control"
+                  type="number"
+                  style="width: 350px"
+                  formControlName="bulstat"
+                />
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="f.bulstat.touched && f.bulstat.errors?.required"
+                >
+                  Полето е задължително.
+                </div>
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="f.bulstat.touched && f.bulstat.errors?.pattern"
+                >
+                  Булстатът трябва да съдържа 10 цифри.
+                </div>
+                <label for="logo" class="form-label mt-1">Лого</label>
+                <input
+                  id="logo"
+                  name="logo"
+                  type="file"
+                  class="form-control-file"
+                  style="width: 350px"
+                  formControlName="logo"
+                />
+              </div>
+            </div>
+            <hr class="w-75" />
+            <h5 style="padding-left: 100px">
+              Лице за административни контакти
+            </h5>
+            <hr class="w-75" />
+            <div class="row" style="padding-left: 120px">
+              <div class="form-group">
+                <label for="firstName" class="form-label"
+                  >Име<span style="font-size: 11px">
+                    (Името трябва да бъде на български език.) </span
+                  >*</label
+                >
+                <input
+                  id="firstName"
+                  name="firstName"
+                  class="form-control"
+                  placeholder="Петър"
+                  type="text"
+                  style="width: 350px"
+                  formControlName="firstName"
+                />
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="f.firstName.touched && f.firstName.errors?.required"
+                >
+                  Полето е задължително.
+                </div>
+                <div
+                  class="alert alert-danger w-100 mt-1"
+                  *ngIf="f.firstName.touched && f.firstName.errors?.pattern"
+                >
+                  Името трябва да започва с главна буква и да включва между 2-14
+                  символа
+                </div>
+                <label for="lastName" class="form-label mt-1"
+                  >Фамилия<span style="font-size: 11px">
+                    (Фамилията трябва да бъде на български език.) </span
+                  >*</label
+                >
+                <input
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Петров"
+                  class="form-control"
+                  type="text"
+                  style="width: 350px"
+                  formControlName="lastName"
+                />
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="f.lastName.touched && f.lastName.errors?.required"
+                >
+                  Полето е задължително.
+                </div>
+                <div
+                  class="alert alert-danger w-100 mt-1"
+                  *ngIf="f.lastName.touched && f.lastName.errors?.pattern"
+                >
+                  Името трябва да започва с главна буква и да включва между 2-20
+                  символа
+                </div>
+                <label for="email" class="form-label mt-1">Имейл*</label>
+                <input
+                  id="email"
+                  name="email"
+                  placeholder="petar@petrov.com"
+                  class="form-control"
+                  type="email"
+                  style="width: 350px"
+                  formControlName="email"
+                />
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="f.email.touched && f.email.errors?.required"
+                >
+                  Полето е задължително.
+                </div>
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="f.email.touched && f.email.errors?.pattern"
+                >
+                  Неправилен имейл адрес.
+                </div>
+                <label for="phone" class="form-label mt-1">Телефон*</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  placeholder="0897046688"
+                  class="form-control"
+                  type="text"
+                  style="width: 350px"
+                  formControlName="phone"
+                />
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="f.phone.touched && f.phone.errors?.required"
+                >
+                  Полето е задължително.
+                </div>
+              </div>
+            </div>
+            <hr class="w-75" />
+            <h5 style="padding-left: 100px">
+              Изберете Вашите данни за вход в системата:
+            </h5>
+            <hr class="w-75" />
+            <div class="row" style="padding-left: 120px">
+              <div class="form-group">
+                <label for="companySignInEmail" class="form-label"
+                  >Имейл*</label
+                >
+                <input
+                  id="companySignInEmail"
+                  name="companySignInEmail"
+                  class="form-control"
+                  placeholder="company@name.com"
+                  type="email"
+                  style="width: 350px"
+                  formControlName="companySignInEmail"
+                />
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="
+                    f.companySignInEmail.touched &&
+                    f.companySignInEmail.errors?.required
+                  "
+                >
+                  Полето е задължително.
+                </div>
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="
+                    f.companySignInEmail.touched &&
+                    f.companySignInEmail.errors?.pattern
+                  "
+                >
+                  Неправилен имейл адрес.
+                </div>
+                <label for="companySignInPassword" class="form-label mt-1"
+                  >Парола<span style="font-size: 11px">
+                    (Минимум 8 символа.) </span
+                  >*</label
+                >
+                <input
+                  id="companySignInPassword"
+                  name="companySignInPassword"
+                  class="form-control"
+                  type="password"
+                  style="width: 350px"
+                  formControlName="companySignInPassword"
+                />
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="
+                    f.companySignInPassword.touched &&
+                    f.companySignInPassword.errors?.required
+                  "
+                >
+                  Полето е задължително.
+                </div>
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="
+                    f.companySignInPassword.touched &&
+                    f.companySignInPassword.errors?.pattern
+                  "
+                >
+                  Паролата трябва да съдържа:<br />
+                  - Поне една главна буква.<br />
+                  - Поне една малка буква. <br />
+                  - Поне една цифра.
+                </div>
+                <label
+                  for="companySignInConfirmPassword"
+                  class="form-label mt-1"
+                  >Потърдете паролата*</label
+                >
+                <input
+                  id="companySignInConfirmPassword"
+                  name="companySignInConfirmPassword"
+                  class="form-control"
+                  type="password"
+                  style="width: 350px"
+                  formControlName="companySignInConfirmPassword"
+                />
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="
+                    f.companySignInConfirmPassword.touched &&
+                    f.companySignInConfirmPassword.errors?.required
+                  "
+                >
+                  Полето е задължително.
+                </div>
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="
+                    f.companySignInConfirmPassword.touched &&
+                    f.companySignInConfirmPassword.errors?.mustMatch
+                  "
+                >
+                  Паролите не съвпадат.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row" style="padding-left: 30%">
+            <div class="form-group">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="acceptTerms"
+                  formControlName="acceptTerms"
+                />
+                <label class="form-check-label w-75" for="acceptTerms">
+                  <small
+                    >Съгласен съм с условията за ползване, политиката за защита
+                    на лични данни и политика за ползване на бисквити</small
+                  >
+                </label>
+              </div>
+            </div>
+            <div *ngIf="f.acceptTerms.errors?.pattern"></div>
+            <button
+              id="submit-button"
+              type="submit"
+              class="btn create-company btn-success"
+              style="width: 350px"
+              [disabled]="invalid"
+            >
+              Регистрация
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="mt-4 d-flex justify-content-center">
+        <p style="font-family: 'Calibri Light'; font-size: 16px">
+          Попълването на маркираните с * полета е задължително за завършване на
+          регистрацията. Моля, попълнете ги коректно.
+        </p>
+      </div>
+    </div>
+  </main>
+</body>

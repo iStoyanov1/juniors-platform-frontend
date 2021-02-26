@@ -1,0 +1,250 @@
+<html>
+  <body>
+    <main class="main">
+      <div class="row mt-2" style="margin-left: 100px; margin-right: 100px">
+        <div
+          class="col-md-4 py-5 text-white text-center"
+          style="
+            background-image: url(https://blog.hyperiondev.com/wp-content/uploads/2018/08/pros-cons-blog.jpg);
+            background-attachment: fixed;
+            background-position-x: -30%;
+          "
+        >
+          <div style="padding-top: 50%">
+            <h3
+              class="bg-gradient-primary text-white"
+              style="
+                font-family: 'Calibri Light';
+                font-weight: bold;
+                font-size: 38px;
+                background-color: lightslategrey;
+                opacity: 0.6;
+                border-bottom-left-radius: 45px;
+                border-bottom-right-radius: 45px;
+                border-top-left-radius: 45px;
+                border-top-right-radius: 45px;
+              "
+            >
+              Намерете работа в една от най-добрите технологични компании в
+              България.
+            </h3>
+          </div>
+        </div>
+        <div class="col-md-8 py-5 border">
+          <p
+            style="
+              font-family: 'Calibri Light';
+              padding-left: 28%;
+              font-weight: bold;
+              font-size: 30px;
+            "
+          >
+            Регистрация на потребител
+          </p>
+          <form [formGroup]="form" (submit)="registerUser()">
+            <div class="row" style="padding-left: 30%">
+              <div class="form-group">
+                <label for="firstName" class="form-label"
+                  >Име<span style="font-size: 11px">
+                    (Името трябва да бъде на български език.) </span
+                  >*</label
+                >
+                <input
+                  id="firstName"
+                  name="firstName"
+                  placeholder="Thomas"
+                  class="form-control"
+                  type="text"
+                  required
+                  style="width: 450px"
+                  formControlName="firstName"
+                />
+              </div>
+              <div
+                class="alert alert-danger w-50"
+                *ngIf="f.firstName.touched && f.firstName.errors?.required"
+              >
+                Полето е задължително.
+              </div>
+              <div
+                class="alert alert-danger w-75"
+                *ngIf="f.firstName.touched && f.firstName.errors?.pattern"
+              >
+                Името трябва да започва с главна буква и да включва между 2-14
+                символа
+              </div>
+            </div>
+            <div class="row" style="padding-left: 30%">
+              <div class="form-group">
+                <label for="lastName" class="form-label"
+                  >Фамилия<span style="font-size: 11px">
+                    (Фамилията трябва да бъде на български език.) </span
+                  >*</label
+                >
+                <input
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Smith"
+                  class="form-control"
+                  type="text"
+                  required
+                  style="width: 450px"
+                  formControlName="lastName"
+                />
+              </div>
+              <div
+                class="alert alert-danger w-50 h-25"
+                *ngIf="f.lastName.touched && f.lastName.errors?.required"
+              >
+                Полето е задължително.
+              </div>
+              <div
+                class="alert alert-danger w-75"
+                *ngIf="f.lastName.touched && f.lastName.errors?.pattern"
+              >
+                Фамилията трябва да започва с главна буква и да включва между
+                2-20 символа.
+              </div>
+            </div>
+            <div class="row" style="padding-left: 30%">
+              <div class="form-group">
+                <label for="email" class="form-label">Имейл*</label>
+                <input
+                  id="email"
+                  name="email"
+                  placeholder="thomas@smith.com"
+                  class="form-control"
+                  type="text"
+                  style="width: 450px"
+                  formControlName="email"
+                />
+              </div>
+              <div
+                class="alert alert-danger w-50"
+                *ngIf="f.email.touched && f.email.errors?.required"
+              >
+                Полето е задължително.
+              </div>
+              <div
+                class="alert alert-danger w-50"
+                *ngIf="f.email.touched && f.email.errors?.pattern"
+              >
+                Неправилен имейл адрес.
+              </div>
+            </div>
+            <div class="row" style="padding-left: 30%">
+              <div class="form-group">
+                <label for="password" class="form-label"
+                  >Парола<span style="font-size: 11px">
+                    (Минимум 8 символа.) </span
+                  >*</label
+                >
+                <input
+                  id="password"
+                  name="password"
+                  class="form-control"
+                  type="password"
+                  style="width: 450px"
+                  formControlName="password"
+                />
+              </div>
+              <div
+                class="alert alert-danger w-50"
+                *ngIf="f.password.touched && f.password.errors?.required"
+              >
+                Полето е задължително.
+              </div>
+              <div
+                class="alert alert-danger w-75"
+                *ngIf="f.password.touched && f.password.errors?.pattern"
+              >
+                Паролата трябва да съдържа:<br />
+                - Поне една главна буква.<br />
+                - Поне една малка буква. <br />
+                - Поне една цифра.
+              </div>
+            </div>
+            <div class="row" style="padding-left: 30%">
+              <div class="form-group">
+                <label for="confirmPassword" class="form-label"
+                  >Потвърдете паролата*</label
+                >
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  class="form-control"
+                  type="password"
+                  style="width: 450px"
+                  formControlName="confirmPassword"
+                />
+              </div>
+              <div
+                class="alert alert-danger w-50"
+                *ngIf="
+                  f.confirmPassword.touched &&
+                  f.confirmPassword.errors?.required
+                "
+              >
+                Полето е задължително.
+              </div>
+              <div
+                class="alert alert-danger w-75"
+                *ngIf="
+                  f.confirmPassword.touched &&
+                  f.confirmPassword.errors?.mustMatch
+                "
+              >
+                Паролите не съвпадат.
+              </div>
+            </div>
+            <div class="form-row" style="padding-left: 30%">
+              <div class="form-group">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="acceptTerms"
+                    formControlName="acceptTerms"
+                  />
+                  <label class="form-check-label w-75" for="acceptTerms">
+                    <small
+                      >Съгласен съм с условията за ползване, политиката за
+                      защита на лични данни и политика за ползване на
+                      бисквити</small
+                    >
+                  </label>
+                </div>
+              </div>
+              <div *ngIf="f.acceptTerms.errors?.pattern"></div>
+            </div>
+            <div class="row" style="padding-left: 30%">
+              <button
+                id="submit-button"
+                type="submit"
+                class="btn submit-user btn-info"
+                style="width: 350px"
+                [disabled]="invalid"
+              >
+                Създай профил
+              </button>
+            </div>
+          </form>
+          <div class="row" style="padding-left: 10px">
+            <p
+              class="mt-4 w-100"
+              style="
+                font-family: 'Calibri Light';
+                font-size: 16px;
+                text-align: center;
+              "
+            >
+              Попълването на маркираните с * полета е задължително за завършване
+              на регистрацията. Моля, попълнете ги коректно.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

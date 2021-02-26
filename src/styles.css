@@ -1,1 +1,305 @@
-/* You can add global styles to this file, and also import other style files */
+/*.main{*/
+/*    background-image: url("https://www.bacancytechnology.com/blog/wp-content/uploads/2019/04/Full-Stack.jpg");*/
+/*    height: 60vh;*/
+/*    background-size:cover*/
+
+/*}*/
+/*.navbar{*/
+/*    opacity: 1%;*/
+/*}*/
+
+@import "~ngx-toastr/toastr.css";
+
+.container {
+  margin-top: 100px;
+}
+
+.counter-box {
+  display: block;
+  background: #f6f6f6;
+  padding: 40px 20px 37px;
+  text-align: center;
+}
+
+.counter-box p {
+  margin: 5px 0 0;
+  padding: 0;
+  color: #909090;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.counter-box i {
+  font-size: 60px;
+  margin: 0 0 15px;
+  color: #d2d2d2;
+}
+
+.counter {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  color: #666;
+  line-height: 28px;
+}
+
+.counter-box.colored {
+  background: #3acf87;
+}
+
+.counter-box.colored p,
+.counter-box.colored i,
+.counter-box.colored .counter {
+  color: #fff;
+}
+
+.button-link:link {
+  color: white;
+} /* unvisited link */
+.button-link:visited {
+  color: white;
+} /* visited link */
+.button-link:hover {
+  color: white;
+} /* mouse over link */
+.button-link:active {
+  color: white;
+} /* selected link */
+
+.individual-link:link {
+  color: white;
+} /* unvisited link */
+.individual-link:visited {
+  color: white;
+} /* visited link */
+.individual-link:hover {
+  color: white;
+} /* mouse over link */
+.individual-link:active {
+  color: white;
+}
+
+.forgot-password {
+  color: white;
+  margin-bottom: 80px;
+  margin-left: 95px;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+/*body{*/
+/*    font-family: 'Roboto', sans-serif;*/
+/*}*/
+
+/*.navbar-nav > li{*/
+/*    margin-left:30px;*/
+/*    margin-right:30px;*/
+/*    font-size: 25px;*/
+/*    !*font-weight: bold;*!*/
+/*    font-family: "Segoe UI";*/
+/*}*/
+
+@media all and (min-width: 992px) {
+  .navbar .nav-item .dropdown-menu {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    margin-top: 0;
+  }
+  .navbar .dropdown-menu.fade-down {
+    top: 80%;
+    transform: rotateX(-75deg);
+    transform-origin: 0% 0%;
+  }
+  .navbar .dropdown-menu.fade-up {
+    top: 180%;
+  }
+  .navbar .nav-item:hover .dropdown-menu {
+    transition: 0.3s;
+    opacity: 1;
+    visibility: visible;
+    top: 100%;
+    transform: rotateX(0deg);
+  }
+}
+
+.smart-scroll {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+.scrolled-down {
+  transform: translateY(-100%);
+  transition: all 0.3s ease-in-out;
+}
+.scrolled-up {
+  transform: translateY(0);
+  transition: all 0.3s ease-in-out;
+}
+.nav-item::after {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 2px;
+  background: #005cbf;
+  transition: 0.2s;
+}
+.nav-item:hover::after {
+  width: 100%;
+}
+.navbar-dark .navbar-nav .active > .nav-link,
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .show > .nav-link,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #005cbf;
+}
+.nav-link {
+  padding: 15px 5px;
+  transition: 0.2s;
+}
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background: #005cbf;
+}
+/*====================
+    Footer
+  ====================== */
+
+/* Main Footer */
+/*footer .main-footer{  padding: 20px ;  background: #252525;}*/
+footer ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+/* Copy Right Footer */
+/*.footer-copyright { background: #222; padding: 1px 0;}*/
+/*.footer-copyright .logo {    display: inherit;}*/
+/*.footer-copyright nav {    float: right;    margin-top: 5px;}*/
+/*.footer-copyright nav ul {  list-style: none; margin: 0;  padding: 0;}*/
+/*.footer-copyright nav ul li { border-left: 1px solid #505050; display: inline-block;  line-height: 1px;  margin: 0;  padding: 0 8px;}*/
+/*.footer-copyright nav ul li a{  color: #969696;}*/
+/*.footer-copyright nav ul li:first-child { border: medium none;  padding-left: 0;}*/
+/*.footer-copyright p { color: #969696; margin: 2px 0 0;}*/
+
+/* Footer Top */
+.footer-top {
+  background: #252525;
+  border-bottom: 3px solid #222;
+}
+
+/* Footer transparent */
+footer.transparent .footer-top,
+footer.transparent .main-footer {
+  background: transparent;
+}
+footer.transparent .footer-copyright {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Footer light */
+footer.light .footer-top {
+  background: #f9f9f9;
+}
+footer.light .main-footer {
+  background: #f9f9f9;
+}
+footer.light .footer-copyright {
+  background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Footer 4 */
+.footer- .logo {
+  display: inline-block;
+}
+
+/*====================
+    Widgets
+  ====================== */
+.widget li a {
+  color: #fff;
+}
+.widget li a:hover {
+  color: #aaa;
+  text-decoration: none;
+}
+.widget-title span {
+  background: #839fad none repeat scroll 0 0;
+  display: block;
+  height: 1px;
+  margin-top: 25px;
+  position: relative;
+  width: 20%;
+}
+.widget-title span::after {
+  background: inherit;
+  content: "";
+  height: inherit;
+  position: absolute;
+  top: -4px;
+  width: 50%;
+}
+.widget-title.text-center span,
+.widget-title.text-center span::after {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+.widget .badge {
+  float: right;
+  background: #7f7f7f;
+}
+
+.typo-light h1,
+.typo-light h2,
+.typo-light h3,
+.typo-light h4,
+.typo-light h5,
+.typo-light h6,
+.typo-light p,
+.typo-light div,
+.typo-light span,
+.typo-light small {
+  color: #fff;
+}
+
+ul.social-footer2 {
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+ul.social-footer2 li {
+  display: inline-block;
+  padding: 0;
+}
+ul.social-footer2 li a:hover {
+  background-color: #ff8d1e;
+}
+ul.social-footer2 li a {
+  display: block;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+}
+.fa-footer {
+  display: inline-block;
+  font-size: 22px;
+  color: #179bd3;
+  padding: 9px;
+  border-radius: 5px;
+}
+
+.navbar > li {
+  color: white;
+}
+
+.p-footer {
+  color: #179bd3;
+  font-size: 12px;
+}

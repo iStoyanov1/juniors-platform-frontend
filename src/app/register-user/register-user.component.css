@@ -1,0 +1,9 @@
+.submit-user:disabled {
+  cursor: not-allowed;
+}
+input.ng-invalid.ng-touched {
+  border: 1px solid #bd2130;
+}
+input.ng-valid.ng-touched {
+  border: 1px solid #048f04;
+}
