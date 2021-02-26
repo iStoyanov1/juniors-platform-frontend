@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CompanyService } from 'src/company.service';
 import { MustMatch } from '../validations/password-matcher-validator';
 
 @Component({
@@ -11,7 +13,7 @@ export class RegisterCompanyComponent implements OnInit {
 
   form:FormGroup
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private companyService: CompanyService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -34,7 +36,9 @@ export class RegisterCompanyComponent implements OnInit {
   }
 
   registerCompany(){
-    console.log(this.form);
+    this.companyService.createCompany(this.form.value).subscribe((data)=>{
+      this.router.navigate(['/'])
+    })
   }
 
   get f(){
