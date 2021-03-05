@@ -6,15 +6,18 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { LandingComponent } from './landing/landing.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterUserComponent } from './register-user/register-user.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterUserComponent } from './auth/register-user/register-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterCompanyComponent } from './register-company/register-company.component';
+import { RegisterCompanyComponent } from './auth/register-company/register-company.component';
 import { ModalModule } from 'ngx-bootstrap/modal'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { UserService } from 'src/user.service';
 import { ResponseHandlerInterceptorService } from 'src/response-handler-interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
+import { JwtInterceptorService } from 'src/jwt-interceptor.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { ToastrModule } from 'ngx-toastr';
     LandingComponent,
     LoginComponent,
     RegisterUserComponent,
-    RegisterCompanyComponent
+    RegisterCompanyComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,10 @@ import { ToastrModule } from 'ngx-toastr';
 
   ],
   providers: [UserService, 
-    {provide: HTTP_INTERCEPTORS, useClass: ResponseHandlerInterceptorService, multi:true}],
+    {provide: HTTP_INTERCEPTORS, useClass: ResponseHandlerInterceptorService, multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi:true}
+  ],
+   
   bootstrap: [AppComponent]
 })
 export class AppModule { }

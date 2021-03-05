@@ -1,6 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { LoginComponent } from '../login/login.component';
+import { AuthService } from 'src/auth.service';
+import { LoginComponent } from '../auth/login/login.component';
 
 @Component({
   selector: 'app-navigation',
@@ -11,7 +13,7 @@ export class NavigationComponent implements OnInit {
 
   modalRef: BsModalRef
 
-  constructor(private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService,public authService: AuthService, public router: Router) { }
 
   ngOnInit(): void {
 
@@ -19,6 +21,20 @@ export class NavigationComponent implements OnInit {
 
   openModal(){
     this.modalRef = this.modalService.show(LoginComponent);
+
   }
 
+  accountLink(){
+    if(localStorage.getItem('role') === 'USER' || localStorage.getItem('role') === 'MODERATOR'){
+      return ['/user/profile'];
+    }else{
+      return ['/company/profile']
+    }
+  }
+
+  logout() {
+    this.authService.logout();
+    
+    this.router.navigate(['/']);
+  }
 }

@@ -263,63 +263,52 @@
             <hr class="w-75" />
             <div class="row" style="padding-left: 120px">
               <div class="form-group">
-                <label for="companySignInEmail" class="form-label"
-                  >Имейл*</label
-                >
+                <label for="username" class="form-label">Имейл*</label>
                 <input
-                  id="companySignInEmail"
-                  name="companySignInEmail"
+                  id="username"
+                  name="username"
                   class="form-control"
                   placeholder="company@name.com"
                   type="email"
                   style="width: 350px"
-                  formControlName="companySignInEmail"
+                  formControlName="username"
                 />
                 <div
                   class="alert alert-danger w-75 mt-1"
-                  *ngIf="
-                    f.companySignInEmail.touched &&
-                    f.companySignInEmail.errors?.required
-                  "
+                  *ngIf="f.username.touched && f.username.errors?.required"
                 >
                   Полето е задължително.
                 </div>
                 <div
                   class="alert alert-danger w-75 mt-1"
-                  *ngIf="
-                    f.companySignInEmail.touched &&
-                    f.companySignInEmail.errors?.pattern
-                  "
+                  *ngIf="f.username.touched && f.username.errors?.pattern"
                 >
                   Неправилен имейл адрес.
                 </div>
-                <label for="companySignInPassword" class="form-label mt-1"
+                <label for="password" class="form-label mt-1"
                   >Парола<span style="font-size: 11px">
                     (Паролата трябва да съдържа минимум 8 символа.) </span
                   >*</label
                 >
                 <input
-                  id="companySignInPassword"
-                  name="companySignInPassword"
+                  id="password"
+                  name="password"
                   class="form-control"
                   type="password"
                   style="width: 350px"
-                  formControlName="companySignInPassword"
+                  formControlName="password"
                 />
                 <div
                   class="alert alert-danger w-75 mt-1"
-                  *ngIf="
-                    f.companySignInPassword.touched &&
-                    f.companySignInPassword.errors?.required
-                  "
+                  *ngIf="f.password.touched && f.password.errors?.required"
                 >
                   Полето е задължително.
                 </div>
                 <div
                   class="alert alert-danger w-75 mt-1"
                   *ngIf="
-                    f.companySignInPassword.touched &&
-                    f.companySignInPassword.errors?.pattern
+                    f.confirmPassword.touched &&
+                    f.confirmPassword.errors?.pattern
                   "
                 >
                   Паролата трябва да съдържа:<br />
@@ -327,24 +316,22 @@
                   - Поне една малка буква. <br />
                   - Поне една цифра.
                 </div>
-                <label
-                  for="companySignInConfirmPassword"
-                  class="form-label mt-1"
+                <label for="confirmPassword" class="form-label mt-1"
                   >Потърдете паролата*</label
                 >
                 <input
-                  id="companySignInConfirmPassword"
-                  name="companySignInConfirmPassword"
+                  id="confirmPassword"
+                  name="confirmPassword"
                   class="form-control"
                   type="password"
                   style="width: 350px"
-                  formControlName="companySignInConfirmPassword"
+                  formControlName="confirmPassword"
                 />
                 <div
                   class="alert alert-danger w-75 mt-1"
                   *ngIf="
-                    f.companySignInConfirmPassword.touched &&
-                    f.companySignInConfirmPassword.errors?.required
+                    f.confirmPassword.touched &&
+                    f.confirmPassword.errors?.required
                   "
                 >
                   Полето е задължително.
@@ -352,8 +339,8 @@
                 <div
                   class="alert alert-danger w-75 mt-1"
                   *ngIf="
-                    f.companySignInConfirmPassword.touched &&
-                    f.companySignInConfirmPassword.errors?.mustMatch
+                    f.confirmPassword.touched &&
+                    f.confirmPassword.errors?.mustMatch
                   "
                 >
                   Паролите не съвпадат.

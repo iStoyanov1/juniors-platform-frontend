@@ -96,26 +96,26 @@
               </div>
               <div class="row" style="padding-left: 30%">
                 <div class="form-group">
-                  <label for="email" class="form-label">Имейл*</label>
+                  <label for="username" class="form-label">Имейл*</label>
                   <input
-                    id="email"
-                    name="email"
+                    id="username"
+                    name="username"
                     placeholder="thomas@smith.com"
                     class="form-control"
                     type="text"
                     style="width: 450px"
-                    formControlName="email"
+                    formControlName="username"
                   />
                 </div>
                 <div
                   class="alert alert-danger w-50"
-                  *ngIf="f.email.touched && f.email.errors?.required"
+                  *ngIf="f.username.touched && f.username.errors?.required"
                 >
                   Полето е задължително.
                 </div>
                 <div
                   class="alert alert-danger w-50"
-                  *ngIf="f.email.touched && f.email.errors?.pattern"
+                  *ngIf="f.username.touched && f.username.errors?.pattern"
                 >
                   Неправилен имейл адрес.
                 </div>

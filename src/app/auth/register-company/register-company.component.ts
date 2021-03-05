@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CompanyService } from 'src/company.service';
-import { MustMatch } from '../validations/password-matcher-validator';
+import { MustMatch } from '../../validations/password-matcher-validator';
 
 @Component({
   selector: 'app-register-company',
@@ -25,12 +25,12 @@ export class RegisterCompanyComponent implements OnInit {
       lastName: ['', [Validators.required, Validators.pattern('([А-Я][а-я]{1,20})')]],
       email: ['', [Validators.required, Validators.pattern('^([\\w\\.\\-]+)@([\\w\\-]+)(\\D(\\.(\\w){2,3})+)$')]],
       phone: ['', [Validators.required]],
-      companySignInEmail: ['', [Validators.required, Validators.pattern('^([\\w\\.\\-]+)@([\\w\\-]+)(\\D(\\.(\\w){2,3})+)$')]],
-      companySignInPassword: ['', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$')]],
-      companySignInConfirmPassword: ['', Validators.required],
+      username: ['', [Validators.required, Validators.pattern('^([\\w\\.\\-]+)@([\\w\\-]+)(\\D(\\.(\\w){2,3})+)$')]],
+      password: ['', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$')]],
+      confirmPassword: ['', Validators.required],
       acceptTerms:[false, Validators.pattern('true')]
     },{
-      validator: MustMatch('companySignInPassword', 'companySignInConfirmPassword')
+      validator: MustMatch('password', 'confirmPassword')
     });
 
   }
