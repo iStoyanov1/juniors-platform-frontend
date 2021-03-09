@@ -25,7 +25,7 @@ export class NavigationComponent implements OnInit {
   }
 
   accountLink(){
-    if(localStorage.getItem('role') === 'USER' || localStorage.getItem('role') === 'MODERATOR'){
+    if(localStorage.getItem('role') === 'ROLE_USER' || localStorage.getItem('role') === 'ROLE_MODERATOR'){
       return ['/user/profile'];
     }else{
       return ['/company/profile']

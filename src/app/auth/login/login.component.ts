@@ -33,13 +33,16 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('email', userData['email']);
     localStorage.setItem('role', userData['role']);
 
-    if(userData['role'] === 'USER' || userData['role'] === 'MODERATOR'){
+    if(userData['role'] === 'ROLE_USER' || userData['role'] === 'ROLE_MODERATOR'){
     this.router.navigate(['/user/profile'])
     }else{
       this.router.navigate(['/company/profile'])
     }
+     this.closeModal();
+   }, (error) =>{
+     console.log(error)
    })
-   this.closeModal();
+  
   }
 
   get f(){

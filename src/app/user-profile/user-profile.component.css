@@ -4,3 +4,10 @@
 .personal-info {
   box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
 }
+
+.href-cv {
+  color: blue;
+}
+.href-cv:hover {
+  cursor: pointer;
+}

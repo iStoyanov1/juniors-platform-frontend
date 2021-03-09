@@ -7,81 +7,176 @@
     </div>
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
-      <h3>
-        Запазени обяви:
-        <button type="submit" class="btn btn-primary">Добави</button>
-      </h3>
+      <h3>Запазени обяви:</h3>
       <span>Тук може да видите всички запазени обяви</span>
       <hr style="background: #179bd3" />
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6 border mt-2 personal-info">
-      <h5 class="mt-4">
-        <i
-          class="mr-2 fa fa-envelope-open"
-          style="color: grey"
-          aria-hidden="true"
-        ></i
-        >Имейл: {{ user.username }}
-      </h5>
-      <h5 class="mt-4">
-        <i class="mr-2 fa fa-user" style="color: grey" aria-hidden="true"></i
-        >Име и фамилия: {{ user.firstName }} {{ user.lastName }}
-      </h5>
-      <h5 class="mt-4">
-        <i
-          class="mr-2 fa fa-file-pdf"
-          style="color: grey"
-          aria-hidden="true"
-        ></i
-        >Моето CV:
-      </h5>
-      <button type="submit" class="btn btn-primary mt-4 mb-2">
-        Промяна на парола
-      </button>
+    <div
+      class="col-sm-6 mt-2 personal-info"
+      style="border-left: solid 30px #69f0ae"
+    >
+      <div class="form-group mt-4 mr-4 ml-4">
+        <div class="row mr-4 mt-2">
+          <div class="col-sm-6">
+            <span class="mt-4" style="font-size: 18px">
+              <i
+                class="mr-2 fa fa-envelope-open"
+                style="color: grey"
+                aria-hidden="true"
+              ></i
+              >Имейл:
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8">
+            <input
+              type="email"
+              class="form-control"
+              [(ngModel)]="user.username"
+              disabled
+            />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <span style="font-size: 11px">
+            Това е имейлът, който работодателите виждат като част от Вашата
+            кандидатура.
+          </span>
+        </div>
+      </div>
+      <div class="form-group border">
+        <div class="row mr-4 mt-2">
+          <div class="col-sm-2 ml-4">
+            <span style="font-size: 15px">Име:</span>
+          </div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-2">
+            <span style="font-size: 15px">Фамилия:</span>
+          </div>
+        </div>
+        <div class="row mr-4">
+          <div class="col-sm-4 ml-4">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="user.firstName"
+            />
+          </div>
+          <div class="col-sm-4">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="user.lastName"
+            />
+          </div>
+          <div class="col-sm-2">
+            <button type="submit" class="btn btn-outline-success">
+              Редактирай
+            </button>
+          </div>
+        </div>
+        <div class="row mr-4 ml-4 mb-2">
+          <span style="font-size: 11px">
+            Тук можете да променяте вашето име. В случай че кандидатствате, това
+            е името, което работодателите виждат като част от Вашата
+            кандидатура.
+          </span>
+        </div>
+      </div>
+      <div class="form-group mr-4 ml-4">
+        <div class="row">
+          <div class="col-sm-6">
+            <span style="font-size: 15px">
+              <i
+                class="mr-2 fa fa-file-pdf"
+                style="color: grey"
+                aria-hidden="true"
+              ></i
+              >Моетo CV:</span
+            >
+          </div>
+          <div class="row mr-4 ml-4 mb-2">
+            <span style="font-size: 11px">
+              Разрешено е качването само на един файл.
+            </span>
+          </div>
+        </div>
+        <form
+          [formGroup]="formFile"
+          enctype="multipart/form-data"
+          (submit)="uploadFile()"
+        >
+          <div class="row">
+            <div class="col-sm-8" *ngIf="!isHasCV()">
+              <input
+                type="file"
+                name="file"
+                (change)="onFileSelect($event)"
+                formControlName="file"
+              />
+            </div>
+            <div class="col-sm-8" *ngIf="isHasCV()">
+              <a class="href-cv" (click)="downloadFile()"
+                >{{ user.file.originalFileName.substring(0, 35) }}
+              </a>
+            </div>
+            <div class="col-sm-4">
+              <button type="submit" class="btn btn-outline-success">
+                Качи файл
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="form-group border">
+        <div class="row mt-4 mr-4 ml-4">
+          <div class="col-sm-6">
+            <span style="font-size: 14px">Въведете вашата текуща парола:</span>
+          </div>
+          <div class="col-sm-6">
+            <input type="password" class="form-control" />
+          </div>
+        </div>
+        <div class="row mr-4 mt-2 ml-4">
+          <div class="col-sm-6">
+            <span style="font-size: 13px">Нова парола*:</span>
+          </div>
+          <div class="col-sm-6">
+            <span style="font-size: 13px">Потвърдете паролата*:</span>
+          </div>
+        </div>
+        <div class="row mr-4 ml-4">
+          <div class="col-sm-6">
+            <input type="password" class="form-control" />
+          </div>
+          <div class="col-sm-6">
+            <input type="password" class="form-control" />
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <span style="font-size: 11px">
+            (Паролата трябва да съдържа минимум 8 символа):</span
+          >
+        </div>
+        <div class="row justify-content-center mt-4 mb-4">
+          <button type="submit" class="btn btn-outline-success">
+            Редактирай
+          </button>
+        </div>
+      </div>
     </div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-4 border mt-2 personal-info">
-      <h5 class="mt-4">Java</h5>
-      <h5 class="mt-4">Spring</h5>
-      <h5 class="mt-4"></h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-8 mt-2"></div>
-    <div class="col-sm-4 mt-4">
-      <h3>Лични данни:</h3>
-      <span>Можете да видите и редактирате вашите данни</span>
-      <hr style="background: #179bd3" />
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-8 mt-2"></div>
-    <div class="col-sm-4 border mt-2 personal-info">
-      <h5 class="mt-4">
-        <i
-          class="mr-2 fa fa-envelope-open"
-          style="color: grey"
-          aria-hidden="true"
-        ></i
-        >Имейл:
-      </h5>
-      <h5 class="mt-4">
-        <i class="mr-2 fa fa-user" style="color: grey" aria-hidden="true"></i
-        >Име и фамилия:
-      </h5>
-      <h5 class="mt-4">
-        <i
-          class="mr-2 fa fa-file-pdf"
-          style="color: grey"
-          aria-hidden="true"
-        ></i
-        >Моето CV:
-      </h5>
-      <button type="submit" class="btn btn-primary mt-4 mb-2">
-        Промяна на парола
-      </button>
+    <div class="col-sm-4">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Моите кандидатсвания:</h3>
+          <span>Тук може да видите всички Ваши кандидатсвания.</span>
+          <hr style="background: #179bd3" />
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -28,19 +28,19 @@ export class AuthService {
     return true;
   }
   isModerator(){
-    if(localStorage.getItem('role') == 'MODERATOR'){
+    if(localStorage.getItem('role') == 'ROLE_MODERATOR'){
       return true;
     }
     return false;
   }
   isUser(){
-    if(localStorage.getItem('role') == 'USER'){
+    if(localStorage.getItem('role') == 'ROLE_USER'){
       return true;
     }
     return false;
   }
   isCompany(){
-    if(localStorage.getItem('role') == 'COMPANY'){
+    if(localStorage.getItem('role') == 'ROLE_COMPANY'){
       return true;
     }
     return false;
