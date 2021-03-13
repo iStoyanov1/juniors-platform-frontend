@@ -5,12 +5,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { subscribeOn } from 'rxjs/operators';
 import { UserService } from 'src/user.service';
-import { User } from '../User';
+import { User } from '../user';
 import {response, saveAs} from 'file-saver'
+import { MustMatch } from '../validations/password-matcher-validator';
+import { ToastrService } from 'ngx-toastr';
 
 
 const uploadFile = "http://localhost:8080/api/user/profile/cv"
-const downloadFile = "http://localhost:8080/api/user/profile/download"
 
 @Component({
   selector: 'app-user-profile',
@@ -22,19 +23,29 @@ export class UserProfileComponent implements OnInit {
   user:User
 
   formFile: FormGroup;
+  formEditPassword:FormGroup;
+  successMessage: any;
+  errorMessage: any;
 
-  constructor(private http: HttpClient, private userService: UserService, private fb: FormBuilder) { }
+  
+
+  constructor(private http: HttpClient, private userService: UserService, private fb: FormBuilder, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
-    this.userService.getUserDetails().subscribe((data)=>{
-      this.user = data;
-      console.log(this.user);
-    });
+    this.getUserProfile();
 
     this.formFile = this.fb.group({
-      file :['', [Validators.nullValidator]]
+      file :['', [Validators.required, Validators.pattern('^.+\.([pP][dD][fF])$')]],
     })
+
+    this.formEditPassword = this.fb.group({
+      password: ['', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$')]],
+      confirmPassword: ['', Validators.required],
+      oldPassword: ['', Validators.required]
+    },{
+      validator: MustMatch('password', 'confirmPassword')
+    });
   }
 
   onFileSelect(event){
@@ -48,12 +59,36 @@ export class UserProfileComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.formFile.get('file')?.value);
 
-    this.http.post<any>(uploadFile, formData).subscribe((data)=>{
-    this.user = data; 
-    console.log(this.user);  
-    });
-   
+    this.http.post<any>(uploadFile, formData).subscribe({complete: () => {
+      this.getUserProfile();
+    },
+  });   
+}
+  downloadFile(){
+
+    this.userService.downloadPDF().subscribe(
+      (res) => {
+      var fileURL = URL.createObjectURL(res);
+      window.open(fileURL);
+      });
   }
+
+  deleteFile(){
+    this.userService.deleteCV().subscribe({complete: ()=>{
+      this.getUserProfile();
+    },
+  })
+  }
+
+  userEditPassword(){
+    this.userService.userEditPassword(this.formEditPassword.value).subscribe((data) =>{
+      this.successMessage = data['message'];
+      this.formEditPassword.reset()
+    }), err =>{
+      this.errorMessage = err;
+    }
+  }
+
   isHasCV(){
     if(this.user['file'] === null){
       return false;
@@ -61,27 +96,24 @@ export class UserProfileComponent implements OnInit {
     return true;
   }
 
-  downloadFile(){
+  getUserProfile(){
+    setTimeout(()=>{
+      this.userService.getUserDetails().subscribe((data)=>{
+        this.user = data;
+      });
+    }, 1000);
+   
+  }
 
-    /*let  headers= new HttpHeaders();
+  invalid(){
+    return this.formFile.invalid;
+  }
 
-    headers.set('Accept', 'application/pdf');
+  get f(){
+    return this.formEditPassword.controls;
+  }
 
-    this.http.get(downloadFile, {
-      headers: headers,
-      responseType: 'arraybuffer'
-    }).subscribe((data)=>{
-      var filename = new Date();
-      var blob = new Blob([response], {type: "application/pdf;charset=utf-8"});
-      saveAs(blob, filename +".pdf");
-    })*/
-
-    this.userService.downloadPDF().subscribe(
-      (res) => {
-        console.log(res);
-      var fileURL = URL.createObjectURL(res);
-      window.open(fileURL);
-      }
-  );
+  invalidEditPass(){
+    return this.formEditPassword.invalid;
   }
 }

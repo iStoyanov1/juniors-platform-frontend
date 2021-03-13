@@ -2,7 +2,9 @@ import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
+import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/auth.service';
+import { JwtInterceptorService } from 'src/jwt-interceptor.service';
 declare var jQuery:any;
 
 
@@ -15,8 +17,10 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup
   modalRef: BsModalRef;
-
-  constructor(private modalService: BsModalService, private fb: FormBuilder, private authService: AuthService, private router: Router) { }
+  badCredentials: any;
+    
+  constructor(private modalService: BsModalService, private fb: FormBuilder, private authService: AuthService, 
+    private router: Router) { }
 
   ngOnInit(): void {
 
@@ -39,9 +43,9 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/company/profile'])
     }
      this.closeModal();
-   }, (error) =>{
-     console.log(error)
-   })
+   }, err =>{
+     this.badCredentials = "Няма намерен потребител."
+   }) 
   
   }
 

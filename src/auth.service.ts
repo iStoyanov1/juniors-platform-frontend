@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 
 const auth = "http://localhost:8080/login"
@@ -12,7 +13,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(body) {
+  login(body){
     return this.http.post(auth,body)
   }
 
@@ -48,4 +49,5 @@ export class AuthService {
   logout(){
     localStorage.clear();
   }
+ 
 }

@@ -31,12 +31,6 @@
         formControlName="username"
       />
     </div>
-    <div
-      class="alert alert-danger w-50"
-      *ngIf="f.username.touched && f.username.errors?.required"
-    >
-      Полето е задължително.
-    </div>
     <div class="form-group input-group">
       <label for="password-login" class="form-label">Парола: </label>
       <div class="input-group-prepend" style="margin-left: 19px">
@@ -53,10 +47,10 @@
       />
     </div>
     <div
-      class="alert alert-danger w-50"
-      *ngIf="f.password.touched && f.password.errors?.required"
+      class="alert alert-danger ml-4 mr-4 text-center"
+      *ngIf="badCredentials"
     >
-      Полето е задължително.
+      <span>{{ badCredentials }}</span>
     </div>
   </div>
   <div class="modal-footer">

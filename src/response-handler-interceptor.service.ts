@@ -1,15 +1,16 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, Observable } from 'rxjs';
+import { from, Observable, throwError } from 'rxjs';
 import {catchError, tap} from 'rxjs/operators'
 import {ToastrService} from 'ngx-toastr'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResponseHandlerInterceptorService implements HttpInterceptor{
 
-  constructor(public toastr: ToastrService) { }
+  constructor(public toastr: ToastrService, private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>>{
     return next.handle(req).pipe(tap((success)=>{
@@ -18,10 +19,11 @@ export class ResponseHandlerInterceptorService implements HttpInterceptor{
           this.toastr.success('Влезте в своя профил от бутона "Вход"', 'Вашата регистрация беше успешна.');
         }
       }
-     
-    }), catchError((err)=>{
-       this.toastr.error(err.error.message,'Грешка')
-       throw err;
+    }),catchError((err)=>{
+        if(err.status != 403 || err.status != 401){
+         this.toastr.error(err.error.message,'Грешка')
+        }
+        throw err;
     }))
   }
 }

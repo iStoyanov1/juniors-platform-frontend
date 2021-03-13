@@ -17,6 +17,7 @@ import { ResponseHandlerInterceptorService } from 'src/response-handler-intercep
 import { ToastrModule } from 'ngx-toastr';
 import { JwtInterceptorService } from 'src/jwt-interceptor.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
     }),
+    BrowserAnimationsModule,
 
   ],
   providers: [UserService, 
