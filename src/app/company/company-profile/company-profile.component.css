@@ -1,0 +1,19 @@
+.company-contacts-icon {
+  display: inline-block;
+  color: #013c75;
+}
+.company-background-image {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+}
+.company-contacts {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-radius: 35px;
+}
+.benefits {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-radius: 20px;
+}
+.technologies {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-radius: 20px;
+}

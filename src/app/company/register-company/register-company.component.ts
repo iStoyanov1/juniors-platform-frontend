@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CompanyService } from 'src/company.service';
+import { CompanyService } from 'src/app/company/company.service';
 import { MustMatch } from '../../validations/password-matcher-validator';
 
 @Component({

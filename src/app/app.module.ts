@@ -9,7 +9,7 @@ import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterUserComponent } from './auth/register-user/register-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterCompanyComponent } from './auth/register-company/register-company.component';
+import { RegisterCompanyComponent } from './company/register-company/register-company.component';
 import { ModalModule } from 'ngx-bootstrap/modal'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { UserService } from 'src/user.service';
@@ -18,6 +18,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { JwtInterceptorService } from 'src/jwt-interceptor.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CompanyProfileComponent } from './company/company-profile/company-profile.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     RegisterUserComponent,
     RegisterCompanyComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CompanyProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',

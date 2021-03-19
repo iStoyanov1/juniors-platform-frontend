@@ -3,7 +3,7 @@ import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { catchError } from 'rxjs/operators';
-import { AuthService } from 'src/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 import { JwtInterceptorService } from 'src/jwt-interceptor.service';
 declare var jQuery:any;
 

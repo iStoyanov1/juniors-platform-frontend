@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { AuthService } from 'src/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 import { LoginComponent } from '../auth/login/login.component';
 
 @Component({

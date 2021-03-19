@@ -150,13 +150,14 @@
       >
         <li class="nav-item">
           <a
-            class="btn nav-link"
+            class="nav-link"
             style="
               color: grey;
               font-weight: bold;
               font-family: 'Calibri Light';
               font-size: 20px;
             "
+            [routerLink]="accountLink()"
           >
             Моят профил
           </a>
@@ -182,57 +183,45 @@
       >
         <li class="nav-item">
           <a
-            class="btn nav-link"
+            class="nav-link"
             style="
               color: grey;
               font-weight: bold;
               font-family: 'Calibri Light';
               font-size: 20px;
             "
+            [routerLink]="accountLink()"
           >
-            Мои обяви
+            Основен профил
           </a>
         </li>
         <li class="nav-item">
           <a
-            class="btn nav-link"
+            class="nav-link"
             style="
               color: grey;
               font-weight: bold;
               font-family: 'Calibri Light';
               font-size: 20px;
             "
+            [routerLink]="accountLink()"
           >
             Добави обява
           </a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link"
             style="
               color: grey;
               font-weight: bold;
               font-family: 'Calibri Light';
               font-size: 20px;
             "
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+            [routerLink]="accountLink()"
           >
-            Преглед на:
+            Мои обяви
           </a>
-          <a class="dropdown-item" [routerLink]="['/register/user']">Профил</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" [routerLink]="['/register/user']"
-              >Административна информация</a
-            >
-            <a class="dropdown-item" [routerLink]="['/register/company']"
-              >Данни за вход</a
-            >
-          </div>
         </li>
         <li class="nav-item">
           <a

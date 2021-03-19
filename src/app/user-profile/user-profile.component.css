@@ -1,4 +1,13 @@
-.personal-info:hover {
+.email-section:hover {
+  transform: scale(1.03);
+}
+.pass-section:hover {
+  transform: scale(1.03);
+}
+.cv-section:hover {
+  transform: scale(1.03);
+}
+.name-section:hover {
   transform: scale(1.03);
 }
 
