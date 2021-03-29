@@ -20,6 +20,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyProfileComponent } from './company/company-profile/company-profile.component';
 import { CommonModule } from '@angular/common';
+import { BenefitsComponent } from './company/benefits/benefits.component';
+import { TechnologiesComponent } from './company/technologies/technologies.component';
+
 
 
 @NgModule({
@@ -32,7 +35,9 @@ import { CommonModule } from '@angular/common';
     RegisterUserComponent,
     RegisterCompanyComponent,
     UserProfileComponent,
-    CompanyProfileComponent
+    CompanyProfileComponent,
+    TechnologiesComponent,
+    BenefitsComponent
   ],
   imports: [
     BrowserModule,

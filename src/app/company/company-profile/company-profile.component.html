@@ -45,7 +45,7 @@
       </div>
     </div>
     <div class="col-sm-7">
-      <div class="row">
+      <div class="row mb-1">
         <input type="file" name="file" />
         <button
           type="submit"
@@ -54,16 +54,9 @@
         >
           <i class="fa fa-upload" aria-hidden="true"></i> Качи файл
         </button>
-        <h4 class="ml-2">MentorMate.Ltd</h4>
+        <h4 class="ml-2">TestName</h4>
       </div>
-      <hr
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 100px"
-      />
-      <hr
-        class="mb-4 mt-1"
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 50px"
-      />
-      <div class="dropzone border h-75 company-background-image">
+      <div class="dropzone border company-background-image">
         <div
           class="row d-flex justify-content-center"
           style="margin-top: 40px; opacity: 0.1"
@@ -138,9 +131,17 @@
     <hr />
   </div>
   <div class="row ml-4">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div class="row ml-1">
         <h4>Технологии</h4>
+        <button
+          type="submit"
+          class="btn ml-4"
+          style="font-size: 0.8rem; background: #783eff; color: white"
+          (click)="openTechnologiesModal()"
+        >
+          <i class="fas fa-check-circle" aria-hidden="true"></i> Избери
+        </button>
         <button
           type="submit"
           class="btn ml-4"
@@ -159,24 +160,34 @@
       <span class="mb-4"
         >Добавете технологиите, с които се занимава компанията.</span
       >
-      <div class="technologies">
+      <div>
         <div class="row mt-4 ml-2">
-          <div class="col-sm-4 mt-2" *ngFor="let t of technology$ | async">
-            <div class="custom-control custom-switch rounded">
-              <input type="checkbox" class="custom-control-input" />
-              <label class="custom-control-label" style="font-size: 20px">{{
-                t.technology
-              }}</label>
-            </div>
+          <div class="col-sm-4" *ngFor="let t of selectedTechnologies">
+            <label class="control-label technologies-label">
+              <label
+                class="control-label ml-2 mt-2 mr-2 mb-2"
+                for="{{ t.technology }}"
+                style="font-size: 15px"
+                >{{ t.technology }}</label
+              ></label
+            >
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="row ml-4 mt-4">
-    <div class="col-sm-8">
+    <div class="col-sm-6">
       <div class="row ml-1">
         <h4>Придобивки</h4>
+        <button
+          type="submit"
+          class="btn ml-4"
+          style="font-size: 0.8rem; background: #783eff; color: white"
+          (click)="openBenefitsModal()"
+        >
+          <i class="fas fa-check-circle" aria-hidden="true"></i> Избери
+        </button>
         <button
           type="submit"
           class="btn ml-4"
@@ -197,21 +208,19 @@
         служители.</span
       >
       <div class="benefits">
-        <div class="row mt-4">
-          <div class="col-sm-4 mt-2" *ngFor="let b of benefit$ | async">
-            <div class="custom-control custom-switch rounded">
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="customSwitch1"
-              />
-              <label
-                class="custom-control-label"
-                style="font-size: 20px"
-                for="customSwitch1"
-                >{{ b.benefit }}</label
-              >
-            </div>
+        <div class="row mt-4 ml-2 mr-2">
+          <div class="col-sm-6" *ngFor="let b of selectedBenefits">
+            <label
+              class="control-label"
+              for="{{ b.benefit }}"
+              style="font-size: 15px"
+            >
+              <i
+                class="fa fa-benefit fa-check-circle mr-2"
+                aria-hidden="true"
+              ></i
+              >{{ b.benefit }}</label
+            >
           </div>
         </div>
       </div>
@@ -318,79 +327,7 @@
       </div>
     </div>
   </div>
-  <!-- <div class="row ml-4">
-    <div class="col-sm-4">
-      <h4>Контакти</h4>
-      <hr
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 100px"
-      />
-      <hr
-        class="mb-4 mt-1"
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 50px"
-      />
-      <div class="border company-contacts">
-        <div class="ml-4 mt-2 mr-4 mb-2">
-          <h6>
-            <i
-              class="fa fa-envelope-open mt-4 mr-2 company-contacts-icon"
-              aria-hidden="true"
-            ></i
-            >Имейл:
-          </h6>
-          <hr
-            class="ml-4"
-            style="background: #6e7f86; margin: 0px; padding: 0px; width: 50px"
-          />
-          <hr
-            class="mt-1 ml-4"
-            style="background: #6e7f86; margin: 0px; padding: 0px; width: 35px"
-          />
-          <h6>
-            <i
-              class="fa fa-phone mt-4 mr-2 company-contacts-icon"
-              aria-hidden="true"
-            ></i
-            >Телефон:
-          </h6>
-          <hr
-            class="ml-4"
-            style="background: #6e7f86; margin: 0px; padding: 0px; width: 50px"
-          />
-          <hr
-            class="mt-1 ml-4"
-            style="background: #6e7f86; margin: 0px; padding: 0px; width: 35px"
-          />
-          <h6>
-            <i
-              class="fa fa-map-marker mt-4 mr-2 company-contacts-icon"
-              aria-hidden="true"
-            ></i
-            >Адрес:
-          </h6>
-          <hr
-            class="ml-4"
-            style="background: #6e7f86; margin: 0px; padding: 0px; width: 50px"
-          />
-          <hr
-            class="mt-1 ml-4"
-            style="background: #6e7f86; margin: 0px; padding: 0px; width: 35px"
-          />
-          <h6>
-            <i
-              class="fa fa-globe mt-4 mr-2 company-contacts-icon"
-              aria-hidden="true"
-            ></i
-            >Уебсайт:
-          </h6>
-          <hr
-            class="ml-4"
-            style="background: #6e7f86; margin: 0px; padding: 0px; width: 50px"
-          />
-          <hr
-            class="mt-1 ml-4"
-            style="background: #6e7f86; margin: 0px; padding: 0px; width: 35px"
-          />
-        </div>
-      </div>
-    </div> -->
 </div>
+<!-- <ng-template #benefits>
+  <app-benefits (benefitsEvent)="getSelectedBenefits($event)"></app-benefits>
+</ng-template> -->

@@ -4,16 +4,28 @@
 }
 .company-background-image {
   box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  height: 85%;
 }
 .company-contacts {
   box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
-  border-radius: 35px;
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+  border-top-right-radius: 35px;
 }
 .benefits {
   box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
-  border-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
 }
 .technologies {
   box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
   border-radius: 20px;
+}
+.fa-benefit {
+  color: #179bd3;
+}
+.technologies-label {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-radius: 10px;
 }

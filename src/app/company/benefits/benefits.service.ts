@@ -19,5 +19,5 @@ export class BenefitsService {
   getAllBenefits() : Observable<Array<Benefit>>{
     return this.http.get<Array<Benefit>>(getAllBenefitsUrl);
   }
-
+  
 }
