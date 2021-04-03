@@ -1,33 +1,39 @@
 <div class="container-fluid mt-4">
   <div class="row ml-4">
     <div class="col-sm-4">
-      <h4>За компанията</h4>
-      <hr
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 100px"
-      />
-      <hr
-        class="mb-4 mt-1"
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 50px"
-      />
-      <div class="row ml-1">
+      <h1>За компанията</h1>
+      <hr class="mt-2 mb-4" />
+      <div *ngIf="getCompanyVideo()">
+        <div class="row ml-1">
+          <h5>Видео визитка</h5>
+          <button
+            type="button"
+            class="btn ml-2"
+            style="
+              background: rgb(209, 56, 56);
+              color: white;
+              font-size: 0.8rem;
+            "
+          >
+            <i class="fa fa-times mr-1" aria-hidden="true"></i> Премахни
+          </button>
+        </div>
+        <hr class="hr-subtitle" />
+        <hr class="hr-subtitle w-25 mb-1 mt-1" />
+        <div class="embed-responsive embed-responsive-16by9 mt-1">
+          <iframe
+            class="embed-responsive-item"
+            [src]="correctUrl"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!getCompanyVideo()">
+      <div>
         <h5>Видео визитка</h5>
-        <button
-          type="submit"
-          class="btn ml-4"
-          style="font-size: 0.8rem; background: #3ea6ff; color: white"
-        >
-          <i class="fas fa-plus-circle" aria-hidden="true"></i> Добавяне на
-          видеоклип
-        </button>
       </div>
       <hr style="background: #179bd3; margin: 0px; padding: 0px; width: 50px" />
-      <!-- <div class="embed-responsive embed-responsive-16by9 mt-1">
-        <iframe
-          class="embed-responsive-item"
-          src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-          allowfullscreen
-        ></iframe>
-      </div> -->
       <span>Добавете видео, представляващо вашата компания</span>
       <div class="form-group input-group w-75">
         <label for="company-video" class="form-label">Линк: </label>
@@ -54,7 +60,7 @@
         >
           <i class="fa fa-upload" aria-hidden="true"></i> Качи файл
         </button>
-        <h4 class="ml-2">TestName</h4>
+        <h4 class="ml-2">{{ companyName }}</h4>
       </div>
       <div class="dropzone border company-background-image">
         <div
@@ -82,149 +88,185 @@
       </div>
     </div>
   </div>
-  <div class="row mt-4 ml-4">
-    <div class="col-sm-6">
-      <div class="row ml-1">
-        <h5>Описание</h5>
-        <button
-          type="submit"
-          class="btn ml-4"
-          style="font-size: 0.8rem; background: #3ea6ff; color: white"
-        >
-          <i class="fas fa-plus-circle" aria-hidden="true"></i> Добавяне на
-          описание
-        </button>
-      </div>
-      <hr
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 100px"
-      />
-      <hr
-        class="mb-4 mt-1"
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 50px"
-      />
-      <span class="mb-4">Добавете описание за компанията.</span>
-      <div class="form-group mt-2">
-        <textarea class="form-control" rows="8"></textarea>
-      </div>
-    </div>
-    <div class="col-sm-1"></div>
-    <div class="col-sm-4">
-      <div class="row ml-1 mt-2">
-        <h4>Обяви</h4>
-        <button
-          type="submit"
-          class="btn ml-4"
-          style="font-size: 0.8rem; background: #3ea6ff; color: white"
-        >
-          <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави обява
-        </button>
-      </div>
-      <hr
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 100px"
-      />
-      <hr
-        class="mb-4 mt-1"
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 50px"
-      />
-      <span class="mb-4">Няма текущи обяви.</span>
-    </div>
-    <hr />
-  </div>
-  <div class="row ml-4">
-    <div class="col-sm-4">
-      <div class="row ml-1">
-        <h4>Технологии</h4>
-        <button
-          type="submit"
-          class="btn ml-4"
-          style="font-size: 0.8rem; background: #783eff; color: white"
-          (click)="openTechnologiesModal()"
-        >
-          <i class="fas fa-check-circle" aria-hidden="true"></i> Избери
-        </button>
-        <button
-          type="submit"
-          class="btn ml-4"
-          style="font-size: 0.8rem; background: #3ea6ff; color: white"
-        >
-          <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави
-        </button>
-      </div>
-      <hr
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 100px"
-      />
-      <hr
-        class="mb-1 mt-1"
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 50px"
-      />
-      <span class="mb-4"
-        >Добавете технологиите, с които се занимава компанията.</span
-      >
-      <div>
-        <div class="row mt-4 ml-2">
-          <div class="col-sm-4" *ngFor="let t of selectedTechnologies">
-            <label class="control-label technologies-label">
-              <label
-                class="control-label ml-2 mt-2 mr-2 mb-2"
-                for="{{ t.technology }}"
-                style="font-size: 15px"
-                >{{ t.technology }}</label
-              ></label
+  <div>
+    <form [formGroup]="formInformation" (submit)="uploadCompanyInformation()">
+      <div class="row mt-4 ml-4">
+        <div class="col-sm-5">
+          <div *ngIf="getCompanyInformation()">
+            <div class="row ml-1">
+              <h5>Описание</h5>
+            </div>
+            <hr class="hr-subtitle" />
+            <hr class="hr-subtitle w-25 mb-1 mt-1" />
+            <div class="mb-4">
+              <textarea
+                class="form-control"
+                rows="10"
+                name="information"
+                formControlName="information"
+                [(ngModel)]="company.information"
+              >
+              </textarea>
+            </div>
+          </div>
+          <div *ngIf="!getCompanyInformation()">
+            <div class="row ml-1">
+              <h5>Описание</h5>
+            </div>
+            <hr class="hr-subtitle" />
+            <hr class="hr-subtitle mb-1 mt-1" />
+            <span class="mb-4">Добавете описание за компанията.</span>
+            <div class="form-group mt-2">
+              <textarea
+                class="form-control"
+                rows="8"
+                name="information"
+                formControlName="information"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-4">
+          <div class="row ml-1 mt-2">
+            <h4>Обяви</h4>
+            <!-- <button
+              type="submit"
+              class="btn ml-4"
+              style="font-size: 0.8rem; background: #3ea6ff; color: white"
             >
+              <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави обява
+            </button> -->
+          </div>
+          <hr class="hr-subtitle" />
+          <hr class="hr-subtitle w-50 mb-4 mt-1" />
+          <span class="mb-4">Няма текущи обяви.</span>
+        </div>
+        <hr />
+      </div>
+      <div class="row ml-4">
+        <div class="col-sm-4">
+          <div class="row ml-1">
+            <h4>Технологии</h4>
+            <button
+              type="button"
+              class="btn btn-open-modal ml-4"
+              (click)="openTechnologiesModal()"
+            >
+              <i class="fas fa-check-circle" aria-hidden="true"></i> Избери
+            </button>
+          </div>
+          <hr class="hr-subtitle" />
+          <hr class="hr-subtitle w-50 mb-1 mt-1" />
+          <div *ngIf="!getCompanyTechnologies()">
+            <span class="mb-4"
+              >Добавете технологиите, с които се занимава компанията.</span
+            >
+          </div>
+          <div>
+            <div class="row mt-2 ml-2">
+              <div class="col-sm-4" *ngFor="let t of technologies">
+                <button class="btn btn-technology mt-1">
+                  {{ t.technology }} |
+                  <i class="fa fa-times" style="color: rgb(0, 52, 165)"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="getCompanyTechnologies()">
+            <div class="row mt-1 ml-2">
+              <div class="col-sm-4" *ngFor="let t of companyTechnologies">
+                <button class="btn btn-technology mt-1">
+                  {{ t.technology }} |
+                  <i class="fa fa-times" style="color: rgb(0, 52, 165)"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row ml-4 mt-4">
-    <div class="col-sm-6">
-      <div class="row ml-1">
-        <h4>Придобивки</h4>
-        <button
-          type="submit"
-          class="btn ml-4"
-          style="font-size: 0.8rem; background: #783eff; color: white"
-          (click)="openBenefitsModal()"
-        >
-          <i class="fas fa-check-circle" aria-hidden="true"></i> Избери
-        </button>
-        <button
-          type="submit"
-          class="btn ml-4"
-          style="font-size: 0.8rem; background: #3ea6ff; color: white"
-        >
-          <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави
-        </button>
-      </div>
-      <hr
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 100px"
-      />
-      <hr
-        class="mb-1 mt-1"
-        style="background: #179bd3; margin: 0px; padding: 0px; width: 50px"
-      />
-      <span class="mb-4"
-        >Добавете придобивките, които фирмата предлага на своите
-        служители.</span
-      >
-      <div class="benefits">
-        <div class="row mt-4 ml-2 mr-2">
-          <div class="col-sm-6" *ngFor="let b of selectedBenefits">
-            <label
-              class="control-label"
-              for="{{ b.benefit }}"
-              style="font-size: 15px"
+      <div class="row ml-4 mt-4">
+        <div class="col-sm-6">
+          <div class="row ml-1">
+            <h4>Придобивки</h4>
+            <button
+              type="button"
+              class="btn btn-open-moda ml-4"
+              (click)="openBenefitsModal()"
             >
-              <i
-                class="fa fa-benefit fa-check-circle mr-2"
-                aria-hidden="true"
-              ></i
-              >{{ b.benefit }}</label
+              <i class="fas fa-check-circle" aria-hidden="true"></i> Избери
+            </button>
+          </div>
+          <hr class="hr-subtitle" />
+          <hr class="hr-subtitle w-25 mb-1 mt-1" />
+          <div *ngIf="!getCompanyBenefits()">
+            <span class="mb-4"
+              >Добавете придобивките, които фирмата предлага на своите
+              служители.</span
             >
           </div>
+          <div class="benefits">
+            <div class="row mt-4 ml-2 mr-2">
+              <div class="col-sm-6" *ngFor="let b of benefits">
+                <label
+                  class="control-label mt-2"
+                  for="{{ b.benefit }}"
+                  style="font-size: 15px"
+                >
+                  <i
+                    class="fa fa-benefit fa-check-circle mr-2"
+                    aria-hidden="true"
+                  ></i
+                  >{{ b.benefit }}</label
+                >
+              </div>
+            </div>
+          </div>
+          <div *ngIf="getCompanyBenefits()">
+            <div class="benefits">
+              <div class="row mt-1 ml-2">
+                <div class="col-sm-6" *ngFor="let b of companyBenefits">
+                  <label
+                    class="control-label mt-2"
+                    for="{{ b.benefit }}"
+                    style="font-size: 15px"
+                  >
+                    <!-- <i
+                      class="fa fa-benefit fa-check-circle mr-2"
+                      aria-hidden="true"
+                    ></i> -->
+                    <button
+                      class="btn btn-danger"
+                      style="font-size: 0.1rem"
+                      id="{{ b.id }}"
+                    >
+                      <i
+                        class="fa fa-minus fa-8x"
+                        style="color: rgb(247, 247, 247)"
+                      ></i>
+                    </button>
+                    {{ b.benefit }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
         </div>
       </div>
-    </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-8">
+          <button
+            type="submit"
+            class="btn ml-4 text-center"
+            style="font-size: 1.2rem; background: #3ea6ff; color: white"
+          >
+            <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави
+            информация
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
   <div class="container company-contacts">
     <div class="row mt-4 mb-4">

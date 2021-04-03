@@ -29,3 +29,24 @@
   box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
   border-radius: 10px;
 }
+textarea {
+  resize: none;
+}
+.hr-subtitle {
+  background: #179bd3;
+  margin: 0px;
+  padding: 0px;
+  width: 100px;
+}
+.btn-technology {
+  font-size: 15px;
+  background-color: rgba(0, 225, 255, 0.315);
+  color: rgb(0, 52, 165);
+  border-color: rgb(0, 52, 165);
+  border-radius: 15px;
+}
+.btn-open-modal {
+  font-size: 0.8rem;
+  background: #1fc0b3;
+  color: white;
+}

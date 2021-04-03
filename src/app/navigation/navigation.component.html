@@ -15,41 +15,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a
-            class="nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
-            href="#"
+          <a class="nav-link" style="color: grey; font-size: 20px" href="#"
             >Начало</a
           >
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
-            href="#"
+          <a class="nav-link" style="color: grey; font-size: 20px" href="#"
             >Обяви</a
           >
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
-            href="#"
+          <a class="nav-link" style="color: grey; font-size: 20px" href="#"
             >Компании</a
           >
         </li>
@@ -58,12 +34,7 @@
         <li class="nav-item">
           <a
             class="btn nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
+            style="color: grey; font-size: 20px"
             (click)="openModal()"
           >
             Вход
@@ -72,12 +43,7 @@
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
+            style="color: grey; font-size: 20px"
             href="#"
             id="navbarDropdown"
             role="button"
@@ -102,27 +68,14 @@
         *ngIf="authService.isAuthenticated() && authService.isModerator()"
       >
         <li class="nav-item">
-          <a
-            class="nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
-          >
+          <a class="nav-link" style="color: grey; font-size: 20px">
             Потребители
           </a>
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
+            style="color: grey; font-size: 20px"
             href
             [routerLink]="accountLink()"
           >
@@ -132,12 +85,7 @@
         <li class="nav-item">
           <a
             class="btn nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
+            style="color: grey; font-size: 20px"
             (click)="logout()"
           >
             Изход
@@ -151,12 +99,7 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
+            style="color: grey; font-size: 20px"
             [routerLink]="accountLink()"
           >
             Моят профил
@@ -165,12 +108,7 @@
         <li class="nav-item">
           <a
             class="btn nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
+            style="color: grey; font-size: 20px"
             (click)="logout()"
           >
             Изход
@@ -184,12 +122,7 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
+            style="color: grey; font-size: 20px"
             [routerLink]="accountLink()"
           >
             Основен профил
@@ -198,12 +131,7 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
+            style="color: grey; font-size: 20px"
             [routerLink]="accountLink()"
           >
             Добави обява
@@ -212,12 +140,7 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
+            style="color: grey; font-size: 20px"
             [routerLink]="accountLink()"
           >
             Мои обяви
@@ -226,12 +149,7 @@
         <li class="nav-item">
           <a
             class="btn nav-link"
-            style="
-              color: grey;
-              font-weight: bold;
-              font-family: 'Calibri Light';
-              font-size: 20px;
-            "
+            style="color: grey; font-size: 20px"
             (click)="logout()"
           >
             Изход

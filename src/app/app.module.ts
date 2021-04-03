@@ -25,6 +25,7 @@ import { TechnologiesComponent } from './company/technologies/technologies.compo
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { TechnologiesComponent } from './company/technologies/technologies.compo
     UserProfileComponent,
     CompanyProfileComponent,
     TechnologiesComponent,
-    BenefitsComponent
+    BenefitsComponent,
+    
   ],
   imports: [
     BrowserModule,

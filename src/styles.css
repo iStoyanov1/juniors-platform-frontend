@@ -1,15 +1,8 @@
-/*.main{*/
-/*    background-image: url("https://www.bacancytechnology.com/blog/wp-content/uploads/2019/04/Full-Stack.jpg");*/
-/*    height: 60vh;*/
-/*    background-size:cover*/
-
-/*}*/
-/*.navbar{*/
-/*    opacity: 1%;*/
-/*}*/
-
 @import "~ngx-toastr/toastr.css";
-
+@import url("https://fonts.googleapis.com/css2?family=Exo+2&display=swap");
+body {
+  font-family: "Exo 2", sans-serif;
+}
 .container {
   margin-top: 100px;
 }
@@ -84,12 +77,6 @@
   margin-bottom: 80px;
   margin-left: 95px;
 }
-
-@import url("https://fonts.googleapis.com/css?family=Roboto");
-
-/*body{*/
-/*    font-family: 'Roboto', sans-serif;*/
-/*}*/
 
 /*.navbar-nav > li{*/
 /*    margin-left:30px;*/
