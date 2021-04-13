@@ -1,4 +1,4 @@
-<div class="container-fluid mt-4">
+<div class="container-fluid mt-4" *ngIf="company; else loader">
   <div class="row ml-4">
     <div class="col-sm-4">
       <h1>За компанията</h1>
@@ -14,6 +14,7 @@
               color: white;
               font-size: 0.8rem;
             "
+            (click)="deleteCompanyVideo()"
           >
             <i class="fa fa-times mr-1" aria-hidden="true"></i> Премахни
           </button>
@@ -28,62 +29,124 @@
           ></iframe>
         </div>
       </div>
-    </div>
-    <div *ngIf="!getCompanyVideo()">
-      <div>
-        <h5>Видео визитка</h5>
-      </div>
-      <hr style="background: #179bd3; margin: 0px; padding: 0px; width: 50px" />
-      <span>Добавете видео, представляващо вашата компания</span>
-      <div class="form-group input-group w-75">
-        <label for="company-video" class="form-label">Линк: </label>
-        <div class="input-group-prepend ml-2">
-          <span class="input-group-text">
-            <i class="fab fa-youtube" aria-hidden="true"></i>
-          </span>
+      <div *ngIf="!getCompanyVideo()">
+        <div>
+          <h5>Видео визитка</h5>
         </div>
-        <input
-          id="company-video"
-          name="urlPath"
-          class="form-control form-control-sm"
-          type="url"
+        <hr
+          style="background: #179bd3; margin: 0px; padding: 0px; width: 50px"
         />
+        <span>Добавете видео, представляващо вашата компания</span>
+        <div class="form-group input-group w-75">
+          <label for="company-video" class="form-label">Линк: </label>
+          <div class="input-group-prepend ml-2">
+            <span class="input-group-text">
+              <i class="fab fa-youtube" aria-hidden="true"></i>
+            </span>
+          </div>
+          <input
+            id="company-video"
+            name="urlPath"
+            class="form-control form-control-sm"
+            type="url"
+          />
+        </div>
       </div>
     </div>
     <div class="col-sm-7">
       <div class="row mb-1">
-        <input type="file" name="file" />
-        <button
-          type="submit"
-          class="btn btn-outline-secondary"
-          style="font-size: 0.8rem"
-        >
-          <i class="fa fa-upload" aria-hidden="true"></i> Качи файл
-        </button>
-        <h4 class="ml-2">{{ companyName }}</h4>
-      </div>
-      <div class="dropzone border company-background-image">
-        <div
-          class="row d-flex justify-content-center"
-          style="margin-top: 40px; opacity: 0.1"
-        >
-          <i class="fas fa-cloud-upload-alt fa-6x" aria-hidden="true"></i>
+        <div *ngIf="!getCompanyLogo()">
+          <form [formGroup]="formLogo" (submit)="addCompanyLogo()">
+            <input
+              type="file"
+              formControlName="logo"
+              name="logo"
+              (change)="onLogoSelect($event)"
+            />
+            <button
+              type="submit"
+              class="btn btn-outline-dark"
+              style="font-size: 0.8rem"
+            >
+              <i class="fa fa-upload" aria-hidden="true"></i> Качи файл
+            </button>
+          </form>
         </div>
-        <div class="row justify-content-center">
-          <span class="mt-1 mb-1" style="font-size: 10px"
-            >Тук можете да поставите снимка на компанията, която потребителите
-            да видят, като отворят профила Ви.</span
-          >
-        </div>
-        <div class="row justify-content-center">
-          <input type="file" />
+        <div *ngIf="getCompanyLogo()">
           <button
-            type="submit"
-            class="btn btn-outline-secondary"
-            style="font-size: 0.8rem"
+            type="button"
+            class="btn ml-3 mr-2"
+            style="
+              background: rgb(209, 56, 56);
+              color: white;
+              font-size: 0.7rem;
+            "
+            (click)="deleteCompanyLogo()"
           >
-            <i class="fa fa-upload" aria-hidden="true"></i> Качи файл
+            <i class="fa fa-trash mr-1" aria-hidden="true"></i> Изтрий лого
           </button>
+          <img src="data:image/png;base64,{{ companyLogo['bytes'] }}" />
+        </div>
+        <h4 class="ml-2">{{ companyName }}</h4>
+        <div class="col-sm-4"></div>
+        <div *ngIf="getCompanyBackground()">
+          <div class="justify-content-end">
+            <button
+              type="button"
+              class="btn ml-3 mr-2"
+              style="
+                background: rgb(209, 56, 56);
+                color: white;
+                font-size: 0.7rem;
+              "
+              (click)="deleteCompanyBackground()"
+            >
+              <i class="fa fa-trash mr-1" aria-hidden="true"></i> Премахни
+              снимка
+            </button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!getCompanyBackground()">
+        <div class="dropzone border company-background-image">
+          <form [formGroup]="formBackground" (submit)="addCompanyBackground()">
+            <div
+              class="row d-flex justify-content-center"
+              style="margin-top: 40px; opacity: 0.1"
+            >
+              <i class="fas fa-cloud-upload-alt fa-6x" aria-hidden="true"></i>
+            </div>
+            <div class="row justify-content-center">
+              <span class="mt-1 mb-1" style="font-size: 10px"
+                >Тук можете да поставите снимка на компанията, която
+                потребителите да видят, като отворят профила Ви.</span
+              >
+            </div>
+            <div class="row justify-content-center">
+              <input
+                type="file"
+                name="background"
+                formControlName="background"
+                (change)="onBackgroundSelect($event)"
+              />
+              <button
+                type="submit"
+                class="btn btn-outline-dark"
+                style="font-size: 0.8rem"
+              >
+                <i class="fa fa-upload" aria-hidden="true"></i> Качи файл
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="getCompanyBackground()">
+        <div class="dropzone border company-background-image">
+          <img
+            src="data:image/png;base64,{{ companyBackground['bytes'] }}"
+            width="830"
+            height="300"
+          />
         </div>
       </div>
     </div>
@@ -130,13 +193,13 @@
         <div class="col-sm-4">
           <div class="row ml-1 mt-2">
             <h4>Обяви</h4>
-            <!-- <button
-              type="submit"
+            <button
+              type="button"
               class="btn ml-4"
               style="font-size: 0.8rem; background: #3ea6ff; color: white"
             >
               <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави обява
-            </button> -->
+            </button>
           </div>
           <hr class="hr-subtitle" />
           <hr class="hr-subtitle w-50 mb-4 mt-1" />
@@ -166,92 +229,40 @@
           <div>
             <div class="row mt-2 ml-2">
               <div class="col-sm-4" *ngFor="let t of technologies">
-                <button class="btn btn-technology mt-1">
-                  {{ t.technology }} |
-                  <i class="fa fa-times" style="color: rgb(0, 52, 165)"></i>
-                </button>
+                <div class="form-group input-group technologies-group">
+                  <input
+                    disabled
+                    class="form-control"
+                    style="font-size: 20; background: none; border: none"
+                    value="{{ t.technology }}"
+                  />
+                </div>
               </div>
             </div>
           </div>
           <div *ngIf="getCompanyTechnologies()">
             <div class="row mt-1 ml-2">
               <div class="col-sm-4" *ngFor="let t of companyTechnologies">
-                <button class="btn btn-technology mt-1">
-                  {{ t.technology }} |
-                  <i class="fa fa-times" style="color: rgb(0, 52, 165)"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row ml-4 mt-4">
-        <div class="col-sm-6">
-          <div class="row ml-1">
-            <h4>Придобивки</h4>
-            <button
-              type="button"
-              class="btn btn-open-moda ml-4"
-              (click)="openBenefitsModal()"
-            >
-              <i class="fas fa-check-circle" aria-hidden="true"></i> Избери
-            </button>
-          </div>
-          <hr class="hr-subtitle" />
-          <hr class="hr-subtitle w-25 mb-1 mt-1" />
-          <div *ngIf="!getCompanyBenefits()">
-            <span class="mb-4"
-              >Добавете придобивките, които фирмата предлага на своите
-              служители.</span
-            >
-          </div>
-          <div class="benefits">
-            <div class="row mt-4 ml-2 mr-2">
-              <div class="col-sm-6" *ngFor="let b of benefits">
-                <label
-                  class="control-label mt-2"
-                  for="{{ b.benefit }}"
-                  style="font-size: 15px"
-                >
-                  <i
-                    class="fa fa-benefit fa-check-circle mr-2"
-                    aria-hidden="true"
-                  ></i
-                  >{{ b.benefit }}</label
-                >
-              </div>
-            </div>
-          </div>
-          <div *ngIf="getCompanyBenefits()">
-            <div class="benefits">
-              <div class="row mt-1 ml-2">
-                <div class="col-sm-6" *ngFor="let b of companyBenefits">
-                  <label
-                    class="control-label mt-2"
-                    for="{{ b.benefit }}"
-                    style="font-size: 15px"
+                <div class="form-group input-group technologies-group">
+                  <input
+                    class="form-control"
+                    style="font-size: 20; background: none; border: none"
+                    value="{{ t.technology }}"
+                  />
+                  <button
+                    class="btn mr-2"
+                    style="background: none; width: 1px"
+                    value="{{ t.id }}"
                   >
-                    <!-- <i
-                      class="fa fa-benefit fa-check-circle mr-2"
-                      aria-hidden="true"
-                    ></i> -->
-                    <button
-                      class="btn btn-danger"
-                      style="font-size: 0.1rem"
-                      id="{{ b.id }}"
-                    >
-                      <i
-                        class="fa fa-minus fa-8x"
-                        style="color: rgb(247, 247, 247)"
-                      ></i>
-                    </button>
-                    {{ b.benefit }}
-                  </label>
+                    <i
+                      class="fa fa-times fa-1x"
+                      style="color: rgb(216, 40, 40)"
+                    ></i>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          <hr />
         </div>
       </div>
       <div class="row justify-content-center">
@@ -268,108 +279,7 @@
       </div>
     </form>
   </div>
-  <div class="container company-contacts">
-    <div class="row mt-4 mb-4">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-9">
-        <div class="row ml-1 mt-4">
-          <h3>Контакти</h3>
-          <button
-            type="submit"
-            class="btn ml-4 w-25"
-            style="font-size: 0.8rem; background: #3ea6ff; color: white"
-          >
-            <i class="fas fa-plus-circle" aria-hidden="true"></i> Запази
-          </button>
-        </div>
-        <hr
-          style="background: #179bd3; margin: 0px; padding: 0px; width: 100px"
-        />
-        <hr
-          class="mt-1"
-          style="background: #179bd3; margin: 0px; padding: 0px; width: 50px"
-        />
-      </div>
-    </div>
-    <hr />
-    <div class="row mt-4">
-      <div class="col-sm-3 mb-1 ml-4">
-        <i
-          class="fa fa-lg fa-map-marker mt-2 mr-2 company-contacts-icon"
-          aria-hidden="true"
-        ></i>
-        <label style="font-size: 25px" class="form-label">Адрес: </label>
-        <hr
-          class="ml-4"
-          style="background: #6e7f86; margin: 0px; padding: 0px; width: 50px"
-        />
-        <hr
-          class="mt-1 ml-4"
-          style="background: #6e7f86; margin: 0px; padding: 0px; width: 35px"
-        />
-      </div>
-      <div class="col-sm-4">
-        <i
-          class="fa fa-lg fa-phone mt-2 mr-2 company-contacts-icon"
-          aria-hidden="true"
-        ></i>
-        <label style="font-size: 25px" class="form-label">Телефон: </label>
-        <hr
-          class="ml-4"
-          style="background: #6e7f86; margin: 0px; padding: 0px; width: 50px"
-        />
-        <hr
-          class="mt-1 ml-4"
-          style="background: #6e7f86; margin: 0px; padding: 0px; width: 35px"
-        />
-      </div>
-      <div class="col-sm-4">
-        <i
-          class="fa fa-lg fa-globe mt-2 mr-2 company-contacts-icon"
-          aria-hidden="true"
-        ></i>
-        <label style="font-size: 25px" class="form-label">Уебсайт: </label>
-        <hr
-          class="ml-4"
-          style="background: #6e7f86; margin: 0px; padding: 0px; width: 50px"
-        />
-        <hr
-          class="mt-1 ml-4"
-          style="background: #6e7f86; margin: 0px; padding: 0px; width: 35px"
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-3 ml-4">
-        <div class="form-group input-group">
-          <input
-            name="address"
-            class="form-control form-control-sm"
-            type="text"
-          />
-        </div>
-      </div>
-      <div class="col-sm-4 mb-4">
-        <div class="form-group input-group">
-          <input
-            name="phone"
-            class="form-control form-control-sm"
-            type="text"
-          />
-        </div>
-      </div>
-      <div class="col-sm-4 mb-4">
-        <div class="form-group input-group">
-          <input
-            name="website"
-            class="form-control form-control-sm"
-            type="text"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-<!-- <ng-template #benefits>
-  <app-benefits (benefitsEvent)="getSelectedBenefits($event)"></app-benefits>
-</ng-template> -->
+<ng-template #loader>
+  <app-loader-spinner></app-loader-spinner>
+</ng-template>

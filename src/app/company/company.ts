@@ -7,4 +7,6 @@ export interface Company{
     information?:string;
     benefits:Benefit[];
     technologies:Technology[];
+    logo?:any
+    background?: any;
 }

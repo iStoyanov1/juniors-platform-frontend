@@ -22,6 +22,7 @@ import { CompanyProfileComponent } from './company/company-profile/company-profi
 import { CommonModule } from '@angular/common';
 import { BenefitsComponent } from './company/benefits/benefits.component';
 import { TechnologiesComponent } from './company/technologies/technologies.component';
+import { LoaderSpinnerComponent } from './loader-spinner/loader-spinner.component';
 
 
 
@@ -39,6 +40,7 @@ import { TechnologiesComponent } from './company/technologies/technologies.compo
     CompanyProfileComponent,
     TechnologiesComponent,
     BenefitsComponent,
+    LoaderSpinnerComponent,
     
   ],
   imports: [
