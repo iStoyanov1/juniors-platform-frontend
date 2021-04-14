@@ -226,25 +226,12 @@
               >Добавете технологиите, с които се занимава компанията.</span
             >
           </div>
-          <div>
-            <div class="row mt-2 ml-2">
-              <div class="col-sm-4" *ngFor="let t of technologies">
-                <div class="form-group input-group technologies-group">
-                  <input
-                    disabled
-                    class="form-control"
-                    style="font-size: 20; background: none; border: none"
-                    value="{{ t.technology }}"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
           <div *ngIf="getCompanyTechnologies()">
             <div class="row mt-1 ml-2">
               <div class="col-sm-4" *ngFor="let t of companyTechnologies">
                 <div class="form-group input-group technologies-group">
                   <input
+                    disabled
                     class="form-control"
                     style="font-size: 20; background: none; border: none"
                     value="{{ t.technology }}"
@@ -257,6 +244,32 @@
                     <i
                       class="fa fa-times fa-1x"
                       style="color: rgb(216, 40, 40)"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div #newTech *ngIf="showNewTech()">
+            <div class="row mt-2 ml-2">
+              <div class="col-sm-4" *ngFor="let t of technologies">
+                <div class="form-group input-group technologies-group">
+                  <input
+                    disabled
+                    class="form-control"
+                    style="font-size: 20; background: none; border: none"
+                    value="{{ t.technology }}"
+                  />
+                  <button
+                    type="button"
+                    class="btn mr-2"
+                    style="background: none; width: 1px"
+                    value="{{ t.id }}"
+                    (click)="deleteNewTech(t.id)"
+                  >
+                    <i
+                      class="fa fa-times fa-1x"
+                      style="color: rgb(19, 18, 18)"
                     ></i>
                   </button>
                 </div>

@@ -59,8 +59,9 @@ import { LoaderSpinnerComponent } from './loader-spinner/loader-spinner.componen
   ],
   providers: [UserService, 
     {provide: HTTP_INTERCEPTORS, useClass: ResponseHandlerInterceptorService, multi:true},
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi:true}
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi:true},
   ],
+  entryComponents: [TechnologiesComponent],
    
   bootstrap: [AppComponent]
 })

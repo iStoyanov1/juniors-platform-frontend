@@ -1,44 +1,55 @@
-<div class="modal-header">
-  <h5 class="modal-title">Изберете технологиите, с които компанията работи.</h5>
-  <button
-    type="button"
-    class="close pull-right"
-    aria-label="Close"
-    (click)="closeModal()"
-  >
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
-  <div class="row mt-4">
-    <div class="col-sm-4" *ngFor="let t of technology$ | async">
-      <div class="custom-control custom-switch rounded">
-        <input
-          type="checkbox"
-          class="custom-control-input"
-          id="{{ t.technology }}"
-          name="technologies"
-          (change)="changeSelection($event, t)"
-        />
-        <label
-          class="custom-control-label"
-          style="font-size: 20px"
-          for="{{ t.technology }}"
-          >{{ t.technology }}</label
-        >
+<form
+  [formGroup]="technologiesForm"
+  (submit)="addTechnologies(technologiesForm)"
+>
+  <div class="modal-header">
+    <h5 class="modal-title">
+      Изберете технологиите, с които компанията работи.
+    </h5>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row mt-4">
+      <div class="col-sm-4" *ngFor="let t of technology$ | async">
+        <div class="custom-control custom-switch rounded">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="{{ t.technology }}"
+            name="technologies"
+            (change)="changeSelection($event, t)"
+          />
+          <label
+            class="custom-control-label"
+            style="font-size: 20px"
+            for="{{ t.technology }}"
+            >{{ t.technology }}</label
+          >
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="modal-footer">
-  <div class="row">
-    <button
-      type="submit"
-      (click)="submitSelectedTechnologies()"
-      class="btn btn-primary mr-3"
-      style="width: 200px"
-    >
-      Избери
-    </button>
+  <div class="modal-footer">
+    <div class="row">
+      <span>
+        *След като изберете технологиите, обновeте информацията, за да бъдат
+        запазени промените.
+      </span>
+      <button
+        type="submit"
+        (click)="submitSelectedTechnologies()"
+        class="btn btn-primary mr-3"
+        style="width: 200px"
+      >
+        Избери
+      </button>
+    </div>
   </div>
-</div>
+</form>
