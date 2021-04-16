@@ -1,18 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { Benefit } from '../benefits/benefit';
 import { BenefitsComponent } from '../benefits/benefits.component';
-import { BenefitsService } from '../benefits/benefits.service';
 import { Company } from '../company';
 import { CompanyService } from '../company.service';
 import { TechnologiesComponent } from '../technologies/technologies.component';
-import { TechnologiesService } from '../technologies/technologies.service';
 import { Technology } from '../technologies/technology';
 
 
@@ -27,7 +23,6 @@ const addCompanyBackgroundApi = 'http://localhost:8080/api/company/profile/add/b
 })
 export class CompanyProfileComponent implements OnInit {
 
-  @ViewChild("newTech") div: ElementRef
   
   modalRef: BsModalRef
   benefits : Benefit[]
@@ -44,6 +39,7 @@ export class CompanyProfileComponent implements OnInit {
   formLogo: FormGroup;
   companyLogo: any
   formBackground: FormGroup;
+  formVideo:FormGroup
   companyBackground: any;
 
   constructor(private modalService: BsModalService, private fb: FormBuilder, private companyService: CompanyService,
@@ -57,17 +53,19 @@ export class CompanyProfileComponent implements OnInit {
     this.getCompanyProfile()
 
     this.formLogo = this.fb.group({
-      logo: ['', Validators.nullValidator]
+      logo: ['', [Validators.required, Validators.pattern('[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$')]]
     })
 
     this.formBackground = this.fb.group({
-      background: ['', Validators.nullValidator]
+      background: ['', [Validators.required, Validators.pattern('[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$')]]
     })
+
 
     this.formInformation = this.fb.group({
       information: ['', Validators.nullValidator],
-      urlPath: ['', Validators.nullValidator],
-      technologies: ['', Validators.nullValidator]
+      urlPath: ['',[Validators.pattern('^(http(s)??\\:\\/\\/)?(www\\.)?((youtube\\.com\\/watch\\?v=)|(youtu.be\\/))([a-zA-Z0-9\\-_])+')] ],
+      technologies: ['', Validators.nullValidator],
+      benefits: ['', Validators.nullValidator] 
     })
 
   }
@@ -86,17 +84,14 @@ export class CompanyProfileComponent implements OnInit {
 
   uploadCompanyInformation(){
 
-    this.addNewTech()
+    console.log(this.formInformation.value)
 
     this.formInformation.controls['technologies'].setValue(this.companyTechnologies);
-    this.formInformation.controls['urlPath'].setValue(this.company.urlPath);
-    // this.formInformation.controls['benefits'].setValue(this.benefits);
-    this.companyService.uploadInformation(this.formInformation.value).subscribe({complete: () => {
+    this.formInformation.controls['benefits'].setValue(this.companyBenefits);
+    this.companyService.uploadInformation(this.formInformation.value).subscribe((data) => {
+      this.toastr.success(data['message'],"Съобщение")
       this.getCompanyProfile();
-      },
     });
-
-    this.div.nativeElement.remove()
   }
 
   getCompanyName(){
@@ -208,43 +203,74 @@ deleteCompanyBackground(){
 }
 
   openBenefitsModal(){
-    this.modalRef = this.modalService.show(BenefitsComponent, {class: 'modal-xl'});
-    this.benefits = this.modalRef.content['selectedBenefits']
+  
+    const initialState = {
+      selectedBenefits: this.companyBenefits
+    };
+
+    this.modalRef = this.modalService.show(BenefitsComponent, {initialState, class: 'modal-xl'});
+    this.modalRef.content.event.subscribe(res => {
+      for (let i = 0; i < res.data.length; i++) {
+        this.companyBenefits.push(res.data[i]);
+      }
+    });
   
   }
   openTechnologiesModal(){
 
     const initialState = {
-      selectedTechnologies: this.technologies = new Array<Technology>()
+      selectedTechnologies: this.companyTechnologies
     };
 
     this.modalRef = this.modalService.show(TechnologiesComponent, {initialState, class: 'modal-lg'});
     this.modalRef.content.event.subscribe(res => {
       for (let i = 0; i < res.data.length; i++) {
-        this.technologies.push(res.data[i]);
+        this.companyTechnologies.push(res.data[i]);
       }
     });
    }
 
-   showNewTech(){
-     if(this.technologies === undefined){
-       return false
-     }
-     return true
-   }
+  //  showNewTech(){
+  //    if(this.technologies === undefined){
+  //      return false
+  //    }
+  //    return true
+  //  }
 
-   addNewTech(){
-     for(let i = 0; i < this.technologies.length; i++){
-       this.companyTechnologies.push(this.technologies[i])
-     }
-   }
+  //  addNewTech(){
+  //    for(let i = 0; i < this.technologies.length; i++){
+  //      this.companyTechnologies.push(this.technologies[i])
+  //    }
+  //  }
 
    deleteNewTech(index){
-    for(let i = 0; i < this.technologies.length; i++) {
-      if (this.technologies[i].id === index) {
-          this.technologies.splice(i, 1);
+    for(let i = 0; i < this.companyTechnologies.length; i++) {
+      if (this.companyTechnologies[i].id === index) {
+          this.companyTechnologies.splice(i, 1);
           break;
       }
     }
    }
+   deleteNewBenefit(index){
+    for(let i = 0; i < this.companyBenefits.length; i++) {
+      if (this.companyBenefits[i].id === index) {
+          this.companyBenefits.splice(i, 1);
+          break;
+      }
+    }
+   }
+
+   get f(){
+    return this.formInformation.controls
+  }
+
+  get invalid(){
+    return this.formInformation.invalid
+  }
+  get formLogoInvalid(){
+    return this.formLogo.invalid
+  }
+  get formBackgroundInvalid(){
+    return this.formBackground.invalid
+  }
 }

@@ -23,6 +23,8 @@ import { CommonModule } from '@angular/common';
 import { BenefitsComponent } from './company/benefits/benefits.component';
 import { TechnologiesComponent } from './company/technologies/technologies.component';
 import { LoaderSpinnerComponent } from './loader-spinner/loader-spinner.component';
+import { CompanyProfileContactsComponent } from './company/company-profile/company-profile-contacts/company-profile-contacts.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 
 
@@ -41,6 +43,7 @@ import { LoaderSpinnerComponent } from './loader-spinner/loader-spinner.componen
     TechnologiesComponent,
     BenefitsComponent,
     LoaderSpinnerComponent,
+    CompanyProfileContactsComponent,
     
   ],
   imports: [
@@ -55,6 +58,7 @@ import { LoaderSpinnerComponent } from './loader-spinner/loader-spinner.componen
       positionClass: 'toast-top-center',
     }),
     BrowserAnimationsModule,
+    GooglePlaceModule
 
   ],
   providers: [UserService, 

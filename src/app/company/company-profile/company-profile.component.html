@@ -1,166 +1,181 @@
 <div class="container-fluid mt-4" *ngIf="company; else loader">
-  <div class="row ml-4">
-    <div class="col-sm-4">
-      <h1>За компанията</h1>
-      <hr class="mt-2 mb-4" />
-      <div *ngIf="getCompanyVideo()">
-        <div class="row ml-1">
-          <h5>Видео визитка</h5>
-          <button
-            type="button"
-            class="btn ml-2"
-            style="
-              background: rgb(209, 56, 56);
-              color: white;
-              font-size: 0.8rem;
-            "
-            (click)="deleteCompanyVideo()"
-          >
-            <i class="fa fa-times mr-1" aria-hidden="true"></i> Премахни
-          </button>
-        </div>
-        <hr class="hr-subtitle" />
-        <hr class="hr-subtitle w-25 mb-1 mt-1" />
-        <div class="embed-responsive embed-responsive-16by9 mt-1">
-          <iframe
-            class="embed-responsive-item"
-            [src]="correctUrl"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </div>
-      <div *ngIf="!getCompanyVideo()">
-        <div>
-          <h5>Видео визитка</h5>
-        </div>
-        <hr
-          style="background: #179bd3; margin: 0px; padding: 0px; width: 50px"
-        />
-        <span>Добавете видео, представляващо вашата компания</span>
-        <div class="form-group input-group w-75">
-          <label for="company-video" class="form-label">Линк: </label>
-          <div class="input-group-prepend ml-2">
-            <span class="input-group-text">
-              <i class="fab fa-youtube" aria-hidden="true"></i>
-            </span>
-          </div>
-          <input
-            id="company-video"
-            name="urlPath"
-            class="form-control form-control-sm"
-            type="url"
-          />
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-7">
-      <div class="row mb-1">
-        <div *ngIf="!getCompanyLogo()">
-          <form [formGroup]="formLogo" (submit)="addCompanyLogo()">
-            <input
-              type="file"
-              formControlName="logo"
-              name="logo"
-              (change)="onLogoSelect($event)"
-            />
-            <button
-              type="submit"
-              class="btn btn-outline-dark"
-              style="font-size: 0.8rem"
-            >
-              <i class="fa fa-upload" aria-hidden="true"></i> Качи файл
-            </button>
-          </form>
-        </div>
-        <div *ngIf="getCompanyLogo()">
-          <button
-            type="button"
-            class="btn ml-3 mr-2"
-            style="
-              background: rgb(209, 56, 56);
-              color: white;
-              font-size: 0.7rem;
-            "
-            (click)="deleteCompanyLogo()"
-          >
-            <i class="fa fa-trash mr-1" aria-hidden="true"></i> Изтрий лого
-          </button>
-          <img src="data:image/png;base64,{{ companyLogo['bytes'] }}" />
-        </div>
-        <h4 class="ml-2">{{ companyName }}</h4>
-        <div class="col-sm-4"></div>
-        <div *ngIf="getCompanyBackground()">
-          <div class="justify-content-end">
+  <form [formGroup]="formInformation" (submit)="uploadCompanyInformation()">
+    <div class="row ml-4">
+      <div class="col-sm-4">
+        <h1>За компанията</h1>
+        <hr class="mt-2 mb-4" />
+        <div *ngIf="getCompanyVideo()">
+          <div class="row ml-1">
+            <h5>Видео визитка</h5>
             <button
               type="button"
-              class="btn ml-3 mr-2"
-              style="
-                background: rgb(209, 56, 56);
-                color: white;
-                font-size: 0.7rem;
-              "
-              (click)="deleteCompanyBackground()"
+              class="btn btn-delete ml-2"
+              (click)="deleteCompanyVideo()"
             >
-              <i class="fa fa-trash mr-1" aria-hidden="true"></i> Премахни
-              снимка
+              <i class="fa fa-times-circle mr-1" aria-hidden="true"></i>
+              Премахни
             </button>
           </div>
+          <hr class="hr-subtitle" />
+          <div class="embed-responsive embed-responsive-16by9 mt-1">
+            <iframe
+              class="embed-responsive-item"
+              [src]="correctUrl"
+              allowfullscreen
+            ></iframe>
+          </div>
         </div>
+        <form [formGroup]="formInformation">
+          <div *ngIf="!getCompanyVideo()">
+            <div>
+              <h5>Видео визитка</h5>
+            </div>
+            <hr
+              style="
+                background: #179bd3;
+                margin: 0px;
+                padding: 0px;
+                width: 50px;
+              "
+            />
+            <span>Добавете видео, представляващо вашата компания.<br /></span>
+            <span style="font-size: 13px">
+              *Видеото трябва да бъде youtube линк
+            </span>
+            <div class="form-group input-group w-75">
+              <label for="company-video" class="form-label">Линк: </label>
+              <div class="input-group-prepend ml-2">
+                <span class="input-group-text">
+                  <i class="fab fa-youtube" aria-hidden="true"></i>
+                </span>
+              </div>
+              <input
+                id="company-video"
+                name="urlPath"
+                class="form-control form-control-sm"
+                type="url"
+                formControlName="urlPath"
+              />
+              <div *ngIf="f.urlPath.touched && f.urlPath.errors?.pattern">
+                <span style="color: rgb(177, 9, 9)"
+                  >Линкът, който сте поставили, е невалиден.</span
+                >
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-      <div *ngIf="!getCompanyBackground()">
-        <div class="dropzone border company-background-image">
-          <form [formGroup]="formBackground" (submit)="addCompanyBackground()">
-            <div
-              class="row d-flex justify-content-center"
-              style="margin-top: 40px; opacity: 0.1"
-            >
-              <i class="fas fa-cloud-upload-alt fa-6x" aria-hidden="true"></i>
-            </div>
-            <div class="row justify-content-center">
-              <span class="mt-1 mb-1" style="font-size: 10px"
-                >Тук можете да поставите снимка на компанията, която
-                потребителите да видят, като отворят профила Ви.</span
-              >
-            </div>
-            <div class="row justify-content-center">
+      <div class="col-sm-7">
+        <div class="row mb-1">
+          <div *ngIf="!getCompanyLogo()">
+            <form [formGroup]="formLogo" (submit)="addCompanyLogo()">
               <input
                 type="file"
-                name="background"
-                formControlName="background"
-                (change)="onBackgroundSelect($event)"
+                formControlName="logo"
+                name="logo"
+                (change)="onLogoSelect($event)"
               />
               <button
                 type="submit"
                 class="btn btn-outline-dark"
                 style="font-size: 0.8rem"
+                title=" Файлът трябва да бъде с размер не по-голям от 200кб., както и
+                да е в следните формати: png, jpeg, gif"
+                [disabled]="formLogoInvalid"
               >
-                <i class="fa fa-upload" aria-hidden="true"></i> Качи файл
+                <i class="fa fa-upload" aria-hidden="true"></i> Добави лого
+              </button>
+            </form>
+          </div>
+          <div *ngIf="getCompanyLogo()">
+            <button
+              type="button"
+              class="btn btn-delete ml-3 mr-2"
+              (click)="deleteCompanyLogo()"
+            >
+              <i class="fa fa-trash mr-1" aria-hidden="true"></i> Изтрий лого
+            </button>
+            <img
+              src="data:image/png;base64,{{ companyLogo['bytes'] }}"
+              width="120"
+              height="35"
+            />
+          </div>
+          <h4 class="ml-2">{{ companyName }}</h4>
+          <div class="col-sm-1"></div>
+          <div *ngIf="getCompanyBackground()">
+            <div class="justify-content-end">
+              <button
+                type="button"
+                class="btn btn-delete ml-3 mr-2"
+                (click)="deleteCompanyBackground()"
+              >
+                <i class="fa fa-trash mr-1" aria-hidden="true"></i> Изтрий
+                снимка
               </button>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
-      <div *ngIf="getCompanyBackground()">
-        <div class="dropzone border company-background-image">
-          <img
-            src="data:image/png;base64,{{ companyBackground['bytes'] }}"
-            width="830"
-            height="300"
-          />
+        <div *ngIf="!getCompanyBackground()">
+          <div class="dropzone border company-background-image">
+            <form
+              [formGroup]="formBackground"
+              (submit)="addCompanyBackground()"
+            >
+              <div
+                class="row d-flex justify-content-center"
+                style="margin-top: 40px; opacity: 0.1"
+              >
+                <i class="fas fa-cloud-upload-alt fa-6x" aria-hidden="true"></i>
+              </div>
+              <div class="row justify-content-center">
+                <span class="mt-1 mb-1" style="font-size: 11px"
+                  >Поставите снимка на компанията, която потребителите да видят,
+                  като отворят профила Ви.<br
+                /></span>
+                <span class="text-danger" style="font-size: 12px">
+                  Файлът трябва да бъде с размер не по-голям от 200кб., както и
+                  да е в следните формати: png, jpeg, gif
+                </span>
+              </div>
+              <div class="row justify-content-center">
+                <input
+                  type="file"
+                  name="background"
+                  formControlName="background"
+                  (change)="onBackgroundSelect($event)"
+                />
+                <button
+                  type="submit"
+                  class="btn btn-outline-dark"
+                  style="font-size: 0.8rem"
+                  [disabled]="formBackgroundInvalid"
+                >
+                  <i class="fa fa-upload" aria-hidden="true"></i> Добави файл
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div *ngIf="getCompanyBackground()">
+          <div class="dropzone border company-background-image">
+            <img
+              src="data:image/png;base64,{{ companyBackground['bytes'] }}"
+              width="830"
+              height="300"
+            />
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div>
-    <form [formGroup]="formInformation" (submit)="uploadCompanyInformation()">
+    <div>
       <div class="row mt-4 ml-4">
         <div class="col-sm-5">
           <div *ngIf="getCompanyInformation()">
             <div class="row ml-1">
               <h5>Описание</h5>
             </div>
-            <hr class="hr-subtitle" />
-            <hr class="hr-subtitle w-25 mb-1 mt-1" />
+            <hr class="hr-subtitle mb-2" />
             <div class="mb-4">
               <textarea
                 class="form-control"
@@ -193,16 +208,11 @@
         <div class="col-sm-4">
           <div class="row ml-1 mt-2">
             <h4>Обяви</h4>
-            <button
-              type="button"
-              class="btn ml-4"
-              style="font-size: 0.8rem; background: #3ea6ff; color: white"
-            >
+            <button type="button" class="btn btn-open-modal ml-4">
               <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави обява
             </button>
           </div>
           <hr class="hr-subtitle" />
-          <hr class="hr-subtitle w-50 mb-4 mt-1" />
           <span class="mb-4">Няма текущи обяви.</span>
         </div>
         <hr />
@@ -216,11 +226,10 @@
               class="btn btn-open-modal ml-4"
               (click)="openTechnologiesModal()"
             >
-              <i class="fas fa-check-circle" aria-hidden="true"></i> Избери
+              <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави
             </button>
           </div>
           <hr class="hr-subtitle" />
-          <hr class="hr-subtitle w-50 mb-1 mt-1" />
           <div *ngIf="!getCompanyTechnologies()">
             <span class="mb-4"
               >Добавете технологиите, с които се занимава компанията.</span
@@ -228,6 +237,10 @@
           </div>
           <div *ngIf="getCompanyTechnologies()">
             <div class="row mt-1 ml-2">
+              <span class="mt-2 mb-2" style="font-size: 12px">
+                *При добавяне/изтриване на технологии винаги обновявайте
+                инофмрацията
+              </span>
               <div class="col-sm-4" *ngFor="let t of companyTechnologies">
                 <div class="form-group input-group technologies-group">
                   <input
@@ -240,9 +253,10 @@
                     class="btn mr-2"
                     style="background: none; width: 1px"
                     value="{{ t.id }}"
+                    (click)="deleteNewTech(t.id)"
                   >
                     <i
-                      class="fa fa-times fa-1x"
+                      class="fas fa-times-circle fa-1x"
                       style="color: rgb(216, 40, 40)"
                     ></i>
                   </button>
@@ -250,48 +264,73 @@
               </div>
             </div>
           </div>
-          <div #newTech *ngIf="showNewTech()">
-            <div class="row mt-2 ml-2">
-              <div class="col-sm-4" *ngFor="let t of technologies">
-                <div class="form-group input-group technologies-group">
-                  <input
-                    disabled
-                    class="form-control"
-                    style="font-size: 20; background: none; border: none"
-                    value="{{ t.technology }}"
-                  />
-                  <button
-                    type="button"
-                    class="btn mr-2"
-                    style="background: none; width: 1px"
-                    value="{{ t.id }}"
-                    (click)="deleteNewTech(t.id)"
+        </div>
+      </div>
+      <div class="row ml-4 mt-4">
+        <div class="col-sm-6">
+          <div class="row ml-1">
+            <h4>Придобивки</h4>
+            <button
+              type="button"
+              class="btn btn-open-modal ml-4"
+              (click)="openBenefitsModal()"
+            >
+              <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави
+            </button>
+          </div>
+          <hr class="hr-subtitle" />
+          <div *ngIf="!getCompanyBenefits()">
+            <span class="mb-4"
+              >Добавете придобивките, които фирмата предлага на своите
+              служители.</span
+            >
+          </div>
+          <div *ngIf="getCompanyBenefits()">
+            <span class="mt-2 mb-2" style="font-size: 12px">
+              *При добавяне/изтриване на придобивки винаги обновявайте
+              инофмрацията
+            </span>
+            <div class="benefits">
+              <div class="row mt-1 ml-1">
+                <div class="col-sm-6" *ngFor="let b of companyBenefits">
+                  <label
+                    class="control-label mt-2"
+                    for="{{ b.benefit }}"
+                    style="font-size: 15px"
                   >
-                    <i
-                      class="fa fa-times fa-1x"
-                      style="color: rgb(19, 18, 18)"
-                    ></i>
-                  </button>
+                    <button
+                      class="btn"
+                      value="{{ b.id }}"
+                      (click)="deleteNewBenefit(b.id)"
+                    >
+                      <i
+                        class="fas fa-times-circle"
+                        style="font-size: 1.2rem; color: rgb(216, 40, 40)"
+                      ></i>
+                    </button>
+                    {{ b.benefit }}
+                  </label>
                 </div>
               </div>
             </div>
           </div>
+          <hr />
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-sm-8">
           <button
             type="submit"
-            class="btn ml-4 text-center"
-            style="font-size: 1.2rem; background: #3ea6ff; color: white"
+            class="btn refresh-button ml-4 text-center"
+            [disabled]="invalid"
           >
-            <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави
-            информация
+            <i class="fas fa-edit" aria-hidden="true"></i> Обнови
           </button>
         </div>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
+  <app-company-profile-contacts></app-company-profile-contacts>
 </div>
 <ng-template #loader>
   <app-loader-spinner></app-loader-spinner>

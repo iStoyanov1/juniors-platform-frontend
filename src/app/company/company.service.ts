@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Benefit } from './benefits/benefit';
 import { Company } from './company';
+import { CompanyContacts } from './company-contacts';
 import { Technology } from './technologies/technology';
 
 const createCompany = 'http://localhost:8080/api/register/company'
@@ -12,6 +13,8 @@ const companyName = 'http://localhost:8080/api/company/name'
 const deleteCompanyApi = 'http://localhost:8080/api/company/profile/delete/video'
 const deleteCompanyLogoApi = 'http://localhost:8080/api/company/profile/delete/logo'
 const deleteCompanyBackgroundApi = 'http://localhost:8080/api/company/profile/delete/background'
+const addCompanyContacts = 'http://localhost:8080/api/company/profile/add/contacts'
+const getCompanyContacts = 'http://localhost:8080/api/company/profile/contacts'
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +47,12 @@ export class CompanyService {
 
   deleteCompanyBackground(){
     return this.http.delete(deleteCompanyBackgroundApi)
+  }
+
+  addCompanyContacts(data){
+    return this.http.post(addCompanyContacts, data);
+  }
+  getCompanyContacts(): Observable<CompanyContacts>{
+    return this.http.get<CompanyContacts>(getCompanyContacts);
   }
 }

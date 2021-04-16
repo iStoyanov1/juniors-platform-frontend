@@ -14,9 +14,18 @@ import { BenefitsService } from './benefits.service';
 export class BenefitsComponent implements OnInit {
 
   benefit$ : Observable<Benefit[]>
+
+  benefitsForm: FormGroup
+
   selectedBenefits : Benefit[]
 
-  constructor(private benefitService: BenefitsService, private modalService: BsModalService) {
+  public event: EventEmitter<any> = new EventEmitter();
+
+  constructor(private fb: FormBuilder, private benefitService: BenefitsService, private modalService: BsModalService) {
+
+    this.benefitsForm = this.fb.group({
+      benefits:['', Validators.nullValidator]
+    })
 
    }
 
@@ -33,12 +42,23 @@ export class BenefitsComponent implements OnInit {
   closeModal() {
     this.modalService.hide();
   }
-  changeSelection(ev: any, benefit:Benefit){
+  changeSelection(ev: any, benefit:Benefit): Benefit[]{
       if(ev.target.checked){
           this.selectedBenefits.push(benefit)
       }else{
           this.selectedBenefits = this.selectedBenefits.filter(b=>b!=benefit)
       }
+
+      return this.selectedBenefits
+  }
+
+  addBenefits(form){
+    this.triggerEvent(this.selectedBenefits);
+    this.modalService.hide();
+  }
+
+  triggerEvent(item: Benefit[]) {
+    this.event.emit({ data: item , res:200 });
   }
 
   submitSelectedBenefits(){

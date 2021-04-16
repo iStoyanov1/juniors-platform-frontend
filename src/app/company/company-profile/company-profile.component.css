@@ -6,12 +6,7 @@
   box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
   height: 85%;
 }
-.company-contacts {
-  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
-  border-bottom-left-radius: 35px;
-  border-bottom-right-radius: 35px;
-  border-top-right-radius: 35px;
-}
+
 .benefits {
   box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
   border-bottom-left-radius: 20px;
@@ -47,9 +42,30 @@ textarea {
 }
 .btn-open-modal {
   font-size: 0.8rem;
-  background: #1fc0b3;
-  color: white;
+  background: rgba(66, 133, 244, 0.15);
+  color: #1967d2;
+  font-weight: bold;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
+.btn-open-modal:hover {
+  background: rgb(153, 195, 252);
+}
+
+.btn-delete {
+  font-size: 0.7rem;
+  background: rgba(244, 66, 66, 0.15);
+  color: #d21932;
+  font-weight: bold;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.btn-delete:hover {
+  background: rgba(247, 54, 54, 0.15);
+}
+
 .btn-delete-technology {
   font-size: 0.15rem;
   border: white;
@@ -64,4 +80,12 @@ textarea {
 .btn:focus {
   outline: 0;
   box-shadow: 0 0 0 0;
+}
+.refresh-button {
+  font-size: 1.2rem;
+  background: rgba(54, 247, 86, 0.15);
+  color: rgb(10, 187, 104);
+}
+.refresh-button:hover {
+  background: rgba(2, 148, 26, 0.15);
 }
