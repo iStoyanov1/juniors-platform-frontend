@@ -25,6 +25,8 @@ import { TechnologiesComponent } from './company/technologies/technologies.compo
 import { LoaderSpinnerComponent } from './loader-spinner/loader-spinner.component';
 import { CompanyProfileContactsComponent } from './company/company-profile/company-profile-contacts/company-profile-contacts.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { CompanyAdministrativeInfoComponent } from './company/company-profile/company-administrative-info/company-administrative-info.component';
+import { CompanyCredentialsComponent } from './company/company-profile/company-credentials/company-credentials.component';
 
 
 
@@ -44,6 +46,8 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     BenefitsComponent,
     LoaderSpinnerComponent,
     CompanyProfileContactsComponent,
+    CompanyAdministrativeInfoComponent,
+    CompanyCredentialsComponent,
     
   ],
   imports: [

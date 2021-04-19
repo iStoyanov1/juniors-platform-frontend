@@ -84,14 +84,15 @@ export class CompanyProfileComponent implements OnInit {
 
   uploadCompanyInformation(){
 
-    console.log(this.formInformation.value)
-
+    
+    if(confirm('Сигурен ли сте, че искате да направите промените')){
     this.formInformation.controls['technologies'].setValue(this.companyTechnologies);
     this.formInformation.controls['benefits'].setValue(this.companyBenefits);
     this.companyService.uploadInformation(this.formInformation.value).subscribe((data) => {
       this.toastr.success(data['message'],"Съобщение")
       this.getCompanyProfile();
     });
+  }
   }
 
   getCompanyName(){
@@ -135,9 +136,11 @@ export class CompanyProfileComponent implements OnInit {
   }
   
 deleteCompanyVideo(){
+  if(confirm('Сигурен ли сте, че искате да изтриете видеото')){
   this.companyService.deleteCompanyVideo().subscribe({complete: ()=>{
     this.getCompanyProfile()}
   });
+  }
 }
 
 onLogoSelect(event){
@@ -191,15 +194,19 @@ getCompanyBackground(){
 }
 
 deleteCompanyLogo(){
+  if(confirm('Сигурен ли сте, че искате да изтриете логото')){
   this.companyService.deleteCompanyLogo().subscribe({complete: () =>{
     this.getCompanyProfile();
   }})
+  }
 }
 
 deleteCompanyBackground(){
+  if(confirm('Сигурен ли сте, че искате да изтриете снимката')){
   this.companyService.deleteCompanyBackground().subscribe({complete: () =>{
     this.getCompanyProfile();
   }})
+}
 }
 
   openBenefitsModal(){
@@ -229,20 +236,6 @@ deleteCompanyBackground(){
       }
     });
    }
-
-  //  showNewTech(){
-  //    if(this.technologies === undefined){
-  //      return false
-  //    }
-  //    return true
-  //  }
-
-  //  addNewTech(){
-  //    for(let i = 0; i < this.technologies.length; i++){
-  //      this.companyTechnologies.push(this.technologies[i])
-  //    }
-  //  }
-
    deleteNewTech(index){
     for(let i = 0; i < this.companyTechnologies.length; i++) {
       if (this.companyTechnologies[i].id === index) {

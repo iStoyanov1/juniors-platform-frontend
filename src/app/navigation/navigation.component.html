@@ -119,14 +119,43 @@
         class="navbar-nav ml-auto"
         *ngIf="authService.isAuthenticated() && authService.isCompany()"
       >
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a
             class="nav-link"
             style="color: grey; font-size: 20px"
             [routerLink]="accountLink()"
           >
-            Основен профил
+            Профил
           </a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            style="color: grey; font-size: 20px"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Профил
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="accountLink()"
+              >Основен профил</a
+            >
+            <a
+              class="dropdown-item"
+              [routerLink]="['/company/profile/administrative/contacts']"
+              >Aдминистративни контакти</a
+            >
+            <a
+              class="dropdown-item"
+              [routerLink]="['/company/profile/credentials']"
+              >Данни за вход</a
+            >
+          </div>
         </li>
         <li class="nav-item">
           <a

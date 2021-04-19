@@ -1,0 +1,141 @@
+<div *ngIf="companyAdminstrativeContacts; else loader">
+  <div class="row mt-4 justify-content-center">
+    <div *ngIf="getCompanyLogo()">
+      <img
+        src="data:image/png;base64,{{ companyLogo['bytes'] }}"
+        width="120"
+        height="35"
+      />
+    </div>
+    <h4>{{ companyAdminstrativeContacts.name }}</h4>
+  </div>
+  <div class="container">
+    <form [formGroup]="form" (submit)="editCompanyAdminstrativeContacts()">
+      <div class="row" style="margin-left: 100px; margin-right: 100px">
+        <div
+          class="col-md-4 py-5 text-white text-center"
+          style="
+            background-image: url(https://static.wixstatic.com/media/3db4d8d735114830b3e046be38ab7995.jpg/v1/fill/w_940,h_520,al_c,q_85,usm_0.66_1.00_0.01/Sign%20Blur.webp);
+            background-position: center;
+          "
+        ></div>
+        <div class="col-md-7 py-5" style="border-right: #179bd3 solid 1px">
+          <div class="row ml-4 mb-4">
+            <h3 style="font-size: 23px; border-left: #50c083 solid 18px">
+              Администратвини данни на компанията
+            </h3>
+          </div>
+          <hr />
+          <div class="form-group mt-4 mt-4 ml-4 email-section">
+            <div class="row mr-4 mt-2">
+              <div class="col-sm-3">
+                <span class="mt-4" style="font-size: 18px">
+                  <i
+                    class="mr-2 fa fa-envelope-open"
+                    style="color: grey"
+                    aria-hidden="true"
+                  ></i
+                  >Имейл:
+                </span>
+              </div>
+              <div class="col-sm-8">
+                <input
+                  type="email"
+                  class="form-control form-control-sm"
+                  [(ngModel)]="companyAdminstrativeContacts.email"
+                  formControlName="email"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <span class="ml-2" style="font-size: 12px; font-weight: bold">
+                <i
+                  style="color: rgba(255, 0, 0, 0.685)"
+                  class="fas fa-exclamation-triangle"
+                ></i>
+                Внимателно прегледайте новия имейл, преди да потвърдите
+                промените.
+              </span>
+            </div>
+          </div>
+          <div class="form-group mt-4 mt-4 ml-4 border">
+            <div class="row mr-4 mt-2">
+              <div class="col-sm-1">
+                <span class="mt-4 mr-2 ml-2" style="font-size: 14px">
+                  Име:
+                </span>
+              </div>
+              <div class="col-sm-4">
+                <input
+                  type="text"
+                  class="ml-2 form-control form-control-sm"
+                  [(ngModel)]="companyAdminstrativeContacts.firstName"
+                  formControlName="firstName"
+                />
+              </div>
+              <div class="col-sm-2">
+                <span class="mt-4" style="font-size: 14px"> Фамилия: </span>
+              </div>
+              <div class="col-sm-5">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  [(ngModel)]="companyAdminstrativeContacts.lastName"
+                  formControlName="lastName"
+                />
+              </div>
+            </div>
+            <div class="row mt-3 ml-2">
+              <div class="col-sm-12">
+                <span style="font-size: 11px; font-weight: bold">
+                  <i
+                    style="color: rgba(255, 208, 0, 0.87)"
+                    class="fas fa-exclamation-triangle"
+                  ></i>
+                  Името и фамилията трябва да бъдат изписани на кирилица, да
+                  започват с главна буква и да съдържа между 2-20 символа.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-4 mt-4 ml-4 email-section">
+            <div class="row mr-4 mt-2">
+              <div class="col-sm-4">
+                <span class="mt-4" style="font-size: 14px">
+                  <i
+                    class="mr-2 fas fa-phone"
+                    style="color: grey"
+                    aria-hidden="true"
+                  ></i
+                  >Тел за връзка:
+                </span>
+              </div>
+              <div class="col-sm-7">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  [(ngModel)]="companyAdminstrativeContacts.phone"
+                  formControlName="phone"
+                />
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="row mt-4 justify-content-center">
+            <button
+              type="submit"
+              class="btn btn-save w-25"
+              title="Запази"
+              [disabled]="!getDirty() || getInvalid()"
+            >
+              <i class="fas fa-edit" aria-hidden="true"></i> Запази
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<ng-template #loader>
+  <app-loader-spinner></app-loader-spinner>
+</ng-template>

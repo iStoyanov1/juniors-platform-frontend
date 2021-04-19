@@ -1,8 +1,5 @@
-
- /// <reference  types="@types/googlemaps"  />
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { ToastrService } from 'ngx-toastr';
 import { CompanyContacts } from '../../company-contacts';
 import { CompanyService } from '../../company.service';
@@ -34,12 +31,12 @@ export class CompanyProfileContactsComponent implements OnInit{
   }
 
   addCompanyContacts(){
+    if(confirm('Сигурен ли сте, че искате да направите промените')){
     this.companyService.addCompanyContacts(this.form.value).subscribe((data) => {
       this.toastr.success(data['message'],"Съобщение")
       this.getCompanyContacts();
     });
-    // console.log(this.companyContacts)
-    // console.log(this.form.value)
+    }
   }
 
   getCompanyContacts(){

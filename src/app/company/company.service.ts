@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Benefit } from './benefits/benefit';
 import { Company } from './company';
+import { CompanyAdministrativeContacts } from './company-administrative-contacts';
 import { CompanyContacts } from './company-contacts';
+import { CompanyAuthView } from './company-credentials';
+import { CompanyCredentialsComponent } from './company-profile/company-credentials/company-credentials.component';
 import { Technology } from './technologies/technology';
 
 const createCompany = 'http://localhost:8080/api/register/company'
@@ -15,6 +18,10 @@ const deleteCompanyLogoApi = 'http://localhost:8080/api/company/profile/delete/l
 const deleteCompanyBackgroundApi = 'http://localhost:8080/api/company/profile/delete/background'
 const addCompanyContacts = 'http://localhost:8080/api/company/profile/add/contacts'
 const getCompanyContacts = 'http://localhost:8080/api/company/profile/contacts'
+const getCompanyAdminstrativeContacts = 'http://localhost:8080/api/company/profile/administrative/contacts'
+const editCompanyAdminstrativeContacts = 'http://localhost:8080/api/company/profile/administrative/contacts/edit'
+const getCompanyAuthView = 'http://localhost:8080/api/company/profile/credentials'
+const editCompanyCredentials = 'http://localhost:8080/api/company/profile/credentials/edit'
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +61,20 @@ export class CompanyService {
   }
   getCompanyContacts(): Observable<CompanyContacts>{
     return this.http.get<CompanyContacts>(getCompanyContacts);
+  }
+
+  getAdministrativeContacts(): Observable<CompanyAdministrativeContacts>{
+    return this.http.get<CompanyAdministrativeContacts>(getCompanyAdminstrativeContacts)
+  }
+  editAdministrativeContacts(data){
+    return this.http.post(editCompanyAdminstrativeContacts, data)
+  }
+
+  getCompanyCredentails() : Observable<CompanyAuthView>{
+    return this.http.get<CompanyAuthView>(getCompanyAuthView)
+  }
+
+  editCompanyCredentials(data){
+    return this.http.put(editCompanyCredentials, data)
   }
 }
