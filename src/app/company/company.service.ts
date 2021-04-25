@@ -21,7 +21,8 @@ const getCompanyContacts = 'http://localhost:8080/api/company/profile/contacts'
 const getCompanyAdminstrativeContacts = 'http://localhost:8080/api/company/profile/administrative/contacts'
 const editCompanyAdminstrativeContacts = 'http://localhost:8080/api/company/profile/administrative/contacts/edit'
 const getCompanyAuthView = 'http://localhost:8080/api/company/profile/credentials'
-const editCompanyCredentials = 'http://localhost:8080/api/company/profile/credentials/edit'
+const editCompanyEmail = 'http://localhost:8080/api/company/profile/credentials/edit/email'
+const editCompanyPassword = 'http://localhost:8080/api/company/profile/credentials/edit/password'
 
 @Injectable({
   providedIn: 'root'
@@ -74,7 +75,10 @@ export class CompanyService {
     return this.http.get<CompanyAuthView>(getCompanyAuthView)
   }
 
-  editCompanyCredentials(data){
-    return this.http.put(editCompanyCredentials, data)
+  editCompanyPassword(data){
+    return this.http.put(editCompanyPassword, data)
+  }
+  editCompanyEmail(email){
+    return this.http.put(editCompanyEmail, email)
   }
 }

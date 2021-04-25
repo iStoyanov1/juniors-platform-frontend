@@ -63,7 +63,7 @@ textarea {
   border-bottom-right-radius: 30px;
 }
 .btn-delete:hover {
-  background: rgba(247, 54, 54, 0.15);
+  background: rgba(247, 54, 54, 0.37);
 }
 
 .btn-delete-technology {
