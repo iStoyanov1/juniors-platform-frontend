@@ -27,6 +27,7 @@ import { CompanyProfileContactsComponent } from './company/company-profile/compa
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { CompanyAdministrativeInfoComponent } from './company/company-profile/company-administrative-info/company-administrative-info.component';
 import { CompanyCredentialsComponent } from './company/company-profile/company-credentials/company-credentials.component';
+import { JobOfferComponent } from './job-offer/job-offer.component';
 
 
 
@@ -48,6 +49,7 @@ import { CompanyCredentialsComponent } from './company/company-profile/company-c
     CompanyProfileContactsComponent,
     CompanyAdministrativeInfoComponent,
     CompanyCredentialsComponent,
+    JobOfferComponent,
     
   ],
   imports: [

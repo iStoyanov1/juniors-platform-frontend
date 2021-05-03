@@ -1,0 +1,170 @@
+<div class="container mt-1">
+  <form [formGroup]="form" (submit)="addJob()">
+    <div>
+      <img
+        src="../../assets/images/careers-banner-blur.jpg"
+        height="1%"
+        width="100%"
+      />
+    </div>
+    <hr />
+    <div class="row mt-4 ml-4 mr-4">
+      <h4>*Добавете заглавие на обявата:</h4>
+      <input
+        class="form-control w-50 ml-4"
+        type="text"
+        placeholder="e.g Junior Software Engineer"
+        name="title"
+        formControlName="title"
+      />
+    </div>
+    <div class="row mt-4 ml-4 mr-4">
+      <h4>*IT категория:</h4>
+
+      <select
+        class="form-control w-25 ml-4 form-control-sm"
+        name="category"
+        formControlName="category"
+      >
+        <option selected disabled>Изберете</option>
+        <option>Backend</option>
+        <option>Frontend</option>
+        <option>Fullstack</option>
+      </select>
+    </div>
+    <div class="row mt-4 ml-4 mr-4">
+      <h4>*Технологии:</h4>
+
+      <button
+        type="button"
+        class="btn btn-open-modal ml-4 mr-4"
+        (click)="openTechnologiesModal()"
+      >
+        <i class="fas fa-plus-circle" aria-hidden="true"></i> Избери
+      </button>
+    </div>
+    <div class="row mt-3 ml-4 mr-4">
+      <div *ngFor="let t of jobOfferTechnologies">
+        <div class="form-group input-group technologies-group ml-2">
+          <input
+            disabled
+            class="form-control"
+            style="
+              font-size: 20;
+              background: none;
+              border: none;
+              display: inline-block;
+              height: auto;
+            "
+            value="{{ t.technology }}"
+          />
+          <button
+            class="btn mr-2"
+            style="background: none; width: 1px"
+            value="{{ t.id }}"
+            (click)="deleteNewTech(t.id)"
+          >
+            <i
+              class="fas fa-times-circle fa-1x"
+              style="color: rgb(216, 40, 40)"
+            ></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="ml-4 mt-2 row">
+      <h4>*Дистанционно интервю:</h4>
+      <div class="ml-2 mr-3 custom-control custom-switch rounded">
+        <input
+          type="radio"
+          id="customRadio1"
+          name="customRadio"
+          class="custom-control-input"
+          name="isRemote"
+          formControlName="isRemote"
+        />
+        <label
+          class="custom-control-label"
+          style="font-size: 20px"
+          for="customRadio1"
+          >Да</label
+        >
+      </div>
+      <div class="custom-control custom-switch rounded">
+        <input
+          type="radio"
+          id="customRadio2"
+          name="customRadio"
+          class="custom-control-input"
+          name="isRemote"
+          formControlName="isRemote"
+        />
+        <label
+          class="custom-control-label"
+          style="font-size: 20px"
+          for="customRadio2"
+          >Не</label
+        >
+      </div>
+    </div>
+    <div class="row mt-4 ml-4 mr-4">
+      <h4>*Град:</h4>
+
+      <select
+        class="form-control w-25 ml-4 form-control-sm"
+        name="city"
+        formControlName="city"
+      >
+        <option selected disabled>Изберете</option>
+        <option>София</option>
+        <option>Варна</option>
+        <option>Пловдив</option>
+        <option>Русе</option>
+        <option>Бургас</option>
+        <option>Remote</option>
+      </select>
+    </div>
+    <div class="row mt-4 ml-4 mr-4">
+      <h4>*Работно време:</h4>
+
+      <select
+        class="form-control w-25 ml-4 form-control-sm"
+        name="workingTime"
+        formControlName="workingTime"
+      >
+        <option selected disabled>Изберете</option>
+        <option>Пълно работно време</option>
+        <option>Непълно работно време</option>
+      </select>
+    </div>
+    <div class="container-fluid mt-4">
+      <div class="row justify-content-center">
+        <h3 class="text-center">*Описание на обявата</h3>
+      </div>
+      <div class="row mt-2 justify-content-center">
+        <textarea
+          class="form-control w-75"
+          rows="12"
+          name="description"
+          formControlName="description"
+        ></textarea>
+      </div>
+    </div>
+    <div class="row mt-4 ml-4 mr-4 justify-content-center">
+      <h6 style="background-color: rgb(252, 255, 221)" class="text-center">
+        Попълването на маркираните със * полета е задължително за добавяне на
+        обява. Моля, попълнете ги коректно.
+      </h6>
+    </div>
+    <hr />
+    <div class="container-fluid mt-4">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 text-center">
+          <button type="submit" class="btn w-25 add-button ml-4 text-center">
+            <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
