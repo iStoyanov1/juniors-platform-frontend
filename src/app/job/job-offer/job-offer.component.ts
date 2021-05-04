@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { TechnologiesComponent } from 'src/app/company/technologies/technologies.component';
 import { Technology } from 'src/app/company/technologies/technology';
+import { JobService } from '../job.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class JobOfferComponent implements OnInit {
 
   form: FormGroup
 
-  constructor(private modalService: BsModalService, private fb: FormBuilder) { 
+  constructor(private modalService: BsModalService, private fb: FormBuilder, private jobService: JobService) { 
 
     this.jobOfferTechnologies = new Array<Technology>()
 
@@ -25,8 +26,14 @@ export class JobOfferComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = this.fb.group({
-      title:['', Validators.nullValidator],
-
+      title:['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+      category:['',Validators.required],
+      remoteInterview:[true,Validators.required],
+      city:['', Validators.required],
+      workingTime:['',Validators.required],
+      technologies: ['', Validators.required],
+      description:['',[Validators.required, Validators.min(10), Validators.max(3000)]],
+      salary:['', Validators.nullValidator]
     })
 
   }
@@ -51,5 +58,20 @@ export class JobOfferComponent implements OnInit {
           break;
       }
     }
+   }
+
+   addJob(){
+    this.form.controls['technologies'].setValue(this.jobOfferTechnologies);
+    this.jobService.addJobOffer(this.form.value).subscribe((data)=>{
+      console.log(data)
+    })
+   }
+   get f(){
+     return this.form.controls
+    
+   }
+
+   get invalid(){
+     return this.form.invalid
    }
 }

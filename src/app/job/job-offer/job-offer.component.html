@@ -17,6 +17,20 @@
         name="title"
         formControlName="title"
       />
+      <div
+        class="w-75 mt-1 text-danger text-center"
+        style="margin-left: 80px"
+        *ngIf="f.title.touched && f.title.errors?.required"
+      >
+        Полето е задължително.
+      </div>
+      <div
+        class="w-100 mt-1 text-danger text-center"
+        style="margin-left: 80px"
+        *ngIf="f.title.errors?.minlength || f.title.errors?.maxlength"
+      >
+        Заглавието трябва да бъде между 2 и 100 символа.
+      </div>
     </div>
     <div class="row mt-4 ml-4 mr-4">
       <h4>*IT категория:</h4>
@@ -26,11 +40,24 @@
         name="category"
         formControlName="category"
       >
-        <option selected disabled>Изберете</option>
-        <option>Backend</option>
-        <option>Frontend</option>
-        <option>Fullstack</option>
+        <option value="" selected disabled>Изберете</option>
+        <option value="Backend Development">Backend Development</option>
+        <option value="Frontend Development">Frontend Development</option>
+        <option value="Fullstack Development">Fullstack Development</option>
+        <option value="Mobile Development">Mobile Development</option>
+        <option value="Quality Assurance">Quality Assurance</option>
+        <option value="Desktop">Desktop</option>
+        <option value="Embedded">Embedded</option>
+        <option value="Infrastructure">Infrastructure</option>
+        <option value="Technical Support">Technical Support</option>
       </select>
+      <div
+        class="w-75 mt-1 text-danger"
+        style="margin-left: 180px"
+        *ngIf="f.category.touched && f.category.errors?.required"
+      >
+        Полето е задължително.
+      </div>
     </div>
     <div class="row mt-4 ml-4 mr-4">
       <h4>*Технологии:</h4>
@@ -78,10 +105,10 @@
         <input
           type="radio"
           id="customRadio1"
-          name="customRadio"
           class="custom-control-input"
-          name="isRemote"
-          formControlName="isRemote"
+          name="remoteInterview"
+          formControlName="remoteInterview"
+          value="true"
         />
         <label
           class="custom-control-label"
@@ -94,10 +121,10 @@
         <input
           type="radio"
           id="customRadio2"
-          name="customRadio"
           class="custom-control-input"
-          name="isRemote"
-          formControlName="isRemote"
+          formControlName="remoteInterview"
+          name="remoteInterview"
+          value="false"
         />
         <label
           class="custom-control-label"
@@ -105,6 +132,13 @@
           for="customRadio2"
           >Не</label
         >
+      </div>
+      <div
+        class="w-75 mt-1 text-danger text-center"
+        style="margin-left: 80px"
+        *ngIf="f.remoteInterview.touched && f.remoteInterview.errors?.required"
+      >
+        Полето е задължително.
       </div>
     </div>
     <div class="row mt-4 ml-4 mr-4">
@@ -115,7 +149,7 @@
         name="city"
         formControlName="city"
       >
-        <option selected disabled>Изберете</option>
+        <option value="" selected disabled>Изберете</option>
         <option>София</option>
         <option>Варна</option>
         <option>Пловдив</option>
@@ -123,6 +157,13 @@
         <option>Бургас</option>
         <option>Remote</option>
       </select>
+      <div
+        class="w-75 mt-1 text-danger"
+        style="margin-left: 90px"
+        *ngIf="f.city.touched && f.city.errors?.required"
+      >
+        Полето е задължително.
+      </div>
     </div>
     <div class="row mt-4 ml-4 mr-4">
       <h4>*Работно време:</h4>
@@ -132,10 +173,48 @@
         name="workingTime"
         formControlName="workingTime"
       >
-        <option selected disabled>Изберете</option>
-        <option>Пълно работно време</option>
-        <option>Непълно работно време</option>
+        <option value="" selected disabled>Изберете</option>
+        <option value="FullTime">Пълно работно време</option>
+        <option value="PartTime">Непълно работно време</option>
       </select>
+      <div
+        class="w-75 mt-1 text-danger"
+        style="margin-left: 210px"
+        *ngIf="f.workingTime.touched && f.workingTime.errors?.required"
+      >
+        Полето е задължително.
+      </div>
+    </div>
+    <div class="row mt-4 ml-4 mr-4">
+      <h5>Заплата</h5>
+      <input
+        class="custom-range w-25 mr-2 ml-2"
+        type="range"
+        id="rangeInput"
+        name="salary"
+        min="0"
+        max="5000"
+        step="50"
+        value="0"
+        oninput="amount.value=rangeInput.value"
+      />
+      <output name="amount" id="amount" for="salary">0</output
+      ><span class="mr-2">лв.</span>
+      <span style="font-size: 14px"
+        >(Заплата е в BGN(лв.), а нивото на заплащане е НЕТО.)</span
+      >
+      <span style="font-size: 15px"
+        >*Оставете 0лв. като заплащане, ако не желаете да добавите информация за
+        заплащането в обявата.
+      </span>
+      <!--<label for="customRange">Custom range</label>
+      <input
+        type="range"
+        class="custom-range"
+        id="customRange"
+        oninput="amount.value=rangeInput.value"
+      />
+      <output name="amount" id="amount" for="rangeInput">0</output> -->
     </div>
     <div class="container-fluid mt-4">
       <div class="row justify-content-center">
@@ -149,6 +228,20 @@
           formControlName="description"
         ></textarea>
       </div>
+    </div>
+    <div
+      class="w-75 mt-1 text-danger text-center"
+      style="margin-left: 150px"
+      *ngIf="f.description.touched && f.description.errors?.required"
+    >
+      Полето е задължително.
+    </div>
+    <div
+      class="w-100 mt-1 text-danger text-center"
+      style="margin-left: 150px"
+      *ngIf="f.description.errors?.minlength || f.description.errors?.maxlength"
+    >
+      Описанието трябва да бъде между 10 и 5000 символа.
     </div>
     <div class="row mt-4 ml-4 mr-4 justify-content-center">
       <h6 style="background-color: rgb(252, 255, 221)" class="text-center">
