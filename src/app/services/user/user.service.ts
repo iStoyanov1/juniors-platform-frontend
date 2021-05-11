@@ -2,7 +2,7 @@ import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators'
-import { User } from './app/user'
+import { User } from 'src/app/models/user';
 
 
 

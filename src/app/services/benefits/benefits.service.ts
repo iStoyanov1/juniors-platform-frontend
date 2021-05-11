@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Benefit } from './benefit';
+import { Benefit } from '../../models/benefit';
 
 
 const getAllBenefitsUrl = "http://localhost:8080/api/company/benefits"

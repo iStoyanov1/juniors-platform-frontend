@@ -26,18 +26,19 @@
 }
 .add-button {
   font-size: 1.2rem;
-  background: rgb(91, 221, 124);
+  background: rgb(75, 238, 116);
   color: rgb(255, 255, 255);
 }
-.add-button:hover {
-  background: rgb(62, 192, 57);
+.add-button:hover:enabled {
+  background: rgba(0, 207, 52, 0.74);
+}
+.add-button:disabled {
+  cursor: not-allowed;
 }
 textarea {
   resize: none;
 }
-/* .create-company:disabled {
-  cursor: not-allowed;
-} */
+
 input.ng-invalid.ng-touched {
   border: 1px solid #bd2130;
 }

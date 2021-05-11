@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Technology } from './technology';
+import { Technology } from '../../models/technology';
 
 
 const getAllTechnologiesUrl = "http://localhost:8080/api/company/technologies"

@@ -4,13 +4,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { Benefit } from '../benefits/benefit';
+import { Benefit } from 'src/app/models/benefit';
+import { Company } from 'src/app/models/company';
+import { Technology } from 'src/app/models/technology';
+import { CompanyService } from 'src/app/services/company/company.service';
 import { BenefitsComponent } from '../benefits/benefits.component';
-import { Company } from '../company';
-import { CompanyService } from '../company.service';
 import { TechnologiesComponent } from '../technologies/technologies.component';
-import { Technology } from '../technologies/technology';
-
 
 const addCompanyLogoApi = 'http://localhost:8080/api/company/profile/add/logo'
 const addCompanyBackgroundApi = 'http://localhost:8080/api/company/profile/add/background'
@@ -97,7 +96,8 @@ export class CompanyProfileComponent implements OnInit {
 
   getCompanyName(){
    this.companyService.getCompanyName().subscribe((data)=>{
-      this.companyName = data['name'];
+     console.log(data)
+      this.companyName = data['name']
     })
   }
 

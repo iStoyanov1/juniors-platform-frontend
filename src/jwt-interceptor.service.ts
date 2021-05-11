@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthService } from './app/auth/auth.service';
+import { AuthService } from './app/services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'

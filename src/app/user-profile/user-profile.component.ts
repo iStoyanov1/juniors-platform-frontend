@@ -2,13 +2,10 @@ import { trigger } from '@angular/animations';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { subscribeOn } from 'rxjs/operators';
-import { UserService } from 'src/user.service';
-import { User } from '../user';
-import {response, saveAs} from 'file-saver'
-import { MustMatch } from '../validations/password-matcher-validator';
 import { ToastrService } from 'ngx-toastr';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user/user.service';
+import { MustMatch } from 'src/app/validations/password-matcher-validator';
 
 
 const uploadFile = "http://localhost:8080/api/user/profile/cv"
@@ -74,10 +71,12 @@ export class UserProfileComponent implements OnInit {
   }
 
   deleteFile(){
+    if(confirm('Сигурен ли сте, че искате да изтриете файла')){
     this.userService.deleteCV().subscribe({complete: ()=>{
       this.getUserProfile();
     },
   })
+}
   }
 
   userEditPassword(){

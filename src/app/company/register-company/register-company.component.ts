@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CompanyService } from 'src/app/company/company.service';
-import { MustMatch } from '../../validations/password-matcher-validator';
+import { CompanyService } from 'src/app/services/company/company.service';
+import { MustMatch } from 'src/app/validations/password-matcher-validator';
+
 
 @Component({
   selector: 'app-register-company',

@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LandingComponent } from './landing/landing.component';
-import { RegisterCompanyComponent } from './company/register-company/register-company.component';
 import { RegisterUserComponent } from './auth/register-user/register-user.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { CompanyProfileComponent } from './company/company-profile/company-profile.component';
 import { CompanyAdministrativeInfoComponent } from './company/company-profile/company-administrative-info/company-administrative-info.component';
 import { CompanyCredentialsComponent } from './company/company-profile/company-credentials/company-credentials.component';
-import { JobOfferComponent } from './job/job-offer/job-offer.component';
+import { CompanyProfileComponent } from './company/company-profile/company-profile.component';
+import { RegisterCompanyComponent } from './company/register-company/register-company.component';
+import { JobOfferComponent } from './job-offer/job-offer.component';
+import { LandingComponent } from './landing/landing.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 
 
 const routes: Routes = [

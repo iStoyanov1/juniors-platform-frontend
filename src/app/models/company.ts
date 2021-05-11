@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
-import { Benefit } from "./benefits/benefit";
-import { Technology } from "./technologies/technology";
+import { Benefit } from "../models/benefit";
+import { Technology } from "../models/technology";
 
 export interface Company{
     urlPath?:string;

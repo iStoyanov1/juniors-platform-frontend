@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { TechnologiesComponent } from 'src/app/company/technologies/technologies.component';
-import { Technology } from 'src/app/company/technologies/technology';
-import { JobService } from '../job.service';
+import { ToastrService } from 'ngx-toastr';
+import { Technology } from 'src/app/models/technology';
+import { JobService } from 'src/app/services/job/job.service';
+import { TechnologiesComponent } from '../company/technologies/technologies.component';
+
 
 
 @Component({
@@ -17,7 +20,8 @@ export class JobOfferComponent implements OnInit {
 
   form: FormGroup
 
-  constructor(private modalService: BsModalService, private fb: FormBuilder, private jobService: JobService) { 
+  constructor(private modalService: BsModalService, private fb: FormBuilder, private jobService: JobService, 
+    private toastr: ToastrService, private route: Router) { 
 
     this.jobOfferTechnologies = new Array<Technology>()
 
@@ -31,8 +35,8 @@ export class JobOfferComponent implements OnInit {
       remoteInterview:[true,Validators.required],
       city:['', Validators.required],
       workingTime:['',Validators.required],
-      technologies: ['', Validators.required],
-      description:['',[Validators.required, Validators.min(10), Validators.max(3000)]],
+      technologies: ['', Validators.nullValidator],
+      description:['',[Validators.required, Validators.minLength(10), Validators.maxLength(5000)]],
       salary:['', Validators.nullValidator]
     })
 
@@ -63,8 +67,13 @@ export class JobOfferComponent implements OnInit {
    addJob(){
     this.form.controls['technologies'].setValue(this.jobOfferTechnologies);
     this.jobService.addJobOffer(this.form.value).subscribe((data)=>{
-      console.log(data)
-    })
+        this.toastr.success(data['message'])
+        this.form.reset()
+    setTimeout(()=>{
+      this.route.navigate(['/company/profile'])
+    },2000)
+  })
+  // console.log(this.form.controls)
    }
    get f(){
      return this.form.controls
@@ -72,6 +81,6 @@ export class JobOfferComponent implements OnInit {
    }
 
    get invalid(){
-     return this.form.invalid
+     return (this.form.invalid || !(this.jobOfferTechnologies.length > 0)) 
    }
 }

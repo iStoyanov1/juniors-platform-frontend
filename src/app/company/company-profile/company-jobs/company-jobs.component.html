@@ -1,0 +1,20 @@
+<div>
+  <div *ngFor="let c of companyJob$ | async">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <td>
+            <img
+              src="data:image/png;base64,{{ c.logo['bytes'] }}"
+              width="120"
+              height="35"
+            />
+          </td>
+          <td>{{ c.title }}</td>
+          <td>{{ c.city }}</td>
+          <td>{{ c.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

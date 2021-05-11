@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { Benefit } from './benefit';
-import { BenefitsService } from './benefits.service';
+import { Benefit } from 'src/app/models/benefit';
+import { BenefitsService } from 'src/app/services/benefits/benefits.service';
 
 @Component({
   selector: 'app-benefits',

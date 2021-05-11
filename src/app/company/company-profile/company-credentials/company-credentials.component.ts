@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { CompanyAuthView } from 'src/app/models/company-credentials';
+import { CompanyService } from 'src/app/services/company/company.service';
 import { MustMatch } from 'src/app/validations/password-matcher-validator';
-import { CompanyAuthView } from '../../company-credentials';
-import { CompanyService } from '../../company.service';
 
 @Component({
   selector: 'app-company-credentials',
@@ -56,7 +56,6 @@ export class CompanyCredentialsComponent implements OnInit {
     })
     this.formPassword.reset()
   }
-  console.log(this.formPassword.value)
   }
 
   getInvalid(){

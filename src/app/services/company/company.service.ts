@@ -1,13 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Benefit } from './benefits/benefit';
-import { Company } from './company';
-import { CompanyAdministrativeContacts } from './company-administrative-contacts';
-import { CompanyContacts } from './company-contacts';
-import { CompanyAuthView } from './company-credentials';
-import { CompanyCredentialsComponent } from './company-profile/company-credentials/company-credentials.component';
-import { Technology } from './technologies/technology';
+import { Company } from 'src/app/models/company';
+import { CompanyAdministrativeContacts } from 'src/app/models/company-administrative-contacts';
+import { CompanyContacts } from 'src/app/models/company-contacts';
+import { CompanyAuthView } from 'src/app/models/company-credentials';
 
 const createCompany = 'http://localhost:8080/api/register/company'
 const uploadCompanyinfo = 'http://localhost:8080/api/company/profile/upload/information'

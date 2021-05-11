@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { CompanyContacts } from '../../company-contacts';
-import { CompanyService } from '../../company.service';
-
+import { CompanyContacts } from 'src/app/models/company-contacts';
+import { CompanyService } from 'src/app/services/company/company.service';
 
 @Component({
   selector: 'app-company-profile-contacts',
@@ -46,7 +45,6 @@ export class CompanyProfileContactsComponent implements OnInit{
           this.toastr.info(data['message'],"Съобщение")
         }else{
           this.companyContacts = data
-          console.log(this.companyContacts)
         }
       })
       },1000)

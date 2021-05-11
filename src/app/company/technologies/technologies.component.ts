@@ -2,8 +2,8 @@ import { Component, Output, OnInit, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
-import { TechnologiesService } from './technologies.service';
-import { Technology } from './technology';
+import { Technology } from 'src/app/models/technology';
+import { TechnologiesService } from 'src/app/services/technology/technologies.service';
 
 @Component({
   selector: 'app-technologies',

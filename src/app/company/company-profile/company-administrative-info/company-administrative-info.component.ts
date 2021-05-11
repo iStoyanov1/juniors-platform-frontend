@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { CompanyAdministrativeContacts } from '../../company-administrative-contacts';
-import { CompanyService } from '../../company.service';
+import { CompanyAdministrativeContacts } from 'src/app/models/company-administrative-contacts';
+import { CompanyService } from 'src/app/services/company/company.service';
 
 @Component({
   selector: 'app-company-administrative-info',
