@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CompanyJob } from 'src/app/models/company-jobs';
 import { JobService } from 'src/app/services/job/job.service';
@@ -24,4 +25,9 @@ export class CompanyJobsComponent implements OnInit {
    this.companyJob$ = this.jobService.getCompanyJobs()
   }
 
+  deleteJob(id){
+    this.jobService.deleteJob(id).subscribe((data)=>{
+      console.log(data)
+    })
+  }
 }

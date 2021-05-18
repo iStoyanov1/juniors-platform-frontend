@@ -24,17 +24,17 @@
   width: 135px;
   height: auto;
 }
-.add-button {
+.edit-button {
   font-size: 1.2rem;
   border: rgb(83, 196, 108) solid 1px;
   background: white;
   color: rgb(83, 196, 108);
 }
-.add-button:hover:enabled {
+.edit-button:hover:enabled {
   background: rgb(83, 196, 108);
   color: white;
 }
-.add-button:disabled {
+.edit-button:disabled {
   cursor: not-allowed;
 }
 textarea {
@@ -45,6 +45,12 @@ input.ng-invalid.ng-touched {
   border: 1px solid #bd2130;
 }
 input.ng-valid.ng-touched {
+  border: 1px solid #048f04;
+}
+select.ng-invalid.ng-touched {
+  border: 1px solid #bd2130;
+}
+select.ng-valid.ng-touched {
   border: 1px solid #048f04;
 }
 textarea.ng-invalid.ng-touched {

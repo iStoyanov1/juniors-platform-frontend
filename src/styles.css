@@ -290,3 +290,15 @@ ul.social-footer2 li a {
   color: #179bd3;
   font-size: 12px;
 }
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+a {
+  outline: none;
+  box-shadow: none;
+}

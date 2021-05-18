@@ -1,0 +1,263 @@
+<div class="container mt-1" *ngIf="companyJobView; else loader">
+  <form [formGroup]="form" (submit)="editJob()">
+    <div>
+      <img
+        src="../../assets/images/careers-banner-blur.jpg"
+        height="1%"
+        width="100%"
+      />
+    </div>
+    <hr />
+    <div class="row mt-4 ml-4 mr-4">
+      <h4>*Добавете заглавие на обявата:</h4>
+      <input
+        class="form-control w-50 ml-4 shadow-none"
+        type="text"
+        placeholder="e.g Junior Software Engineer"
+        name="title"
+        formControlName="title"
+        [(ngModel)]="companyJobView.title"
+      />
+      <div
+        class="w-75 mt-1 text-danger text-center"
+        style="margin-left: 80px"
+        *ngIf="f.title.touched && f.title.errors?.required"
+      >
+        Полето е задължително.
+      </div>
+      <div
+        class="w-100 mt-1 text-danger text-center"
+        style="margin-left: 80px"
+        *ngIf="f.title.errors?.minlength || f.title.errors?.maxlength"
+      >
+        Заглавието трябва да бъде между 2 и 100 символа.
+      </div>
+    </div>
+    <div class="row mt-4 ml-4 mr-4">
+      <h4>*IT категория:</h4>
+
+      <select
+        class="form-control w-25 ml-4 form-control-sm shadow-none"
+        name="category"
+        formControlName="category"
+      >
+        <option value="" selected disabled>Изберете</option>
+        <option value="Backend Development">Backend Development</option>
+        <option value="Frontend Development">Frontend Development</option>
+        <option value="Fullstack Development">Fullstack Development</option>
+        <option value="Mobile Development">Mobile Development</option>
+        <option value="Quality Assurance">Quality Assurance</option>
+        <option value="Desktop">Desktop</option>
+        <option value="Embedded">Embedded</option>
+        <option value="Infrastructure">Infrastructure</option>
+        <option value="Technical Support">Technical Support</option>
+      </select>
+      <div
+        class="w-75 mt-1 text-danger"
+        style="margin-left: 180px"
+        *ngIf="f.category.touched && f.category.errors?.required"
+      >
+        Полето е задължително.
+      </div>
+    </div>
+    <div class="row mt-4 ml-4 mr-4">
+      <h4>*Технологии:</h4>
+
+      <button
+        type="button"
+        class="btn btn-open-modal ml-4 mr-4 shadow-none"
+        (click)="openTechnologiesModal()"
+      >
+        <i class="fas fa-plus-circle" aria-hidden="true"></i> Избери
+      </button>
+    </div>
+    <div class="row mt-3 ml-4 mr-4">
+      <div *ngFor="let t of jobOfferTechnologies">
+        <div class="form-group input-group technologies-group ml-2">
+          <input
+            disabled
+            class="form-control shadow-none"
+            style="
+              font-size: 20;
+              background: none;
+              border: none;
+              display: inline-block;
+              height: auto;
+            "
+            value="{{ t.technology }}"
+          />
+          <button
+            class="btn mr-2 shadow-none"
+            style="background: none; width: 1px"
+            value="{{ t.id }}"
+            (click)="deleteNewTech(t.id)"
+          >
+            <i
+              class="fas fa-times-circle fa-1x"
+              style="color: rgb(216, 40, 40)"
+            ></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="ml-4 mt-2 row">
+      <h4>*Дистанционно интервю:</h4>
+      <div class="ml-2 mr-3 custom-control custom-switch rounded">
+        <input
+          type="radio"
+          id="customRadio1"
+          class="custom-control-input shadow-none"
+          name="remoteInterview"
+          formControlName="remoteInterview"
+          value="true"
+        />
+        <label
+          class="custom-control-label"
+          style="font-size: 20px"
+          for="customRadio1"
+          >Да</label
+        >
+      </div>
+      <div class="custom-control custom-switch rounded">
+        <input
+          type="radio"
+          id="customRadio2"
+          class="custom-control-input shadow-none"
+          formControlName="remoteInterview"
+          name="remoteInterview"
+          value="false"
+        />
+        <label
+          class="custom-control-label"
+          style="font-size: 20px"
+          for="customRadio2"
+          >Не</label
+        >
+      </div>
+      <div
+        class="w-75 mt-1 text-danger text-center"
+        style="margin-left: 80px"
+        *ngIf="f.remoteInterview.touched && f.remoteInterview.errors?.required"
+      >
+        Полето е задължително.
+      </div>
+    </div>
+    <div class="row mt-4 ml-4 mr-4">
+      <h4>*Град:</h4>
+
+      <select
+        class="form-control w-25 ml-4 form-control-sm shadow-none"
+        name="city"
+        formControlName="city"
+      >
+        <option value="" selected disabled>Изберете</option>
+        <option>София</option>
+        <option>Варна</option>
+        <option>Пловдив</option>
+        <option>Русе</option>
+        <option>Бургас</option>
+        <option>Remote</option>
+      </select>
+      <div
+        class="w-75 mt-1 text-danger"
+        style="margin-left: 90px"
+        *ngIf="f.city.touched && f.city.errors?.required"
+      >
+        Полето е задължително.
+      </div>
+    </div>
+    <div class="row mt-4 ml-4 mr-4">
+      <h4>*Работно време:</h4>
+
+      <select
+        class="form-control w-25 ml-4 form-control-sm shadow-none"
+        name="workingTime"
+        formControlName="workingTime"
+      >
+        <option value="" selected disabled>Изберете</option>
+        <option value="FullTime">Пълно работно време</option>
+        <option value="PartTime">Непълно работно време</option>
+      </select>
+      <div
+        class="w-75 mt-1 text-danger"
+        style="margin-left: 210px"
+        *ngIf="f.workingTime.touched && f.workingTime.errors?.required"
+      >
+        Полето е задължително.
+      </div>
+    </div>
+    <div class="row mt-4 ml-4 mr-4">
+      <h5>Заплата</h5>
+      <input
+        class="custom-range w-25 mr-2 ml-2 shadow-none"
+        type="range"
+        id="rangeInput"
+        name="salary"
+        min="0"
+        max="5000"
+        step="50"
+        value="0"
+        oninput="amount.value=rangeInput.value"
+      />
+      <output name="amount" id="amount" for="salary">0</output
+      ><span class="mr-2">лв.</span>
+      <span style="font-size: 14px"
+        >(Заплата е в BGN(лв.), а нивото на заплащане е НЕТО.)</span
+      >
+      <span style="font-size: 15px"
+        >*Оставете 0лв. като заплащане, ако не желаете да добавите информация за
+        заплащането в обявата.
+      </span>
+    </div>
+    <div class="container-fluid mt-4">
+      <div class="row justify-content-center">
+        <h3 class="text-center">*Описание на обявата</h3>
+      </div>
+      <div class="row mt-2 justify-content-center">
+        <textarea
+          class="form-control w-75 shadow-none"
+          rows="12"
+          name="description"
+          formControlName="description"
+          [(ngModel)]="companyJobView.description"
+        ></textarea>
+      </div>
+    </div>
+    <div
+      class="w-75 mt-1 text-danger text-center"
+      style="margin-left: 150px"
+      *ngIf="f.description.touched && f.description.errors?.required"
+    >
+      Полето е задължително.
+    </div>
+    <div
+      class="w-100 mt-1 text-danger text-center"
+      *ngIf="f.description.errors?.minlength || f.description.errors?.maxlength"
+    >
+      Описанието трябва да бъде между 10 и 5000 символа.
+    </div>
+    <hr />
+    <div class="row mt-4 ml-4 mr-4 justify-content-center">
+      <h6 style="background-color: rgb(252, 255, 221)" class="text-center">
+        Попълването на маркираните със * полета е задължително за добавяне на
+        обява. Моля, попълнете ги коректно.
+      </h6>
+    </div>
+    <div class="container-fluid mt-4">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 text-center">
+          <button
+            type="submit"
+            class="btn w-25 edit-button ml-4 text-center shadow-none"
+            [disabled]="invalid"
+          >
+            <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<ng-template #loader>
+  <app-loader-spinner></app-loader-spinner>
+</ng-template>

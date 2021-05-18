@@ -28,6 +28,7 @@ import { CompanyAdministrativeInfoComponent } from './company/company-profile/co
 import { CompanyCredentialsComponent } from './company/company-profile/company-credentials/company-credentials.component';
 import { JobOfferComponent } from './job-offer/job-offer.component';
 import { CompanyJobsComponent } from './company/company-profile/company-jobs/company-jobs.component';
+import { CompanyEditJobComponent } from './company-edit-job/company-edit-job.component';
 
 
 
@@ -52,6 +53,7 @@ import { CompanyJobsComponent } from './company/company-profile/company-jobs/com
     CompanyCredentialsComponent,
     JobOfferComponent,
     CompanyJobsComponent,
+    CompanyEditJobComponent,
     
   ],
   imports: [

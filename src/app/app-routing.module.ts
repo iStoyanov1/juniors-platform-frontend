@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterUserComponent } from './auth/register-user/register-user.component';
+import { CompanyEditJobComponent } from './company-edit-job/company-edit-job.component';
 import { CompanyAdministrativeInfoComponent } from './company/company-profile/company-administrative-info/company-administrative-info.component';
 import { CompanyCredentialsComponent } from './company/company-profile/company-credentials/company-credentials.component';
 import { CompanyProfileComponent } from './company/company-profile/company-profile.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'company/profile',component:CompanyProfileComponent},
   {path: 'company/profile/administrative/contacts', component:CompanyAdministrativeInfoComponent},
   {path: 'company/profile/credentials', component:CompanyCredentialsComponent},
-  {path: 'company/add/job', component:JobOfferComponent}
+  {path: 'company/add/job', component:JobOfferComponent},
+  {path: 'company/edit/job/:id', component: CompanyEditJobComponent}
 ];
 
 @NgModule({
