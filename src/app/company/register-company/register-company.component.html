@@ -75,13 +75,23 @@
                   >Подреждайте и организирайте кандидатурите
                 </h5>
               </div>
-              <div class="container">
-                <h5>Необходима Ви е помощ?</h5>
+              <div class="alert alert-warning mt-4 info-alert">
+                <h5 class="mt-4">Необходима Ви е помощ?</h5>
                 <p>
                   Можете да се свържете с нас всеки делничен ден от 8:30 до
                   17:30<br />
-                  <i class="fa fa-phone mr-2"></i>Тел: +123456789<br />
-                  <i class="fa fa-envelope mr-2"></i>Email: example@gmail.com
+                  <i
+                    style="color: rgba(104, 181, 91, 1)"
+                    class="fa fa-phone mr-2"
+                  ></i
+                  >Тел: <span style="font-weight: bold">+359897046688</span
+                  ><br />
+                  <i
+                    style="color: rgb(167, 77, 54)"
+                    class="fa fa-envelope mr-2"
+                  ></i
+                  >Email:
+                  <span style="font-weight: bold">example@gmail.com</span>
                 </p>
               </div>
             </div>
@@ -100,7 +110,7 @@
                 <input
                   id="name"
                   name="name"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   type="text"
                   style="width: 350px"
                   formControlName="name"
@@ -130,7 +140,7 @@
                   id="bulstat"
                   name="bulstat"
                   placeholder="1234567890"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   type="number"
                   style="width: 350px"
                   formControlName="bulstat"
@@ -146,6 +156,25 @@
                   *ngIf="f.bulstat.touched && f.bulstat.errors?.pattern"
                 >
                   Булстатът трябва да съдържа 10 цифри.
+                </div>
+                <label for="logo" class="form-label mt-3">Лого*</label><br />
+                <input
+                  type="file"
+                  formControlName="logo"
+                  name="logo"
+                  (change)="onLogoSelect($event)"
+                />
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="f.logo.touched && f.logo.errors?.required"
+                >
+                  Полето е задължително.
+                </div>
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="f.logo.touched && f.logo.errors?.pattern"
+                >
+                  Логото трябва да бъде в следните формати: JPEG, PNG, GIF.
                 </div>
               </div>
             </div>
@@ -164,7 +193,7 @@
                 <input
                   id="firstName"
                   name="firstName"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   placeholder="Петър"
                   type="text"
                   style="width: 350px"
@@ -192,7 +221,7 @@
                   id="lastName"
                   name="lastName"
                   placeholder="Петров"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   type="text"
                   style="width: 350px"
                   formControlName="lastName"
@@ -215,7 +244,7 @@
                   id="email"
                   name="email"
                   placeholder="petar@petrov.com"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   type="email"
                   style="width: 350px"
                   formControlName="email"
@@ -237,7 +266,7 @@
                   id="phone"
                   name="phone"
                   placeholder="0897046688"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   type="text"
                   style="width: 350px"
                   formControlName="phone"
@@ -261,7 +290,7 @@
                 <input
                   id="username"
                   name="username"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   placeholder="company@name.com"
                   type="email"
                   style="width: 350px"
@@ -287,7 +316,7 @@
                 <input
                   id="password"
                   name="password"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   type="password"
                   style="width: 350px"
                   formControlName="password"
@@ -316,7 +345,7 @@
                 <input
                   id="confirmPassword"
                   name="confirmPassword"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   type="password"
                   style="width: 350px"
                   formControlName="confirmPassword"
@@ -346,7 +375,7 @@
             <div class="form-group">
               <div class="form-check">
                 <input
-                  class="form-check-input"
+                  class="form-check-input form-control-sm"
                   type="checkbox"
                   value=""
                   id="acceptTerms"
@@ -374,7 +403,13 @@
         </div>
       </form>
       <div class="mt-4 d-flex justify-content-center">
-        <p style="font-family: 'Calibri Light'; font-size: 16px">
+        <p
+          style="
+            font-family: 'Calibri Light';
+            font-size: 16px;
+            background-color: rgb(243, 240, 225);
+          "
+        >
           Попълването на маркираните с * полета е задължително за завършване на
           регистрацията. Моля, попълнете ги коректно.
         </p>

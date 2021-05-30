@@ -29,6 +29,8 @@ import { CompanyCredentialsComponent } from './company/company-profile/company-c
 import { JobOfferComponent } from './job-offer/job-offer.component';
 import { CompanyJobsComponent } from './company/company-profile/company-jobs/company-jobs.component';
 import { CompanyEditJobComponent } from './company-edit-job/company-edit-job.component';
+import { JobOfferViewComponent } from './job-offer-view/job-offer-view.component';
+import { CompanyProfileViewComponent } from './company-profile-view/company-profile-view.component';
 
 
 
@@ -54,6 +56,8 @@ import { CompanyEditJobComponent } from './company-edit-job/company-edit-job.com
     JobOfferComponent,
     CompanyJobsComponent,
     CompanyEditJobComponent,
+    JobOfferViewComponent,
+    CompanyProfileViewComponent,
     
   ],
   imports: [

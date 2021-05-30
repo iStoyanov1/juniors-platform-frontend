@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { Observable } from 'rxjs';
+import { LastJobs } from '../models/last-jobs';
+import { TopCompanies } from '../models/top-companies';
+import { HomeService } from '../services/home/home.service';
 
 @Component({
   selector: 'app-landing',
@@ -8,7 +12,12 @@ import * as $ from 'jquery';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  lastJobs: LastJobs[]
+  companyLogo:any
+  companyId:any
+  topCompanies: TopCompanies[]
+  constructor(private homeService: HomeService) {
+   }
 
   ngOnInit(): void {
 
@@ -25,10 +34,26 @@ export class LandingComponent implements OnInit {
               }
           });
       });
-
   });
-
-
+  this.getLastJobOffers()
+  this.getTopCompanies()
+}
+   getLastJobOffers(){
+    setTimeout(()=>{
+     this.homeService.getLastJobs().subscribe((data)=>{
+    this.lastJobs = data;
+    })
+    },1000)
   }
 
+  getTopCompanies(){
+    if(this.lastJobs.length > 0){
+    setTimeout(() =>{
+      this.homeService.getTopCompanies().subscribe((data)=>{
+        this.topCompanies = data
+        console.log(data[0].description.logo)
+      })
+    }, 1000)
+  }
+  }
 }

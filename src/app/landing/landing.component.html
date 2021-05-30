@@ -168,7 +168,104 @@
         </div>
       </div>
       <h1 class="mt-4" style="text-align: center">Последни обяви:</h1>
+      <div class="container-fluid">
+        <div class="row ml-4" *ngIf="lastJobs; else loader">
+          <div class="ml-4" *ngFor="let j of lastJobs">
+            <div class="card job-card" style="width: 15rem">
+              <a
+                style="text-decoration: none"
+                class="table-href"
+                title="Преглед"
+                [routerLink]="['/job/view', j.id]"
+              >
+                <img
+                  class="mt-2 ml-4"
+                  src="data:image/png;base64,{{
+                    j.company.description.logo['bytes']
+                  }}"
+                  width="130"
+                  height="40"
+                />
+                <hr />
+
+                <div class="card-body" title="Виж обявата">
+                  <h5 style="font-weight: bold; color: grey" class="card-title">
+                    {{ j.title }}
+                  </h5>
+                  <span style="font-size: 11px; color: rgb(165, 164, 164)"
+                    >Месторабота:</span
+                  >
+                  <i
+                    style="color: rgb(16, 127, 201)"
+                    class="fas fa-street-view ml-2 mr-1"
+                  ></i>
+                  <span
+                    style="
+                      font-size: 12px;
+                      font-weight: bold;
+                      color: rgb(16, 127, 201);
+                    "
+                    >{{ j.city }}</span
+                  >
+                </div>
+              </a>
+              <div class="card-footer">
+                <a
+                  [routerLink]="['/company', j.company.id]"
+                  class="btn btn-company-info"
+                >
+                  <i class="fas fa-info-circle"></i> Повече за компанията
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <h1 class="mt-4" style="text-align: center">Топ компании:</h1>
+      <div class="container-fluid">
+        <div class="row ml-4 mt-4">
+          <div class="ml-4" *ngFor="let tc of topCompanies">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <a
+                    style="text-decoration: none"
+                    class="table-href"
+                    title="Преглед"
+                    [routerLink]="['/company', tc.id]"
+                  >
+                    <td style="border-right: rgb(93, 190, 133) dotted 1px">
+                      <img
+                        src="data:image/png;base64,{{
+                          tc.description.logo['bytes']
+                        }}"
+                        width="75"
+                        height="22"
+                      />
+                    </td>
+                    <td style="color: grey; font-weight: bold">
+                      {{ tc.name }}
+                    </td>
+                    <td style="border-left: rgb(93, 190, 133) dotted 1px">
+                      <a
+                        style="text-decoration: none"
+                        class="btn-edit"
+                        [routerLink]="['/company', tc.id]"
+                        title="Преглед"
+                      >
+                        <i class="fas fa-paper-plane"></i>
+                      </a>
+                    </td>
+                  </a>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </main>
   </body>
 </html>
+<ng-template #loader>
+  <app-loader-spinner></app-loader-spinner>
+</ng-template>

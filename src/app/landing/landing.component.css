@@ -1,0 +1,30 @@
+.btn-company-info {
+  border: 1px solid #50c083;
+  color: #50c083;
+  font-size: 0.8rem;
+  width: 25vh;
+}
+.btn-company-info:hover {
+  background-color: #50c083;
+  color: white;
+}
+.job-card {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.job-card:hover {
+  transform: scale(1.02);
+}
+.table {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+  border-top-right-radius: 35px;
+  width: 40vh;
+}
+.table:hover {
+  transform: scale(1.02);
+}

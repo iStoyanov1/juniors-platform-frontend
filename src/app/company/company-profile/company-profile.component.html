@@ -4,66 +4,6 @@
       <div class="col-sm-4">
         <h1>За компанията</h1>
         <hr class="mt-2 mb-4" />
-        <div *ngIf="getCompanyVideo()">
-          <div class="row ml-1">
-            <h5>Видео визитка</h5>
-            <button
-              type="button"
-              class="btn btn-delete ml-2"
-              (click)="deleteCompanyVideo()"
-            >
-              <i class="fa fa-times-circle mr-1" aria-hidden="true"></i>
-              Премахни
-            </button>
-          </div>
-          <hr class="hr-subtitle" />
-          <div class="embed-responsive embed-responsive-16by9 mt-1">
-            <iframe
-              class="embed-responsive-item"
-              [src]="correctUrl"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-        <form [formGroup]="formInformation">
-          <div *ngIf="!getCompanyVideo()">
-            <div>
-              <h5>Видео визитка</h5>
-            </div>
-            <hr
-              style="
-                background: #179bd3;
-                margin: 0px;
-                padding: 0px;
-                width: 50px;
-              "
-            />
-            <span>Добавете видео, представляващо вашата компания.<br /></span>
-            <span style="font-size: 13px">
-              *Видеото трябва да бъде youtube линк
-            </span>
-            <div class="form-group input-group w-75">
-              <label for="company-video" class="form-label">Линк: </label>
-              <div class="input-group-prepend ml-2">
-                <span class="input-group-text">
-                  <i class="fab fa-youtube" aria-hidden="true"></i>
-                </span>
-              </div>
-              <input
-                id="company-video"
-                name="urlPath"
-                class="form-control form-control-sm"
-                type="url"
-                formControlName="urlPath"
-              />
-              <div *ngIf="f.urlPath.touched && f.urlPath.errors?.pattern">
-                <span style="color: rgb(177, 9, 9)"
-                  >Линкът, който сте поставили, е невалиден.</span
-                >
-              </div>
-            </div>
-          </div>
-        </form>
       </div>
       <div class="col-sm-7">
         <div class="row mb-1">

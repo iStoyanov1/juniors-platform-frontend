@@ -21,7 +21,7 @@ export class RegisterCompanyComponent implements OnInit {
     this.form = this.fb.group({
       name:['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
       bulstat:['', [Validators.required, Validators.pattern('[0-9]{10}')]],
-      logo: ['', [Validators.nullValidator]],
+      logo: ['', [Validators.required]],
       firstName: ['', [Validators.required, Validators.pattern('([А-Я][а-я]{1,14})')]],
       lastName: ['', [Validators.required, Validators.pattern('([А-Я][а-я]{1,20})')]],
       email: ['', [Validators.required, Validators.pattern('^([\\w\\.\\-]+)@([\\w\\-]+)(\\D(\\.(\\w){2,3})+)$')]],
@@ -37,9 +37,30 @@ export class RegisterCompanyComponent implements OnInit {
   }
 
   registerCompany(){
-    this.companyService.createCompany(this.form.value).subscribe((data)=>{
-      this.router.navigate(['/'])
+    
+    const formData = new FormData();
+    formData.append('logo', this.form.get('logo')?.value);
+    formData.append('name', this.form.get('name')?.value);
+    formData.append('bulstat', this.form.get('bulstat')?.value);
+    formData.append('firstName', this.form.get('firstName')?.value);
+    formData.append('lastName', this.form.get('lastName')?.value);
+    formData.append('email', this.form.get('email')?.value);
+    formData.append('phone', this.form.get('phone')?.value);
+    formData.append('username', this.form.get('username')?.value);
+    formData.append('password', this.form.get('password')?.value);
+    formData.append('confirmPassword', this.form.get('confirmPassword')?.value);
+    // this.form.controls['logo'].setValue(formData)
+    // console.log(this.form.value)
+    this.companyService.createCompany(formData).subscribe((data)=>{
+      console.log(data)
     })
+  }
+
+  onLogoSelect(event){
+    if (event.target.files.length>0){
+      const logo = event.target.files[0];
+      this.form.get('logo')?.setValue(logo);
+    }
   }
 
   get f(){
@@ -49,5 +70,4 @@ export class RegisterCompanyComponent implements OnInit {
   get invalid(){
     return this.form.invalid;
   }
-
 }

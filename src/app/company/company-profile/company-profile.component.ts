@@ -62,7 +62,7 @@ export class CompanyProfileComponent implements OnInit {
 
     this.formInformation = this.fb.group({
       information: ['', Validators.nullValidator],
-      urlPath: ['',[Validators.pattern('^(http(s)??\\:\\/\\/)?(www\\.)?((youtube\\.com\\/watch\\?v=)|(youtu.be\\/))([a-zA-Z0-9\\-_])+')] ],
+      // urlPath: ['',[Validators.pattern('^(http(s)??\\:\\/\\/)?(www\\.)?((youtube\\.com\\/watch\\?v=)|(youtu.be\\/))([a-zA-Z0-9\\-_])+')] ],
       technologies: ['', Validators.nullValidator],
       benefits: ['', Validators.nullValidator] 
     })
@@ -156,7 +156,7 @@ onBackgroundSelect(event){
     this.formBackground.get('background')?.setValue(background);
   }
 }
-Z
+
 addCompanyBackground(){
   const formData = new FormData();
   formData.append('background', this.formBackground.get('background')?.value);

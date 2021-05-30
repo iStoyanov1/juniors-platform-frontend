@@ -1,0 +1,191 @@
+<div
+  class="container-fluid mt-4"
+  *ngIf="companyProfile && companyTechnologies && companyBenefits; else loader"
+>
+  <div class="row ml-4">
+    <div class="col-sm-4">
+      <h2>За компанията</h2>
+      <hr class="mt-2 mb-4" />
+      <h4>Описание</h4>
+      <hr class="sub-line mt-1" />
+      <span>
+        {{ companyProfile.description.information }}
+      </span>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-7">
+      <div class="row mb-1">
+        <img
+          src="data:image/png;base64,{{
+            companyProfile.description.logo['bytes']
+          }}"
+          width="120"
+          height="35"
+        />
+        <h4 class="ml-2">{{ companyProfile.name }}</h4>
+      </div>
+      <div class="row mb-4" *ngIf="getCompanyBackground()">
+        <img
+          src="data:image/png;base64,{{
+            companyProfile.description.background['bytes']
+          }}"
+          width="830"
+          height="300"
+        />
+      </div>
+      <div class="row-mt-4">
+        <h4>Обяви</h4>
+        <hr class="sub-line mt-1" />
+        <div class="mt-2">
+          <div *ngFor="let c of companyJobOffers">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <a
+                    class="table-href"
+                    title="Преглед"
+                    [routerLink]="['/job/view', c.id]"
+                  >
+                    <td style="border-right: rgb(93, 190, 133) dotted 1px">
+                      <img
+                        src="data:image/png;base64,{{ c.logo['bytes'] }}"
+                        width="75"
+                        height="22"
+                      />
+                    </td>
+                    <td style="color: grey">{{ c.title }}</td>
+                    <td style="color: grey">
+                      <i
+                        style="color: rgb(16, 127, 201)"
+                        class="fas fa-street-view"
+                      ></i>
+                      гр. {{ c.city }}
+                    </td>
+                    <td style="color: grey">
+                      <i
+                        style="color: rgb(236, 144, 108)"
+                        class="fas fa-calendar-alt"
+                      ></i>
+                      {{ c.date }}
+                    </td>
+                  </a>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row ml-4 mt-4">
+    <div class="col-sm-4">
+      <div class="row ml-1">
+        <h4>Технологии</h4>
+      </div>
+      <hr class="sub-line mt-1" />
+      <div class="row mt-1 ml-2">
+        <div class="col-sm-4 mt-2" *ngFor="let t of companyTechnologies">
+          <div class="form-group input-group technologies-group">
+            <input
+              disabled
+              class="form-control"
+              style="font-size: 20; background: none; border: none"
+              value="{{ t.technology }}"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row ml-4 mt-4">
+    <div class="col-sm-6">
+      <div class="row ml-1">
+        <h4>Придобивки</h4>
+      </div>
+      <hr class="sub-line mt-1" />
+      <div class="benefits mt-2">
+        <div class="row mt ml-1">
+          <div class="col-sm-6" *ngFor="let b of companyBenefits">
+            <label
+              class="control-label mt-2"
+              for="{{ b.benefit }}"
+              style="font-size: 15px"
+            >
+              <i
+                class="fas fa-award"
+                style="font-size: 1.2rem; color: rgb(240, 197, 6)"
+              ></i>
+              {{ b.benefit }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="container company-contacts">
+      <div class="row mt-2 mb-2">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-9">
+          <div class="row ml-1 mt-3">
+            <h3>Контакти</h3>
+          </div>
+          <hr
+            style="background: #179bd3; margin: 0px; padding: 0px; width: 100px"
+          />
+          <hr
+            class="mt-1"
+            style="background: #179bd3; margin: 0px; padding: 0px; width: 50px"
+          />
+        </div>
+      </div>
+      <hr />
+      <div class="row mt-2 justify-content-center">
+        <div class="col-sm-4 mb-1 ml-2">
+          <i
+            class="fas fa-sm fa-map-marked-alt mt-2 mr-2"
+            style="color: rgb(10, 187, 104)"
+            aria-hidden="true"
+          ></i>
+          <label class="company-contact-label form-label">Адрес: </label>
+          <hr class="sub-line mt-1 ml-4" />
+        </div>
+        <div class="col-sm-3">
+          <i
+            class="fa fa-sm fa-phone mt-2 mr-2"
+            style="color: #06380a"
+            aria-hidden="true"
+          ></i>
+          <label class="company-contact-label form-label">Телефон: </label>
+          <hr class="sub-line mt-1 ml-4" />
+        </div>
+        <div class="col-sm-3">
+          <i
+            class="fa fa-sm fa-globe mt-2 mr-2"
+            style="color: #1967d2"
+            aria-hidden="true"
+          ></i>
+          <label class="company-contact-label form-label">Уебсайт: </label>
+          <hr class="sub-line mt-1 ml-4" />
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-4 ml-2">
+          <span>{{ companyProfile.contacts.companyAddress }}</span>
+        </div>
+        <div class="col-sm-3 mb-2">
+          <span>{{ companyProfile.contacts.companyPhone }}</span>
+        </div>
+        <div class="col-sm-3 mb-2">
+          <a href="{{ companyProfile.contacts.companyWebsite }}"
+            ><span>{{ companyProfile.contacts.companyWebsite }}</span></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loader>
+  <app-loader-spinner></app-loader-spinner>
+</ng-template>

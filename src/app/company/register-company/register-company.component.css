@@ -7,6 +7,6 @@ input.ng-invalid.ng-touched {
 input.ng-valid.ng-touched {
   border: 1px solid #048f04;
 }
-.card-body:hover {
-  transform: scale(1.02);
+.info-alert {
+  border-radius: 15px;
 }

@@ -5,6 +5,7 @@ import { Company } from 'src/app/models/company';
 import { CompanyAdministrativeContacts } from 'src/app/models/company-administrative-contacts';
 import { CompanyContacts } from 'src/app/models/company-contacts';
 import { CompanyAuthView } from 'src/app/models/company-credentials';
+import { CompanyProfile } from 'src/app/models/company-profile';
 
 const createCompany = 'http://localhost:8080/api/register/company'
 const uploadCompanyinfo = 'http://localhost:8080/api/company/profile/upload/information'
@@ -20,6 +21,7 @@ const editCompanyAdminstrativeContacts = 'http://localhost:8080/api/company/prof
 const getCompanyAuthView = 'http://localhost:8080/api/company/profile/credentials'
 const editCompanyEmail = 'http://localhost:8080/api/company/profile/credentials/edit/email'
 const editCompanyPassword = 'http://localhost:8080/api/company/profile/credentials/edit/password'
+const companyProfile = 'http://localhost:8080/api/company'
 
 @Injectable({
   providedIn: 'root'
@@ -77,5 +79,9 @@ export class CompanyService {
   }
   editCompanyEmail(email){
     return this.http.put(editCompanyEmail, email)
+  }
+
+  companyProfile(id:any){
+    return this.http.get<CompanyProfile>(`${companyProfile}/${id}`);
   }
 }
