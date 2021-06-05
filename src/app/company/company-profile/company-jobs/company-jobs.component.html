@@ -3,51 +3,53 @@
     <table class="table">
       <tbody>
         <tr>
-          <a
-            class="table-href"
-            title="Преглед"
-            [routerLink]="['/job/view', c.id]"
-          >
-            <td style="border-right: rgb(93, 190, 133) dotted 1px">
-              <img
-                src="data:image/png;base64,{{ c.logo['bytes'] }}"
-                width="75"
-                height="22"
-              />
-            </td>
-            <td style="color: grey">{{ c.title }}</td>
-            <td style="color: grey">
-              <i
-                style="color: rgb(16, 127, 201)"
-                class="fas fa-street-view"
-              ></i>
-              гр. {{ c.city }}
-            </td>
-            <td style="color: grey">
-              <i
-                style="color: rgb(236, 144, 108)"
-                class="fas fa-calendar-alt"
-              ></i>
-              {{ c.date }}
-            </td>
-            <td style="border-left: rgb(93, 190, 133) dotted 1px">
-              <a
-                class="btn-edit"
-                [routerLink]="['/company/edit/job', c.id]"
-                title="Редактирай"
-              >
-                <i class="fas fa-pen-square"></i>
-              </a>
-              <button
-                type="button"
-                class="btn-remove ml-3"
-                title="Изтрий"
-                (click)="deleteJob(c.id)"
-              >
-                <i class="far fa-trash-alt"></i>
-              </button>
-            </td>
-          </a>
+          <div>
+            <a
+              class="table-href"
+              title="{{ c.title }}"
+              [routerLink]="['/job/view', c.id]"
+            >
+              <td style="border-right: rgb(93, 190, 133) dotted 1px">
+                <img
+                  src="data:image/png;base64,{{ c.logo['bytes'] }}"
+                  width="75"
+                  height="22"
+                />
+              </td>
+              <td style="color: grey">{{ c.title.substring(0, 24) }}...</td>
+              <td style="color: grey">
+                <i
+                  style="color: rgb(16, 127, 201)"
+                  class="fas fa-street-view"
+                ></i>
+                гр. {{ c.city }}
+              </td>
+              <td style="color: grey">
+                <i
+                  style="color: rgb(236, 144, 108)"
+                  class="fas fa-calendar-alt"
+                ></i>
+                {{ c.date }}
+              </td>
+            </a>
+          </div>
+          <td style="border-left: rgb(93, 190, 133) dotted 1px">
+            <a
+              class="btn-edit"
+              [routerLink]="['/company/edit/job', c.id]"
+              title="Редактирай"
+            >
+              <i class="fas fa-pen-square"></i>
+            </a>
+            <button
+              type="button"
+              class="btn-remove ml-3"
+              title="Изтрий"
+              (click)="deleteJob(c.id)"
+            >
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

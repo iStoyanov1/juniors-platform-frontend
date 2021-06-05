@@ -49,10 +49,9 @@ export class RegisterCompanyComponent implements OnInit {
     formData.append('username', this.form.get('username')?.value);
     formData.append('password', this.form.get('password')?.value);
     formData.append('confirmPassword', this.form.get('confirmPassword')?.value);
-    // this.form.controls['logo'].setValue(formData)
-    // console.log(this.form.value)
+
     this.companyService.createCompany(formData).subscribe((data)=>{
-      console.log(data)
+      this.router.navigate['/']
     })
   }
 

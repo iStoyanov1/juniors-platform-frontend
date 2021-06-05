@@ -1,50 +1,40 @@
-input.ng-invalid.ng-touched {
-  border: 1px solid #bd2130;
+.btn-page-links:hover {
+  background: #50c083;
+  color: white;
 }
-input.ng-valid.ng-touched {
-  border: 1px solid #048f04;
+.btn-page-links {
+  border-bottom: #d1d1d1 solid 1px;
+  border-top: #d1d1d1 solid 1px;
+  color: rgb(121, 121, 121);
 }
-
-.company-contacts {
-  border: #d6d6d6 solid 1px;
-  width: 460px;
+.btn-page {
+  border: #d1d1d1 solid 1px;
 }
-.btn-contacts {
-  font-size: 0.8rem;
+.btn-page:hover:enabled {
+  background: #50c083;
+  color: white;
+}
+.btn-page-links:focus {
+  background: #50c083;
+  color: white;
+}
+.title-row {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.title-row:hover {
+  transform: scale(1.02);
+}
+.btn-date {
+  font-size: 0.9rem;
   background: rgba(66, 133, 244, 0.15);
   color: #1967d2;
   font-weight: bold;
   border-bottom-left-radius: 30px;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
-}
-.btn-contacts:hover:enabled {
-  background: rgb(153, 195, 252);
-}
-
-input {
-  border-bottom-left-radius: 30px;
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
-  text-align: center;
-  font-weight: bold;
-  color: rgb(94, 93, 93);
-}
-.line {
-  background: #179bd3;
-  margin: 0px;
-  padding: 0px;
-  width: 50px;
-}
-.sub-line {
-  background: #179bd3;
-  margin: 0px;
-  padding: 0px;
-  width: 35px;
-}
-.company-contact-label {
-  font-size: 15px;
-  color: grey;
 }
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CompanyContacts } from 'src/app/models/company-contacts';
@@ -11,10 +11,13 @@ import { CompanyService } from 'src/app/services/company/company.service';
 })
 export class CompanyProfileContactsComponent implements OnInit{
 
+  @ViewChildren('phoneEditLabel') el
+
   form: FormGroup
   companyContacts: CompanyContacts  
   
-  constructor(private fb: FormBuilder, private companyService: CompanyService, private toastr: ToastrService) {}
+  constructor(private fb: FormBuilder, private companyService: CompanyService, private toastr: ToastrService
+    ,private render: Renderer2) {}
 
   ngOnInit(): void {
 
@@ -67,5 +70,8 @@ export class CompanyProfileContactsComponent implements OnInit{
 
   invalidForm(){
     return this.form.invalid
+  }
+  changeLabelToInput(){
+    
   }
 }

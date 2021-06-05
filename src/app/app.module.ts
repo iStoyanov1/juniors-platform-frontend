@@ -18,7 +18,7 @@ import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterUserComponent } from './auth/register-user/register-user.component';
 import { RegisterCompanyComponent } from './company/register-company/register-company.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { CompanyProfileComponent } from './company/company-profile/company-profile.component';
 import { TechnologiesComponent } from './company/technologies/technologies.component';
 import { BenefitsComponent } from './company/benefits/benefits.component';
@@ -28,9 +28,13 @@ import { CompanyAdministrativeInfoComponent } from './company/company-profile/co
 import { CompanyCredentialsComponent } from './company/company-profile/company-credentials/company-credentials.component';
 import { JobOfferComponent } from './job-offer/job-offer.component';
 import { CompanyJobsComponent } from './company/company-profile/company-jobs/company-jobs.component';
-import { CompanyEditJobComponent } from './company-edit-job/company-edit-job.component';
+import { CompanyEditJobComponent } from './company/company-edit-job/company-edit-job.component';
 import { JobOfferViewComponent } from './job-offer-view/job-offer-view.component';
-import { CompanyProfileViewComponent } from './company-profile-view/company-profile-view.component';
+import { CompanyProfileViewComponent } from './company/company-profile-view/company-profile-view.component';
+import { AllJobsComponent } from './all-jobs/all-jobs.component';
+import { UserFavouriteJobsComponent } from './user/user-favourite-jobs/user-favourite-jobs.component';
+
+
 
 
 
@@ -58,6 +62,8 @@ import { CompanyProfileViewComponent } from './company-profile-view/company-prof
     CompanyEditJobComponent,
     JobOfferViewComponent,
     CompanyProfileViewComponent,
+    AllJobsComponent,
+    UserFavouriteJobsComponent
     
   ],
   imports: [
@@ -71,8 +77,7 @@ import { CompanyProfileViewComponent } from './company-profile-view/company-prof
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
     }),
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
   ],
   providers: [UserService, 
     {provide: HTTP_INTERCEPTORS, useClass: ResponseHandlerInterceptorService, multi:true},

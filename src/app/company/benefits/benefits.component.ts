@@ -48,7 +48,6 @@ export class BenefitsComponent implements OnInit {
       }else{
           this.selectedBenefits = this.selectedBenefits.filter(b=>b!=benefit)
       }
-
       return this.selectedBenefits
   }
 

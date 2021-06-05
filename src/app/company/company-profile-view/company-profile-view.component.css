@@ -1,50 +1,51 @@
-input.ng-invalid.ng-touched {
-  border: 1px solid #bd2130;
-}
-input.ng-valid.ng-touched {
-  border: 1px solid #048f04;
-}
-
-.company-contacts {
-  border: #d6d6d6 solid 1px;
-  width: 460px;
-}
-.btn-contacts {
-  font-size: 0.8rem;
-  background: rgba(66, 133, 244, 0.15);
-  color: #1967d2;
-  font-weight: bold;
-  border-bottom-left-radius: 30px;
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
-}
-.btn-contacts:hover:enabled {
-  background: rgb(153, 195, 252);
-}
-
-input {
-  border-bottom-left-radius: 30px;
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
-  text-align: center;
-  font-weight: bold;
-  color: rgb(94, 93, 93);
-}
-.line {
+.hr-subtitle {
   background: #179bd3;
   margin: 0px;
   padding: 0px;
-  width: 50px;
+  width: 100px;
+}
+.table {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+  border-top-right-radius: 35px;
+  width: 90vh;
+}
+.table:hover {
+  transform: scale(1.02);
+}
+.table-href {
+  text-decoration: none;
+}
+.table-href:hover {
+  text-decoration: none;
+}
+.technologies-group {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-radius: 10px;
+  width: 115px;
+}
+.benefits {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.code-icon {
+  color: #179bd3;
+}
+.company-contacts {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+  border-top-right-radius: 35px;
+  width: 950px;
 }
 .sub-line {
   background: #179bd3;
   margin: 0px;
   padding: 0px;
   width: 35px;
-}
-.company-contact-label {
-  font-size: 15px;
-  color: grey;
 }
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 

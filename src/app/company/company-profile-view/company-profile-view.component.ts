@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Benefit } from '../models/benefit';
-import { CompanyJobView } from '../models/company-job-view';
-import { CompanyJob } from '../models/company-jobs';
-import { CompanyProfile } from '../models/company-profile';
-import { JobOfferView } from '../models/job-offer-view';
-import { Technology } from '../models/technology';
-import { CompanyService } from '../services/company/company.service';
+import { Benefit } from '../../models/benefit';
+import { CompanyJobView } from '../../models/company-job-view';
+import { CompanyJob } from '../../models/company-jobs';
+import { CompanyProfile } from '../../models/company-profile';
+import { JobOfferView } from '../../models/job-offer-view';
+import { Technology } from '../../models/technology';
+import { CompanyService } from '../../services/company/company.service';
 
 @Component({
   selector: 'app-company-profile-view',
@@ -22,6 +22,7 @@ export class CompanyProfileViewComponent implements OnInit {
   companyJobOffers: CompanyJob[]
   companyTechnologies:Technology[]
   companyBenefits: Benefit[]
+  companyLogo:any
 
   constructor(private route: ActivatedRoute, private companyService: CompanyService) {
     this.companyJobOffers = new Array<CompanyJob>()
@@ -33,6 +34,7 @@ export class CompanyProfileViewComponent implements OnInit {
       const id = data['id']
       this.companyService.companyProfile(id).subscribe((data =>{
         this.companyProfile = data
+        this.companyLogo = this.companyProfile['logo']
         this.companyJobOffers = this.companyProfile.jobOffers;
         this.companyTechnologies = this.companyProfile.description.technologies
         this.companyBenefits = this.companyProfile.description.benefits

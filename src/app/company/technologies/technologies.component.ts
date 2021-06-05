@@ -22,16 +22,15 @@ export class TechnologiesComponent implements OnInit {
 
   constructor(private technologyService: TechnologiesService, private formBuilder: FormBuilder,
      private modalService: BsModalService) {
-
+     
       this.technologiesForm = this.formBuilder.group({
         technologies:['', Validators.nullValidator]
       })
     }
 
   ngOnInit(): void {
-
    this.technology$ =  this.technologyService.getAllTechnologies();
-   this.selectedTechnologies = new Array<Technology>();
+   this.selectedTechnologies = new Array<Technology>()
   }
 
   changeSelection(ev: any, technology:Technology): Technology[]{

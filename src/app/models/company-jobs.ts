@@ -5,4 +5,5 @@ export interface CompanyJob{
     date:any
     salary:number
     city:string
+    isDeleted:Boolean
 }

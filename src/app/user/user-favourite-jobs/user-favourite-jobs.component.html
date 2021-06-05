@@ -1,0 +1,36 @@
+<div class="mt-4">
+  <div *ngFor="let uj of userFavJobs$ | async">
+    <table class="table">
+      <tbody>
+        <tr>
+          <div>
+            <a
+              class="table-href"
+              title="{{ uj.title }}"
+              [routerLink]="['/job/view', uj.id]"
+            >
+              <td style="color: grey">{{ uj.title.substring(0, 24) }}...</td>
+              <td style="color: grey">
+                <i
+                  style="color: rgb(16, 127, 201)"
+                  class="fas fa-street-view"
+                ></i>
+                гр. {{ uj.city }}
+              </td>
+            </a>
+          </div>
+          <td>
+            <button
+              type="button"
+              class="btn-remove ml-3"
+              title="Премахни от запазени"
+              (click)="removeFavJob(uj.id)"
+            >
+              <i class="fab fa-gratipay"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

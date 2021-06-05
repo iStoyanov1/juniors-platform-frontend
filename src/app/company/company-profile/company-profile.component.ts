@@ -22,47 +22,29 @@ const addCompanyBackgroundApi = 'http://localhost:8080/api/company/profile/add/b
 })
 export class CompanyProfileComponent implements OnInit {
 
-  
   modalRef: BsModalRef
-  benefits : Benefit[]
-  technologies : Technology[]
   companyTechnologies: Technology[];
-  companyBenefits: Benefit[]
+  companyBenefits: Benefit[];
   formInformation: FormGroup;
   company: Company
   companyName: string;
   errorMessage: any;
-  substringUrlPath: any;
-  embedLink: string;
-  correctUrl: any;
   formLogo: FormGroup;
   companyLogo: any
-  formBackground: FormGroup;
   formVideo:FormGroup
-  companyBackground: any;
 
   constructor(private modalService: BsModalService, private fb: FormBuilder, private companyService: CompanyService,
-    private toastr: ToastrService, private sanitizer: DomSanitizer, private http: HttpClient) {
-      this.companyTechnologies = new Array<Technology>();
-      this.companyBenefits = new Array<Benefit>();
+    private toastr: ToastrService, private http: HttpClient) {
+      this.companyBenefits = new Array<Benefit>()
+      this.companyTechnologies = new Array<Technology>()
    }
 
   ngOnInit(): void {
     this.getCompanyName();
     this.getCompanyProfile()
 
-    this.formLogo = this.fb.group({
-      logo: ['', [Validators.required, Validators.pattern('[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$')]]
-    })
-
-    this.formBackground = this.fb.group({
-      background: ['', [Validators.required, Validators.pattern('[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$')]]
-    })
-
-
     this.formInformation = this.fb.group({
       information: ['', Validators.nullValidator],
-      // urlPath: ['',[Validators.pattern('^(http(s)??\\:\\/\\/)?(www\\.)?((youtube\\.com\\/watch\\?v=)|(youtu.be\\/))([a-zA-Z0-9\\-_])+')] ],
       technologies: ['', Validators.nullValidator],
       benefits: ['', Validators.nullValidator] 
     })
@@ -70,20 +52,19 @@ export class CompanyProfileComponent implements OnInit {
   }
 
   getCompanyProfile(){
-    setTimeout(()=>{
     this.companyService.getCompanyProfileInfo().subscribe((data)=>{
       if(data['message'] != null){
         this.toastr.info(data['message'],"Съобщение")
       }else{
+        setTimeout(()=>{
         this.company = data;
+      },1000)
       }
     })
-    },1000)
   }
 
   uploadCompanyInformation(){
 
-    
     if(confirm('Сигурен ли сте, че искате да направите промените')){
     this.formInformation.controls['technologies'].setValue(this.companyTechnologies);
     this.formInformation.controls['benefits'].setValue(this.companyBenefits);
@@ -96,101 +77,38 @@ export class CompanyProfileComponent implements OnInit {
 
   getCompanyName(){
    this.companyService.getCompanyName().subscribe((data)=>{
-     console.log(data)
       this.companyName = data['name']
+      this.companyLogo = data['logo']
     })
   }
 
-  getCompanyVideo(){
-    if(this.company?.urlPath !== null){ 
-      this.convertCompanyVideoLink();
-      return true
-    }else {
-     return false
-    } 
-  }
-
   getCompanyInformation(){
-    
-    return this.company?.information !== null ? true : false
+    if(this.company?.information === null || this.company?.information === undefined){
+      return false
+    }
+    return true
   }
 
   getCompanyTechnologies(){
-    if(this.company?.technologies === null){
+    if(this.company?.technologies === null || this.company?.technologies === undefined){
       return false;
     }
      this.companyTechnologies = this.company?.technologies
      return true 
   }
   getCompanyBenefits(){
-    if(this.company?.benefits === null){
+    if(this.company?.benefits === null || this.company?.benefits === undefined){
       return false;
     }
      this.companyBenefits = this.company?.benefits
     return true 
   }
-  convertCompanyVideoLink(){
-        this.substringUrlPath = this.company?.urlPath?.split('=')[1]
-        this.embedLink = 'https://www.youtube.com/embed/' + this.substringUrlPath;
-        this.correctUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.embedLink)
-  }
-  
-deleteCompanyVideo(){
-  if(confirm('Сигурен ли сте, че искате да изтриете видеото')){
-  this.companyService.deleteCompanyVideo().subscribe({complete: ()=>{
-    this.getCompanyProfile()}
-  });
-  }
-}
 
 onLogoSelect(event){
   if (event.target.files.length>0){
     const logo = event.target.files[0];
     this.formLogo.get('logo')?.setValue(logo);
   }
-}
-
-onBackgroundSelect(event){
-  if (event.target.files.length>0){
-    const background = event.target.files[0];
-    this.formBackground.get('background')?.setValue(background);
-  }
-}
-
-addCompanyBackground(){
-  const formData = new FormData();
-  formData.append('background', this.formBackground.get('background')?.value);
-
-  this.http.post<any>(addCompanyBackgroundApi, formData).subscribe({complete: () => {
-    this.getCompanyProfile();
-  },
-});   
-}
-
-addCompanyLogo(){
-  const formData = new FormData();
-  formData.append('logo', this.formLogo.get('logo')?.value);
-
-  this.http.post<any>(addCompanyLogoApi, formData).subscribe({complete: () => {
-    this.getCompanyProfile();
-  },
-});   
-}
-
-getCompanyLogo(){
-  if(this.company['logo'] === null){
-    return false
-  }
-  this.companyLogo = this.company?.logo
-  return true
-}
-
-getCompanyBackground(){
-  if(this.company['background'] === null){
-    return false
-  }
-  this.companyBackground = this.company?.background
-  return true
 }
 
 deleteCompanyLogo(){
@@ -200,15 +118,6 @@ deleteCompanyLogo(){
   }})
   }
 }
-
-deleteCompanyBackground(){
-  if(confirm('Сигурен ли сте, че искате да изтриете снимката')){
-  this.companyService.deleteCompanyBackground().subscribe({complete: () =>{
-    this.getCompanyProfile();
-  }})
-}
-}
-
   openBenefitsModal(){
   
     const initialState = {
@@ -220,6 +129,7 @@ deleteCompanyBackground(){
       for (let i = 0; i < res.data.length; i++) {
         this.companyBenefits.push(res.data[i]);
       }
+      console.log(this.companyBenefits)
     });
   
   }
@@ -263,7 +173,5 @@ deleteCompanyBackground(){
   get formLogoInvalid(){
     return this.formLogo.invalid
   }
-  get formBackgroundInvalid(){
-    return this.formBackground.invalid
-  }
+
 }

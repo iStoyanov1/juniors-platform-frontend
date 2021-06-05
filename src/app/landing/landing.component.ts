@@ -12,10 +12,10 @@ import { HomeService } from '../services/home/home.service';
 })
 export class LandingComponent implements OnInit {
 
-  lastJobs: LastJobs[]
+  lastJobs: any[]
   companyLogo:any
   companyId:any
-  topCompanies: TopCompanies[]
+  topCompanies: any[]
   constructor(private homeService: HomeService) {
    }
 
@@ -41,19 +41,16 @@ export class LandingComponent implements OnInit {
    getLastJobOffers(){
     setTimeout(()=>{
      this.homeService.getLastJobs().subscribe((data)=>{
-    this.lastJobs = data;
+     this.lastJobs = data;
     })
     },1000)
   }
 
   getTopCompanies(){
-    if(this.lastJobs.length > 0){
     setTimeout(() =>{
       this.homeService.getTopCompanies().subscribe((data)=>{
         this.topCompanies = data
-        console.log(data[0].description.logo)
       })
     }, 1000)
-  }
   }
 }

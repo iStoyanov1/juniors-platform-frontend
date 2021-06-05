@@ -1,0 +1,133 @@
+<div class="container" *ngIf="jobs; else loader">
+  <div *ngFor="let j of jobs">
+    <a [routerLink]="['/job/view', j.id]" style="text-decoration: none">
+      <div class="row title-row mt-4">
+        <div
+          class="col-sm-3 text-center"
+          style="border-right: rgb(216, 213, 213) 1px dotted"
+        >
+          <img
+            class="mt-2"
+            src="data:image/png;base64,{{ j.company.logo['bytes'] }}"
+            width="150"
+            height="42"
+          />
+          <br />
+          <div style="margin-right: 10vh">
+            <i
+              class="far fa-paper-plane mr-1"
+              style="color: rgb(219, 127, 84)"
+            ></i>
+            <span
+              style="
+                font-size: 11px;
+                font-weight: bold;
+                color: rgb(219, 127, 84);
+              "
+            >
+              {{ j.company.name }}</span
+            >
+          </div>
+        </div>
+        <div class="col-sm-7 mt-1">
+          <h3 style="font-weight: bold; color: grey">
+            {{ j.title }}
+          </h3>
+          <span style="font-size: 11px; color: rgb(165, 164, 164)"
+            >Месторабота:</span
+          >
+          <i
+            style="color: rgb(16, 127, 201)"
+            class="fas fa-street-view ml-2 mr-1"
+          ></i>
+          <span
+            style="font-size: 12px; font-weight: bold; color: rgb(16, 127, 201)"
+            >{{ j.city }}</span
+          >
+        </div>
+
+        <div class="col-sm-2 mb-1">
+          <span class="ml-2" style="font-size: 11px; color: rgb(165, 164, 164)"
+            >Публикувана на:</span
+          ><br />
+          <button class="btn btn-date">
+            <i class="fas fa-calendar-alt"></i>
+            {{ j.date | date: "longDate" }}
+          </button>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <span style="font-size: 11px; color: rgb(156, 156, 156)"
+        >Страница: {{ page + 1 }} от общо: {{ pages.length }} </span
+      ><br />
+      <span style="font-size: 11px; color: rgb(156, 156, 156)"
+        >Обяви: {{ jobsPerPage }} от общо: {{ totalJobs }}
+      </span>
+    </div>
+    <div class="col-sm-9">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <li class="page-item">
+            <button
+              [disabled]="!prevPageButton()"
+              class="btn btn-page mr-2"
+              (click)="firstPageButton()"
+            >
+              ««
+            </button>
+            <button
+              [disabled]="!prevPageButton()"
+              class="btn btn-page mr-2"
+              (click)="prevPage()"
+            >
+              «
+            </button>
+          </li>
+          <li *ngFor="let p of pages; let i = index">
+            <button
+              #activePage
+              class="btn btn-page-links"
+              href=""
+              (click)="setPage(i, $event)"
+            >
+              {{ i + 1 }}
+            </button>
+          </li>
+          <li>
+            <button
+              class="btn btn-page ml-2"
+              [disabled]="nextPageButton()"
+              (click)="nextPage()"
+            >
+              »
+            </button>
+          </li>
+          <li>
+            <button
+              class="btn btn-page ml-2"
+              [disabled]="nextPageButton()"
+              (click)="lastPageButton()"
+            >
+              »»
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<ng-template #loader>
+  <div class="no-freeze-spinner">
+    <div id="no-freeze-spinner">
+      <div>
+        <i class="fas fa-briefcase"></i>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</ng-template>

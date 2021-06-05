@@ -13,6 +13,7 @@ const deleteJob = 'http://localhost:8080/api/company/delete/job'
 const companyJobOfferEditView = 'http://localhost:8080/api/company/edit/job'
 const companyEditJob = 'http://localhost:8080/api/company/edit/job'
 const jobOfferView = 'http://localhost:8080/api/job/view'
+const allJobs = 'http://localhost:8080/api/jobs/all'
 
 @Injectable({
   providedIn: 'root'
@@ -43,4 +44,10 @@ export class JobService {
   jobOfferView(id:any): Observable<JobOfferView>{
     return this.http.get<JobOfferView>(`${jobOfferView}/${id}`)
   }
+
+  getAllJobs(page:number): Observable<JobOfferView>{
+    return this.http.get<JobOfferView>(allJobs+'?page='+page)
+
+  }
+ 
 }

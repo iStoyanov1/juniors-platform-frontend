@@ -1,50 +1,33 @@
-input.ng-invalid.ng-touched {
+.edit-password.ng-invalid.ng-touched {
   border: 1px solid #bd2130;
 }
-input.ng-valid.ng-touched {
+.edit-password.ng-valid.ng-touched {
   border: 1px solid #048f04;
 }
 
-.company-contacts {
-  border: #d6d6d6 solid 1px;
-  width: 460px;
-}
-.btn-contacts {
-  font-size: 0.8rem;
-  background: rgba(66, 133, 244, 0.15);
-  color: #1967d2;
-  font-weight: bold;
-  border-bottom-left-radius: 30px;
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
-}
-.btn-contacts:hover:enabled {
-  background: rgb(153, 195, 252);
+.personal-info {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
 }
 
-input {
+.btn:disabled {
+  cursor: not-allowed;
+}
+.href-cv {
+  color: blue;
+}
+.href-cv:hover {
+  cursor: pointer;
+}
+.delete-cv {
+  background: rgb(209, 56, 56);
+  color: white;
+  font-size: 0.8rem;
   border-bottom-left-radius: 30px;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
-  text-align: center;
-  font-weight: bold;
-  color: rgb(94, 93, 93);
 }
-.line {
-  background: #179bd3;
-  margin: 0px;
-  padding: 0px;
-  width: 50px;
-}
-.sub-line {
-  background: #179bd3;
-  margin: 0px;
-  padding: 0px;
-  width: 35px;
-}
-.company-contact-label {
-  font-size: 15px;
-  color: grey;
+.delete-cv:hover {
+  background: #dd3748;
 }
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 

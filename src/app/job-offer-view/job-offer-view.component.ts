@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { JobOfferView } from '../models/job-offer-view';
+import { AuthService } from '../services/auth/auth.service';
 import { JobService } from '../services/job/job.service';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-job-offer-view',
@@ -19,10 +23,17 @@ export class JobOfferViewComponent implements OnInit {
   remoteInterview: string
   companyDescription:string
   companyId:string
+  jobId:any
+  formFavJob:FormGroup
 
-  constructor(private jobService: JobService, private route: ActivatedRoute) { }
+  constructor(private jobService: JobService, private route: ActivatedRoute, private authService: AuthService,
+     private fb:FormBuilder, private userService: UserService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+
+    this.formFavJob = this.fb.group({
+      id: ['', Validators.nullValidator]
+    })
 
     this.getJobOfferView()
   }
@@ -32,9 +43,11 @@ export class JobOfferViewComponent implements OnInit {
     this.route.params.subscribe(data =>{
       const id = data['id']
       this.jobService.jobOfferView(id).subscribe((data =>{
+        this.jobId = id;
           this.jobOfferView = data;
+          console.log(this.jobOfferView)
           this.jobOfferTechnologies = this.jobOfferView.technologies
-          this.companyLogo =  this.jobOfferView['company']['description']['logo']
+          this.companyLogo =  this.jobOfferView['company']['logo']
           this.companyName = this.jobOfferView['company']['name'];
           this.companyDescription = this.jobOfferView['company']['description']['information'].substring(0,350)
           this.companyId = this.jobOfferView['company']['id']
@@ -61,5 +74,21 @@ export class JobOfferViewComponent implements OnInit {
       return true
     }
     return false
+  }
+
+  get userRole(){
+    return this.authService.isUser()
+  }
+
+  addJobFav(){
+    this.formFavJob.controls['id'].setValue(this.jobId)
+    const formData = new FormData();
+    formData.append('id', this.formFavJob.get('id')?.value);
+    this.userService.addFavJob(formData).subscribe((data)=>{
+      this.toastr.info(data['message']);
+    })
+  }
+  isFav(){
+    
   }
 }

@@ -31,7 +31,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.getUserProfile();
-
+ 
     this.formFile = this.fb.group({
       file :['', [Validators.required, Validators.pattern('^.+\.([pP][dD][fF])$')]],
     })
@@ -103,6 +103,8 @@ export class UserProfileComponent implements OnInit {
     }, 1000);
    
   }
+
+  
 
   invalid(){
     return this.formFile.invalid;

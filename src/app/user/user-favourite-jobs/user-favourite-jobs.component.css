@@ -1,0 +1,34 @@
+.btn-edit {
+  font-size: 1.3rem;
+  color: rgb(85, 0, 182);
+}
+
+.btn-edit:hover {
+  color: rgb(56, 141, 56);
+}
+
+.btn-remove {
+  font-size: 1.3rem;
+  color: rgb(216, 40, 40);
+  border: none;
+  background: none;
+}
+
+.btn-remove:hover {
+  color: rgb(150, 1, 1);
+}
+.table {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.table:hover {
+  transform: scale(1.02);
+}
+.table-href {
+  text-decoration: none;
+}
+.table-href:hover {
+  text-decoration: none;
+}

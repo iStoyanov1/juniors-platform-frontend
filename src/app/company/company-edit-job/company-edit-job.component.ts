@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { TechnologiesComponent } from '../company/technologies/technologies.component';
-import { CompanyJobView } from '../models/company-job-view';
-import { Technology } from '../models/technology';
-import { JobService } from '../services/job/job.service';
+import { TechnologiesComponent } from '../technologies/technologies.component';
+import { CompanyJobView } from '../../models/company-job-view';
+import { Technology } from '../../models/technology';
+import { JobService } from '../../services/job/job.service';
 
 @Component({
   selector: 'app-company-edit-job',

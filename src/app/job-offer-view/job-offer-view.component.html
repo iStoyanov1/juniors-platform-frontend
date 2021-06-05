@@ -3,13 +3,13 @@
     <div class="col-sm-6">
       <div class="row title-row">
         <div
-          class="col-sm-3"
+          class="col-sm-2"
           style="border-right: rgb(216, 213, 213) 1px dotted"
         >
           <img
             class="mt-2"
             src="data:image/png;base64,{{ companyLogo['bytes'] }}"
-            width="150"
+            width="90"
             height="42"
           />
         </div>
@@ -26,6 +26,19 @@
             <i class="fas fa-calendar-alt"></i>
             {{ jobOfferView.date | date: "longDate" }}
           </button>
+        </div>
+
+        <div class="col-sm-1 mt-3">
+          <form [formGroup]="formFavJob" (submit)="addJobFav()">
+            <button
+              type="submit"
+              value="{{ jobId }}"
+              class="btn btn-fav"
+              [disabled]="!userRole"
+            >
+              <i title="Добави в любими" class="icon-heart fas fa-heart"></i>
+            </button>
+          </form>
         </div>
       </div>
 
@@ -89,7 +102,7 @@
         </div>
         <div class="col-sm-1 mt-1" *ngFor="let jt of jobOfferTechnologies">
           <div class="form-group input-group technologies-group">
-            <button class="btn btn-category">
+            <button class="btn btn-category" title="{{ jt.technology }}">
               {{ jt.technology }}
             </button>
           </div>
@@ -101,11 +114,22 @@
           class="mb-4 mt-4 ml-4 mr-4"
           >{{ jobOfferView.description }}</span
         >
-        <div class="container-fluid text-center mt-4 mb-4">
-          <button style="text-align: center" class="btn btn-apply">
+        <div class="container-fluid text-center mt-4 mb-4" *ngIf="userRole">
+          <button
+            style="text-align: center"
+            class="btn btn-apply"
+            [disabled]="!userRole"
+          >
             <i class="far fa-share-square"></i>
             Кандидатствай
           </button>
+        </div>
+        <div class="container-fluid text-center mt-4 mb-4" *ngIf="!userRole">
+          <span
+            style="font-size: 14px; color: rgb(196, 79, 85); font-weight: bold"
+            >За да кандидатствате по обявата, трябва да се регистрирате като
+            потребител в системата.</span
+          >
         </div>
       </div>
     </div>
@@ -116,12 +140,14 @@
       </div>
       <div class="row company-row">
         <div class="card">
-          <img
-            class="mt-2 ml-4 mb-2 text-center"
-            src="data:image/png;base64,{{ companyLogo['bytes'] }}"
-            width="200"
-            height="60"
-          />
+          <div class="text-center">
+            <img
+              class="mt-2 ml-4 mb-2"
+              src="data:image/png;base64,{{ companyLogo['bytes'] }}"
+              width="200"
+              height="60"
+            />
+          </div>
           <hr />
           <div class="card-body">
             <h3 class="card-title">
@@ -147,5 +173,12 @@
   </div>
 </div>
 <ng-template #loader>
-  <app-loader-spinner></app-loader-spinner>
+  <div class="no-freeze-spinner">
+    <div id="no-freeze-spinner">
+      <div>
+        <i class="fas fa-building"></i>
+        <div></div>
+      </div>
+    </div>
+  </div>
 </ng-template>

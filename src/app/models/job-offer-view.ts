@@ -13,4 +13,5 @@ export interface JobOfferView{
     salary:number
     company: Company
     date:any
+    isDeleted:Boolean
 }

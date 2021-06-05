@@ -6,4 +6,5 @@ export interface LastJobs{
     title:string
     city:string
     company:Company
+    isDelete:Boolean
 }
