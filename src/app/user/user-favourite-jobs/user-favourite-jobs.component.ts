@@ -16,8 +16,6 @@ export class UserFavouriteJobsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFavJobs()
-
-
   }
   getFavJobs(){
   this.userFavJobs$ = this.userService.getFavJobs()
@@ -25,6 +23,7 @@ export class UserFavouriteJobsComponent implements OnInit {
   removeFavJob(id:any){
     this.userService.removeFavJob(id).subscribe((data)=>{
       this.toastr.info(data['message'])
+      this.getFavJobs()
     })
   }
 }

@@ -1,5 +1,5 @@
 <div class="mt-4">
-  <div *ngFor="let uj of userFavJobs$ | async">
+  <div *ngFor="let uj of userApplicationJobs$ | async">
     <table class="table">
       <tbody>
         <tr>
@@ -25,16 +25,6 @@
               </td>
             </a>
           </div>
-          <td>
-            <button
-              type="button"
-              class="btn btn-remove ml-3"
-              title="Премахни от запазени"
-              (click)="removeFavJob(uj.id)"
-            >
-              <i class="fas fa-heart icon-heart"></i>
-            </button>
-          </td>
         </tr>
       </tbody>
     </table>

@@ -3,6 +3,7 @@ import * as $ from 'jquery';
 import { Observable } from 'rxjs';
 import { LastJobs } from '../models/last-jobs';
 import { TopCompanies } from '../models/top-companies';
+import { AuthService } from '../services/auth/auth.service';
 import { HomeService } from '../services/home/home.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class LandingComponent implements OnInit {
   companyLogo:any
   companyId:any
   topCompanies: any[]
-  constructor(private homeService: HomeService) {
+  constructor(private homeService: HomeService, private authService: AuthService) {
    }
 
   ngOnInit(): void {

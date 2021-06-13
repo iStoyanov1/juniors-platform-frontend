@@ -55,7 +55,13 @@
   </div>
   <div class="modal-footer">
     <div class="row">
-      <a class="mr-4" href="">Забравена парола?</a>
+      <a
+        class="btn mr-4"
+        style="color: rgb(0, 89, 255)"
+        (click)="openForgotPasswordModal()"
+        data-dismiss="modal"
+        >Забравена парола?</a
+      >
       <button
         type="submit"
         class="btn btn-login btn-primary mr-3"

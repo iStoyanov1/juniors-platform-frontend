@@ -1,126 +1,260 @@
-<div class="container" *ngIf="jobs; else loader">
-  <div *ngFor="let j of jobs">
-    <a [routerLink]="['/job/view', j.id]" style="text-decoration: none">
-      <div class="row title-row mt-4">
-        <div
-          class="col-sm-3 text-center"
-          style="border-right: rgb(216, 213, 213) 1px dotted"
-        >
-          <img
-            class="mt-2"
-            src="data:image/png;base64,{{ j.company.logo['bytes'] }}"
-            width="150"
-            height="42"
-          />
-          <br />
-          <div style="margin-right: 10vh">
-            <i
-              class="far fa-paper-plane mr-1"
-              style="color: rgb(219, 127, 84)"
-            ></i>
-            <span
-              style="
-                font-size: 11px;
-                font-weight: bold;
-                color: rgb(219, 127, 84);
-              "
-            >
-              {{ j.company.name }}</span
-            >
-          </div>
-        </div>
-        <div class="col-sm-7 mt-1">
-          <h3 style="font-weight: bold; color: grey">
-            {{ j.title }}
-          </h3>
-          <span style="font-size: 11px; color: rgb(165, 164, 164)"
-            >Месторабота:</span
-          >
-          <i
-            style="color: rgb(16, 127, 201)"
-            class="fas fa-street-view ml-2 mr-1"
-          ></i>
-          <span
-            style="font-size: 12px; font-weight: bold; color: rgb(16, 127, 201)"
-            >{{ j.city }}</span
-          >
-        </div>
-
-        <div class="col-sm-2 mb-1">
-          <span class="ml-2" style="font-size: 11px; color: rgb(165, 164, 164)"
-            >Публикувана на:</span
-          ><br />
-          <button class="btn btn-date">
-            <i class="fas fa-calendar-alt"></i>
-            {{ j.date | date: "longDate" }}
-          </button>
-        </div>
-      </div>
-    </a>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-3">
-      <span style="font-size: 11px; color: rgb(156, 156, 156)"
-        >Страница: {{ page + 1 }} от общо: {{ pages.length }} </span
-      ><br />
-      <span style="font-size: 11px; color: rgb(156, 156, 156)"
-        >Обяви: {{ jobsPerPage }} от общо: {{ totalJobs }}
+<div class="container-fluid mt-4" *ngIf="jobs; else loader">
+  <form
+    [formGroup]="formGroup"
+    (submit)="searchJobByTitle()"
+    class="form-inline justify-content-center"
+  >
+    <input
+      class="form-control form-search mr-sm-2 w-50"
+      type="search"
+      formControlName="query"
+      name="query"
+      placeholder="Търси обява по ключова дума "
+      aria-label="Search"
+    />
+    <button class="btn btn-search" type="submit">
+      <i class="fas fa-search"></i>
+    </button>
+  </form>
+  <div class="row justify-content-center">
+    <div class="custom-alert alert alert-info text-center">
+      <span style="font-size: 13px"
+        >Можете да търсите по избрана от вас ключова дума: (Име на компания, име
+        на обява, ИТ категория, ИТ технология, град)
       </span>
     </div>
-    <div class="col-sm-9">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end">
-          <li class="page-item">
-            <button
-              [disabled]="!prevPageButton()"
-              class="btn btn-page mr-2"
-              (click)="firstPageButton()"
+  </div>
+  <div class="row mr-4 ml-4">
+    <div class="col-sm-3">
+      <div class="row mt-4">
+        <form [formGroup]="formSalary" (submit)="findBySalary()">
+          <div class="salary-filter">
+            <h5 class="ml-4 mt-4">
+              Заплата
+              <button class="btn btn-salary" type="submit">
+                <i class="fas fa-search"></i> Търси
+              </button>
+            </h5>
+            <hr />
+            <div class="mr-4 ml-4 mt-1 mb-4 text-left">
+              <div class="custom-control custom-switch rounded">
+                <input
+                  type="radio"
+                  id="customRadio1"
+                  class="custom-control-input"
+                  name="query"
+                  formControlName="query"
+                  value="0-500"
+                />
+                <label
+                  class="custom-control-label"
+                  style="font-size: 20px"
+                  for="customRadio1"
+                  >0-500лв</label
+                >
+              </div>
+              <div class="custom-control custom-switch rounded">
+                <input
+                  type="radio"
+                  id="customRadio2"
+                  class="custom-control-input"
+                  name="query"
+                  value="500-1000"
+                  formControlName="query"
+                />
+                <label
+                  class="custom-control-label"
+                  style="font-size: 20px"
+                  for="customRadio2"
+                  >500-1000лв</label
+                >
+              </div>
+              <div class="custom-control custom-switch rounded">
+                <input
+                  type="radio"
+                  id="customRadio3"
+                  class="custom-control-input"
+                  name="query"
+                  value="1000-1500"
+                  formControlName="query"
+                />
+                <label
+                  class="custom-control-label"
+                  style="font-size: 20px"
+                  for="customRadio3"
+                  >1000-1500лв</label
+                >
+              </div>
+              <div class="custom-control custom-switch rounded">
+                <input
+                  type="radio"
+                  id="customRadio4"
+                  class="custom-control-input"
+                  name="query"
+                  value="1500-2000"
+                  formControlName="query"
+                />
+                <label
+                  class="custom-control-label"
+                  style="font-size: 20px"
+                  for="customRadio4"
+                  >1500-2000лв</label
+                >
+              </div>
+              <div class="custom-control custom-switch rounded">
+                <input
+                  type="radio"
+                  id="customRadio5"
+                  class="custom-control-input"
+                  name="query"
+                  value="2000"
+                  formControlName="query"
+                />
+                <label
+                  class="custom-control-label"
+                  style="font-size: 20px"
+                  for="customRadio5"
+                  >2000лв+</label
+                >
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-8">
+      <div *ngFor="let j of jobs">
+        <a [routerLink]="['/job/view', j.id]" style="text-decoration: none">
+          <div class="row title-row mt-4">
+            <div
+              class="col-sm-3 text-center"
+              style="border-right: rgb(216, 213, 213) 1px dotted"
             >
-              ««
-            </button>
-            <button
-              [disabled]="!prevPageButton()"
-              class="btn btn-page mr-2"
-              (click)="prevPage()"
-            >
-              «
-            </button>
-          </li>
-          <li *ngFor="let p of pages; let i = index">
-            <button
-              #activePage
-              class="btn btn-page-links"
-              href=""
-              (click)="setPage(i, $event)"
-            >
-              {{ i + 1 }}
-            </button>
-          </li>
-          <li>
-            <button
-              class="btn btn-page ml-2"
-              [disabled]="nextPageButton()"
-              (click)="nextPage()"
-            >
-              »
-            </button>
-          </li>
-          <li>
-            <button
-              class="btn btn-page ml-2"
-              [disabled]="nextPageButton()"
-              (click)="lastPageButton()"
-            >
-              »»
-            </button>
-          </li>
-        </ul>
-      </nav>
+              <img
+                class="mt-2"
+                src="data:image/png;base64,{{ j.company.logo['bytes'] }}"
+                width="150"
+                height="42"
+              />
+              <br />
+              <div style="margin-right: 10vh">
+                <i
+                  class="far fa-paper-plane mr-1"
+                  style="color: rgb(219, 127, 84)"
+                ></i>
+                <span
+                  style="
+                    font-size: 11px;
+                    font-weight: bold;
+                    color: rgb(219, 127, 84);
+                  "
+                >
+                  {{ j.company.name }}</span
+                >
+              </div>
+            </div>
+            <div class="col-sm-7 mt-1">
+              <h3 style="font-weight: bold; color: grey">
+                {{ j.title }}
+              </h3>
+              <span style="font-size: 11px; color: rgb(165, 164, 164)"
+                >Месторабота:</span
+              >
+              <i
+                style="color: rgb(16, 127, 201)"
+                class="fas fa-street-view ml-2 mr-1"
+              ></i>
+              <span
+                style="
+                  font-size: 12px;
+                  font-weight: bold;
+                  color: rgb(16, 127, 201);
+                "
+                >{{ j.city }}</span
+              >
+            </div>
+
+            <div class="col-sm-2 mb-1">
+              <span
+                class="ml-2"
+                style="font-size: 11px; color: rgb(165, 164, 164)"
+                >Публикувана на:</span
+              ><br />
+              <button class="btn btn-date">
+                <i class="fas fa-calendar-alt"></i>
+                {{ j.date | date: "longDate" }}
+              </button>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <span style="font-size: 11px; color: rgb(156, 156, 156)"
+              >Страница: {{ page + 1 }} от общо: {{ pages.length }} </span
+            ><br />
+            <span style="font-size: 11px; color: rgb(156, 156, 156)"
+              >Обяви: {{ jobsPerPage }} от общо: {{ totalJobs }}
+            </span>
+          </div>
+          <div class="col-sm-9">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-end">
+                <li class="page-item">
+                  <button
+                    [disabled]="!prevPageButton()"
+                    class="btn btn-page mr-2"
+                    (click)="firstPageButton()"
+                  >
+                    ««
+                  </button>
+                  <button
+                    [disabled]="!prevPageButton()"
+                    class="btn btn-page mr-2"
+                    (click)="prevPage()"
+                  >
+                    «
+                  </button>
+                </li>
+                <li *ngFor="let p of pages; let i = index">
+                  <button
+                    #activePage
+                    class="btn btn-page-links"
+                    href=""
+                    (click)="setPage(i, $event)"
+                  >
+                    {{ i + 1 }}
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="btn btn-page ml-2"
+                    [disabled]="nextPageButton()"
+                    (click)="nextPage()"
+                  >
+                    »
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="btn btn-page ml-2"
+                    [disabled]="nextPageButton()"
+                    (click)="lastPageButton()"
+                  >
+                    »»
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
 <ng-template #loader>
   <div class="no-freeze-spinner">
     <div id="no-freeze-spinner">

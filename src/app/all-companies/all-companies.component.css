@@ -1,87 +1,29 @@
-.title-row {
-  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-  margin-left: 10vh;
+.btn-search {
+  font-size: 1.5rem;
+  color: #4867cc;
 }
-.info-row {
+.form-search {
   box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  margin-left: 10vh;
-}
-.technologies-row {
-  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  margin-left: 10vh;
-}
-.description-row {
-  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  margin-left: 10vh;
-}
-.company-row {
-  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
-  width: 400px;
+  border-bottom-left-radius: 10px;
   border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   border-top-left-radius: 10px;
 }
-.btn-date {
-  font-size: 0.9rem;
-  background: rgba(66, 133, 244, 0.15);
-  color: #1967d2;
-  font-weight: bold;
-  border-bottom-left-radius: 30px;
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
+.btn-search:hover {
+  color: #2a4ec5;
 }
-.btn-category {
-  font-size: 0.7rem;
-  font-weight: bold;
-  border-bottom-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-color: #f1f1f1;
-  color: #5a5a5a;
-  background: #f1f1f1;
+
+.table {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+  border-top-right-radius: 35px;
+  width: 40vh;
 }
-.btn-category:hover {
-  cursor: text;
+.table:hover {
+  transform: scale(1.02);
 }
-.btn-date:hover {
-  cursor: text;
-}
-.btn-apply {
-  border: 1px solid #50c083;
-  color: #50c083;
-  font-size: 1.1rem;
-  width: 35vh;
-}
-.btn-apply:hover:enabled {
-  background-color: #50c083;
-  color: white;
-}
-.btn-apply:disabled {
-  cursor: not-allowed;
-}
-.btn-company-profile {
-  border: 1px solid #50b9c0;
-  color: #50b9c0;
-  font-size: 1.1rem;
-}
-.btn-company-profile:hover {
-  background-color: #50b9c0;
-  color: white;
-}
-.icon-heart {
-  font-size: 1.6rem;
-  color: rgb(192, 192, 192);
-}
-.icon-heart:hover:enabled {
-  color: rgb(206, 77, 77);
-}
+
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 body {

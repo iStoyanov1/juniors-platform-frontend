@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CompanyJobView } from 'src/app/models/company-job-view';
@@ -14,6 +14,7 @@ const companyJobOfferEditView = 'http://localhost:8080/api/company/edit/job'
 const companyEditJob = 'http://localhost:8080/api/company/edit/job'
 const jobOfferView = 'http://localhost:8080/api/job/view'
 const allJobs = 'http://localhost:8080/api/jobs/all'
+const jobsByTitle = 'http://localhost:8080/api/jobs/all'
 
 @Injectable({
   providedIn: 'root'
@@ -45,9 +46,17 @@ export class JobService {
     return this.http.get<JobOfferView>(`${jobOfferView}/${id}`)
   }
 
-  getAllJobs(page:number): Observable<JobOfferView>{
-    return this.http.get<JobOfferView>(allJobs+'?page='+page)
+  getAllJobs(page:any, query:any): Observable<JobOfferView>{
+     const params = new HttpParams()
+   .set('query', query)
+   .set('page', page);
+    return this.http.get<JobOfferView>(allJobs, {params})
 
   }
- 
+  getJobsByTitle(page:any, title:any): Observable<JobOfferView>{
+    const params = new HttpParams()
+   .set('query', title)
+   .set('page', page);
+    return this.http.get<JobOfferView>(jobsByTitle,{params})
+  }
 }

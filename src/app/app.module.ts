@@ -16,7 +16,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { FooterComponent } from './footer/footer.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './auth/login/login.component';
-import { RegisterUserComponent } from './auth/register-user/register-user.component';
+import { RegisterUserComponent } from './user/register-user/register-user.component';
 import { RegisterCompanyComponent } from './company/register-company/register-company.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { CompanyProfileComponent } from './company/company-profile/company-profile.component';
@@ -33,6 +33,9 @@ import { JobOfferViewComponent } from './job-offer-view/job-offer-view.component
 import { CompanyProfileViewComponent } from './company/company-profile-view/company-profile-view.component';
 import { AllJobsComponent } from './all-jobs/all-jobs.component';
 import { UserFavouriteJobsComponent } from './user/user-favourite-jobs/user-favourite-jobs.component';
+import { UserApplicationsJobComponent } from './user/user-applications-job/user-applications-job.component';
+import { AllCompaniesComponent } from './all-companies/all-companies.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 
@@ -63,7 +66,10 @@ import { UserFavouriteJobsComponent } from './user/user-favourite-jobs/user-favo
     JobOfferViewComponent,
     CompanyProfileViewComponent,
     AllJobsComponent,
-    UserFavouriteJobsComponent
+    UserFavouriteJobsComponent,
+    UserApplicationsJobComponent,
+    AllCompaniesComponent,
+    ForgotPasswordComponent
     
   ],
   imports: [

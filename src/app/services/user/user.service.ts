@@ -15,6 +15,9 @@ const editUserPassword = "http://localhost:8080/api/user/profile/edit/password"
 const addFavJob = 'http://localhost:8080/api/user/add/favourite/job' 
 const getFavJobs = 'http://localhost:8080/api/user/favourite/job'
 const removeFavJob = 'http://localhost:8080/api/user/favourite/job/remove'
+const applyJob = 'http://localhost:8080/api/user/job/apply'
+const getApplyJobs = 'http://localhost:8080/api/user/applications/jobs'
+const forgotPassword = 'http://localhost:8080/api/user/password/forgot'
 
 
 
@@ -57,5 +60,14 @@ export class UserService {
   }
   removeFavJob(id){
     return this.http.delete(`${removeFavJob}/${id}`)
+  }
+  applyJob(id){
+    return this.http.post(applyJob, id)
+  }
+  getApplyJobs(): Observable<LastJobs[]>{
+    return this.http.get<LastJobs[]>(getApplyJobs)
+  }
+  userForgotPassword(data){
+    return this.http.post(forgotPassword, data)
   }
 }

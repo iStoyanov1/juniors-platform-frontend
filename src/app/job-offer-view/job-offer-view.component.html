@@ -36,7 +36,11 @@
               class="btn btn-fav"
               [disabled]="!userRole"
             >
-              <i title="Добави в любими" class="icon-heart fas fa-heart"></i>
+              <i
+                title="Добави в запазени"
+                [disabled]="!userRole"
+                class="icon-heart fas fa-heart"
+              ></i>
             </button>
           </form>
         </div>
@@ -114,20 +118,47 @@
           class="mb-4 mt-4 ml-4 mr-4"
           >{{ jobOfferView.description }}</span
         >
-        <div class="container-fluid text-center mt-4 mb-4" *ngIf="userRole">
-          <button
-            style="text-align: center"
-            class="btn btn-apply"
-            [disabled]="!userRole"
-          >
+
+        <div
+          class="container-fluid text-center mt-4 mb-4"
+          *ngIf="userRole && !isDeletedJob()"
+        >
+          <form [formGroup]="formApplyJob" (submit)="applyJob()">
+            <button
+              style="text-align: center"
+              class="btn btn-apply"
+              [disabled]="!userRole"
+            >
+              <i class="far fa-share-square"></i>
+              Кандидатствай
+            </button>
+          </form>
+        </div>
+        <div
+          class="container-fluid text-center mt-4 mb-4"
+          *ngIf="isDeletedJob()"
+        >
+          <button style="text-align: center" class="btn btn-apply" disabled>
             <i class="far fa-share-square"></i>
             Кандидатствай
           </button>
-        </div>
-        <div class="container-fluid text-center mt-4 mb-4" *ngIf="!userRole">
+          <br />
           <span
             style="font-size: 14px; color: rgb(196, 79, 85); font-weight: bold"
-            >За да кандидатствате по обявата, трябва да се регистрирате като
+            >Обявата е премахната.</span
+          >
+        </div>
+        <div
+          class="container-fluid text-center mt-4 mb-4"
+          *ngIf="!userRole && !isDeletedJob()"
+        >
+          <button style="text-align: center" class="btn btn-apply" disabled>
+            <i class="far fa-share-square"></i>
+            Кандидатствай</button
+          ><br />
+          <span
+            style="font-size: 14px; color: rgb(196, 79, 85); font-weight: bold"
+            >За да кандидатствате по обявата, трябва да се логнете като
             потребител в системата.</span
           >
         </div>
@@ -176,7 +207,7 @@
   <div class="no-freeze-spinner">
     <div id="no-freeze-spinner">
       <div>
-        <i class="fas fa-building"></i>
+        <i class="fas fa-briefcase"></i>
         <div></div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { catchError } from 'rxjs/operators';
+import { ForgotPasswordComponent } from 'src/app/forgot-password/forgot-password.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { JwtInterceptorService } from 'src/jwt-interceptor.service';
 declare var jQuery:any;
@@ -48,7 +49,11 @@ export class LoginComponent implements OnInit {
    }) 
   
   }
+  openForgotPasswordModal(){
 
+    this.modalRef = this.modalService.show(ForgotPasswordComponent);
+    
+  }
   get f(){
     return this.form.controls;
   }

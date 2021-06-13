@@ -6,10 +6,10 @@
 }
 .table {
   box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
-  border-bottom-left-radius: 35px;
-  border-bottom-right-radius: 35px;
-  border-top-right-radius: 35px;
-  width: 90vh;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  width: 600px;
 }
 .table:hover {
   transform: scale(1.02);
@@ -34,19 +34,23 @@
 .code-icon {
   color: #179bd3;
 }
-.company-contacts {
-  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
-  border-bottom-left-radius: 35px;
-  border-bottom-right-radius: 35px;
-  border-top-right-radius: 35px;
-  width: 950px;
-}
+
 .sub-line {
   background: #179bd3;
   margin: 0px;
   padding: 0px;
   width: 35px;
 }
+.company-contacts {
+  /* box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09); */
+  border: #d6d6d6 solid 1px;
+  width: 460px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 body {

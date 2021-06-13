@@ -25,6 +25,8 @@ export class JobOfferViewComponent implements OnInit {
   companyId:string
   jobId:any
   formFavJob:FormGroup
+  formApplyJob:FormGroup
+  isDeleted:Boolean
 
   constructor(private jobService: JobService, private route: ActivatedRoute, private authService: AuthService,
      private fb:FormBuilder, private userService: UserService, private toastr: ToastrService) { }
@@ -32,6 +34,9 @@ export class JobOfferViewComponent implements OnInit {
   ngOnInit(): void {
 
     this.formFavJob = this.fb.group({
+      id: ['', Validators.nullValidator]
+    })
+    this.formApplyJob = this.fb.group({
       id: ['', Validators.nullValidator]
     })
 
@@ -43,6 +48,7 @@ export class JobOfferViewComponent implements OnInit {
     this.route.params.subscribe(data =>{
       const id = data['id']
       this.jobService.jobOfferView(id).subscribe((data =>{
+        console.log(data)
         this.jobId = id;
           this.jobOfferView = data;
           console.log(this.jobOfferView)
@@ -51,6 +57,7 @@ export class JobOfferViewComponent implements OnInit {
           this.companyName = this.jobOfferView['company']['name'];
           this.companyDescription = this.jobOfferView['company']['description']['information'].substring(0,350)
           this.companyId = this.jobOfferView['company']['id']
+          this.isDeleted = this.jobOfferView['isDeleted'];
       }))
     })
   },1000)
@@ -88,7 +95,16 @@ export class JobOfferViewComponent implements OnInit {
       this.toastr.info(data['message']);
     })
   }
-  isFav(){
-    
+  applyJob(){
+    this.formApplyJob.controls['id'].setValue(this.jobId)
+    const formData = new FormData();
+    formData.append('id', this.formApplyJob.get('id')?.value);
+    this.userService.applyJob(formData).subscribe((data)=>{
+      this.toastr.info(data['message'])
+    })
+  }
+   isDeletedJob(){
+    console.log(this.isDeleted)
+    return this.isDeleted
   }
 }

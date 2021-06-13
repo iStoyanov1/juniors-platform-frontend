@@ -36,6 +36,41 @@
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
 }
+.btn-search {
+  font-size: 1.5rem;
+  color: #4867cc;
+}
+.btn-search:hover {
+  color: #2a4ec5;
+}
+
+.btn-salary {
+  font-size: 1rem;
+  color: #4867cc;
+  margin-left: 50px;
+}
+.btn-salary:hover {
+  color: #2a4ec5;
+}
+.form-search {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.salary-filter {
+  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  width: 350px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.custom-alert {
+  width: 950px;
+}
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 body {

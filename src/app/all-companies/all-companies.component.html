@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+  <img
+    src="https://cleverhub.vn/assets/images/slide-show/1578638966438.JPEG"
+    width="1200px"
+    height="auto"
+    style="border-bottom-left-radius: 15px; border-bottom-right-radius: 15px"
+  />
+</div>
+<div class="container" *ngIf="allCompanies; else loader">
+  <div class="row justify-content-center">
+    <div class="custom-alert alert alert-info text-center">
+      <span style="font-size: 13px"
+        >Можете да търсите по избрана от вас ключова дума: (Име на компания, ИТ
+        технология, град, описание)
+      </span>
+    </div>
+  </div>
+  <form
+    [formGroup]="formGroup"
+    (submit)="searchCompanyByName()"
+    class="form-inline justify-content-center"
+  >
+    <input
+      class="form-control form-search mr-sm-2 w-50"
+      type="search"
+      formControlName="query"
+      name="query"
+      placeholder="Търси IT компания по ключова дума"
+      aria-label="Search"
+    />
+    <button class="btn btn-search" type="submit">
+      <i class="fas fa-search"></i>
+    </button>
+  </form>
+  <div class="row ml-4 mt-4">
+    <div class="ml-4" *ngFor="let c of allCompanies">
+      <table class="table">
+        <tbody>
+          <tr>
+            <a
+              style="text-decoration: none"
+              class="table-href"
+              title="Преглед"
+              [routerLink]="['/company', c.id]"
+            >
+              <td style="border-right: rgb(220, 221, 221) ridge 1px">
+                <img
+                  src="data:image/png;base64,{{ c.logo['bytes'] }}"
+                  width="75"
+                  height="22"
+                />
+              </td>
+              <td style="color: grey; font-weight: bold">
+                {{ c.name }}
+              </td>
+              <td style="border-left: rgb(220, 221, 221) ridge 1px">
+                <a
+                  style="text-decoration: none"
+                  class="btn-edit"
+                  [routerLink]="['/company', c.id]"
+                  title="Преглед"
+                >
+                  <i class="fas fa-paper-plane"></i>
+                </a>
+              </td>
+            </a>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<ng-template #loader>
+  <div class="no-freeze-spinner">
+    <div id="no-freeze-spinner">
+      <div>
+        <i class="fas fa-building"></i>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</ng-template>

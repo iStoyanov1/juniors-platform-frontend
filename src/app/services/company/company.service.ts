@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Company } from 'src/app/models/company';
@@ -6,6 +6,7 @@ import { CompanyAdministrativeContacts } from 'src/app/models/company-administra
 import { CompanyContacts } from 'src/app/models/company-contacts';
 import { CompanyAuthView } from 'src/app/models/company-credentials';
 import { CompanyProfile } from 'src/app/models/company-profile';
+import { TopCompanies } from 'src/app/models/top-companies';
 
 const createCompany = 'http://localhost:8080/api/register/company'
 const uploadCompanyinfo = 'http://localhost:8080/api/company/profile/upload/information'
@@ -22,6 +23,7 @@ const getCompanyAuthView = 'http://localhost:8080/api/company/profile/credential
 const editCompanyEmail = 'http://localhost:8080/api/company/profile/credentials/edit/email'
 const editCompanyPassword = 'http://localhost:8080/api/company/profile/credentials/edit/password'
 const companyProfile = 'http://localhost:8080/api/company'
+const getAllCompanies = 'http://localhost:8080/api/company/all'
 
 @Injectable({
   providedIn: 'root'
@@ -83,5 +85,10 @@ export class CompanyService {
 
   companyProfile(id:any){
     return this.http.get<CompanyProfile>(`${companyProfile}/${id}`);
+  }
+  getAllCompanies(name:any): Observable<TopCompanies[]>{
+    const params = new HttpParams()
+    .set('query', name)
+    return this.http.get<TopCompanies[]>(getAllCompanies, {params})
   }
 }
