@@ -370,6 +370,39 @@
                 </div>
               </div>
             </div>
+            <hr class="w-75" />
+            <h5 style="padding-left: 100px">
+              Въведете имейл, на който да получавате кандидатури по вашите
+              обяви:
+            </h5>
+            <hr class="w-75" />
+            <div class="row" style="padding-left: 120px">
+              <div class="form-group">
+                <label for="email" class="form-label mt-1">Имейл*</label>
+                <input
+                  id="email"
+                  name="applyEmail"
+                  placeholder="hr@test.com"
+                  class="form-control form-control-sm"
+                  type="email"
+                  style="width: 350px"
+                  formControlName="applyEmail"
+                />
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="f.applyEmail.touched && f.applyEmail.errors?.required"
+                >
+                  Полето е задължително.
+                </div>
+                <div
+                  class="alert alert-danger w-75 mt-1"
+                  *ngIf="f.applyEmail.touched && f.applyEmail.errors?.pattern"
+                >
+                  Неправилен имейл адрес.
+                </div>
+              </div>
+            </div>
+            <hr class="w-75" />
           </div>
           <div class="form-row" style="padding-left: 30%">
             <div class="form-group">
@@ -407,7 +440,7 @@
           style="
             font-family: 'Calibri Light';
             font-size: 16px;
-            background-color: rgb(243, 240, 225);
+            background-color: rgb(255, 248, 232);
           "
         >
           Попълването на маркираните с * полета е задължително за завършване на

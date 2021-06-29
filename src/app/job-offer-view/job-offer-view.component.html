@@ -1,6 +1,10 @@
 <div class="mt-4 mb-4" *ngIf="jobOfferView; else loader">
   <div class="row">
     <div class="col-sm-6">
+      <span
+        style="color: rgb(165, 164, 164); font-size: 12px; margin-left: 570px"
+        >Изпратени кандидатури: {{ jobOfferView.applyCount }}
+      </span>
       <div class="row title-row">
         <div
           class="col-sm-2"
@@ -36,19 +40,15 @@
               class="btn btn-fav"
               [disabled]="!userRole"
             >
-              <i
-                title="Добави в запазени"
-                [disabled]="!userRole"
-                class="icon-heart fas fa-heart"
-              ></i>
+              <i title="Добави в запазени" class="icon-heart fas fa-heart"></i>
             </button>
           </form>
         </div>
       </div>
 
-      <div class="row info-row mt-3 justify-content-center">
+      <div class="row info-row mt-3">
         <div class="col-sm-3 mt-1 mb-1">
-          <span style="font-size: 11px; color: rgb(165, 164, 164)"
+          <span style="font-size: 10px; color: rgb(165, 164, 164)"
             >Месторабота:</span
           >
           <i
@@ -56,7 +56,7 @@
             class="fas fa-street-view ml-2 mr-1"
           ></i>
           <span
-            style="font-size: 12px; font-weight: bold; color: rgb(16, 127, 201)"
+            style="font-size: 11px; font-weight: bold; color: rgb(16, 127, 201)"
             >{{ jobOfferView.city }}</span
           >
         </div>
@@ -65,7 +65,7 @@
             style="color: rgb(139, 143, 145)"
             class="fas fa-business-time mr-1"
           ></i>
-          <span style="font-size: 12px; color: rgb(139, 143, 145)">{{
+          <span style="font-size: 11px; color: rgb(139, 143, 145)">{{
             getWorkingTimeValue()
           }}</span>
         </div>
@@ -75,16 +75,26 @@
               style="color: rgb(112, 166, 236)"
               class="fas fa-laptop-code mr-1"
             ></i>
-            <span style="font-size: 12px; color: rgb(139, 143, 145)"
+            <span style="font-size: 11px; color: rgb(139, 143, 145)"
               >Дистанционно интервю</span
             >
           </div>
         </div>
         <div *ngIf="isHasSalary()">
           <div class="col-sm-3 mt-1 mb-1">
-            <i style="color: rgb(223, 196, 48)" class="fas fa-coins mr-2"></i>
-            <span style="font-size: 12px; color: rgb(139, 143, 145)"
-              >Заплащане: {{ jobOfferView.salary }}лв.</span
+            <!-- <i style="color: rgb(223, 196, 48)" class="fas fa-coins mr-2"></i> -->
+            <span
+              class="mr-1"
+              style="font-size: 10px; color: rgb(165, 164, 164)"
+              >Заплата:</span
+            >
+            <span
+              style="
+                font-size: 11px;
+                font-weight: bold;
+                color: rgb(219, 127, 84);
+              "
+              >{{ jobOfferView.salary }}лв.</span
             >
           </div>
         </div>
@@ -114,10 +124,10 @@
       </div>
       <div class="row description-row mt-4">
         <span
+          [innerHTML]="jobOfferView.description"
           style="text-align: center; border-left: solid 5px #50c083"
           class="mb-4 mt-4 ml-4 mr-4"
-          >{{ jobOfferView.description }}</span
-        >
+        ></span>
 
         <div
           class="container-fluid text-center mt-4 mb-4"
@@ -145,7 +155,7 @@
           <br />
           <span
             style="font-size: 14px; color: rgb(196, 79, 85); font-weight: bold"
-            >Обявата е премахната.</span
+            >Обявата не съществува.</span
           >
         </div>
         <div
@@ -185,11 +195,10 @@
               {{ companyName }}
             </h3>
             <p
+              [innerHTML]="companyDescription"
               style="border-left: #50c083 solid 5px"
               class="text-center card-text"
-            >
-              {{ companyDescription }}...
-            </p>
+            ></p>
           </div>
           <div class="card-footer text-center">
             <a

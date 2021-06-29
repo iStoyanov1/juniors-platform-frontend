@@ -33,6 +33,7 @@ export class CompanyProfileViewComponent implements OnInit {
     this.route.params.subscribe(data =>{
       const id = data['id']
       this.companyService.companyProfile(id).subscribe((data =>{
+      
         this.companyProfile = data
         this.companyLogo = this.companyProfile['logo']
         this.companyJobOffers = this.companyProfile.jobOffers;

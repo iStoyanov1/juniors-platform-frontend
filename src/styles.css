@@ -302,3 +302,31 @@ a {
   outline: none;
   box-shadow: none;
 }
+.te-basic-tools .angular-editor-button[title="Subscript"],
+.te-basic-tools .angular-editor-button[title="Superscript"],
+.te-basic-tools .angular-editor-button[title="Text Color"],
+.te-basic-tools .angular-editor-button[title="Strikethrough"],
+.te-basic-tools .angular-editor-button[title="Redo"],
+.te-basic-tools .angular-editor-button[title="Undo"],
+.te-basic-tools .angular-editor-button[title="HTML Code"],
+.te-basic-tools .angular-editor-button[title="Insert Image"],
+.te-basic-tools .angular-editor-button[title="Insert Video"],
+.te-basic-tools .angular-editor-button[title="Horizontal Line"],
+.te-basic-tools .angular-editor-button[title="Background Color"],
+.te-basic-tools .angular-editor-button[title="Indent"],
+.te-basic-tools .angular-editor-button[title="Outdent"],
+.te-basic-tools .angular-editor-button[title="Clear Formatting"],
+.te-basic-tools .angular-editor-button[title="Justify Full"] {
+  display: none;
+}
+.te-basic-tools .angular-editor-textarea {
+  height: 8em;
+}
+.angular-editor-toolbar[_ngcontent-inn-c62]
+  .angular-editor-toolbar-set[_ngcontent-inn-c62]
+  .select-font-size[_ngcontent-inn-c62] {
+  display: none;
+}
+.ae-font ae-picker {
+  display: none;
+}

@@ -1,7 +1,7 @@
 <div class="container-fluid mt-4" *ngIf="jobs; else loader">
   <form
     [formGroup]="formGroup"
-    (submit)="searchJobByTitle()"
+    (submit)="searchJobByQuery()"
     class="form-inline justify-content-center"
   >
     <input
@@ -12,15 +12,20 @@
       placeholder="Търси обява по ключова дума "
       aria-label="Search"
     />
-    <button class="btn btn-search" type="submit">
-      <i class="fas fa-search"></i>
+    <button
+      class="btn btn-search"
+      style="font-size: 0.9rem; width: 150px"
+      type="submit"
+    >
+      <i class="fas fa-search"></i> Търси
     </button>
   </form>
-  <div class="row justify-content-center">
-    <div class="custom-alert alert alert-info text-center">
-      <span style="font-size: 13px"
-        >Можете да търсите по избрана от вас ключова дума: (Име на компания, име
-        на обява, ИТ категория, ИТ технология, град)
+  <div class="row justify-content-center mt-4">
+    <div class="custom-alert alert alert-warning text-center">
+      <span style="font-size: 13px; font-weight: bold"
+        ><i class="fas fa-info-circle"></i> Можете да търсите по избрана от вас
+        ключова дума: (Име на компания, име на обява, ИТ категория, ИТ
+        технология, град)
       </span>
     </div>
   </div>
@@ -29,12 +34,14 @@
       <div class="row mt-4">
         <form [formGroup]="formSalary" (submit)="findBySalary()">
           <div class="salary-filter">
-            <h5 class="ml-4 mt-4">
-              Заплата
-              <button class="btn btn-salary" type="submit">
+            <div class="row mt-2 ml-2">
+              <span class="mt-4 ml-2 mr-2" style="font-size: 17px"
+                >Търсете обяви по заплата</span
+              >
+              <button class="btn btn-search mt-4" type="submit">
                 <i class="fas fa-search"></i> Търси
               </button>
-            </h5>
+            </div>
             <hr />
             <div class="mr-4 ml-4 mt-1 mb-4 text-left">
               <div class="custom-control custom-switch rounded">
@@ -107,7 +114,7 @@
                   id="customRadio5"
                   class="custom-control-input"
                   name="query"
-                  value="2000"
+                  value="2000-20000"
                   formControlName="query"
                 />
                 <label
@@ -121,9 +128,133 @@
           </div>
         </form>
       </div>
+      <div class="row mt-4">
+        <form [formGroup]="formGroup" (submit)="searchJobByQuery()">
+          <div class="salary-filter">
+            <div class="row mt-2 ml-2">
+              <span class="mt-4 ml-2 mr-2" style="font-size: 15px"
+                >Търсете обяви по населено място</span
+              >
+              <button class="btn btn-search mt-4" type="submit">
+                <i class="fas fa-search"></i> Търси
+              </button>
+            </div>
+            <hr />
+            <div class="mr-4 ml-4 mt-1 mb-4 text-left">
+              <div class="custom-control custom-switch rounded">
+                <input
+                  type="radio"
+                  id="sofia"
+                  class="custom-control-input"
+                  name="query"
+                  formControlName="query"
+                  value="София"
+                />
+                <label
+                  class="custom-control-label"
+                  style="font-size: 20px"
+                  for="sofia"
+                  >София</label
+                >
+              </div>
+              <div class="custom-control custom-switch rounded">
+                <input
+                  type="radio"
+                  id="varna"
+                  class="custom-control-input"
+                  name="query"
+                  value="Варна"
+                  formControlName="query"
+                />
+                <label
+                  class="custom-control-label"
+                  style="font-size: 20px"
+                  for="varna"
+                  >Варна</label
+                >
+              </div>
+              <div class="custom-control custom-switch rounded">
+                <input
+                  type="radio"
+                  id="plovdiv"
+                  class="custom-control-input"
+                  name="query"
+                  value="Пловдив"
+                  formControlName="query"
+                />
+                <label
+                  class="custom-control-label"
+                  style="font-size: 20px"
+                  for="plovdiv"
+                  >Пловдив</label
+                >
+              </div>
+              <div class="custom-control custom-switch rounded">
+                <input
+                  type="radio"
+                  id="burgas"
+                  class="custom-control-input"
+                  name="query"
+                  value="Бургас"
+                  formControlName="query"
+                />
+                <label
+                  class="custom-control-label"
+                  style="font-size: 20px"
+                  for="burgas"
+                  >Бургас</label
+                >
+              </div>
+              <div class="custom-control custom-switch rounded">
+                <input
+                  type="radio"
+                  id="ruse"
+                  class="custom-control-input"
+                  name="query"
+                  value="Русе"
+                  formControlName="query"
+                />
+                <label
+                  class="custom-control-label"
+                  style="font-size: 20px"
+                  for="ruse"
+                  >Русе</label
+                >
+              </div>
+              <div class="custom-control custom-switch rounded">
+                <input
+                  type="radio"
+                  id="remote"
+                  class="custom-control-input"
+                  name="query"
+                  value="Remote"
+                  formControlName="query"
+                />
+                <label
+                  class="custom-control-label"
+                  style="font-size: 20px"
+                  for="remote"
+                  >Дистанционна работа</label
+                >
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
     <div class="col-sm-1"></div>
     <div class="col-sm-8">
+      <div *ngIf="totalJobs === 0">
+        <div class="ml-4 container justify-content-center">
+          <h2 class="ml-4" style="color: rgb(199, 53, 53)">
+            <i class="far fa-frown"></i> Няма намерени резултати
+          </h2>
+          <p class="ml-4" style="color: rgb(199, 53, 53); font-size: 14px">
+            За съжаление не успяхме да открием резулати спoред избраните
+            критерии.
+          </p>
+        </div>
+      </div>
       <div *ngFor="let j of jobs">
         <a [routerLink]="['/job/view', j.id]" style="text-decoration: none">
           <div class="row title-row mt-4">
@@ -172,6 +303,19 @@
                   color: rgb(16, 127, 201);
                 "
                 >{{ j.city }}</span
+              >
+              <span
+                class="ml-4 mr-2"
+                style="font-size: 11px; color: rgb(165, 164, 164)"
+                >Заплащане:</span
+              >
+              <span
+                style="
+                  font-size: 12px;
+                  font-weight: bold;
+                  color: rgb(219, 127, 84);
+                "
+                >{{ j.salary }}лв.</span
               >
             </div>
 
@@ -254,7 +398,6 @@
     </div>
   </div>
 </div>
-
 <ng-template #loader>
   <div class="no-freeze-spinner">
     <div id="no-freeze-spinner">
@@ -265,3 +408,85 @@
     </div>
   </div>
 </ng-template>
+
+<!-- <div class="row mt-4">
+  <form [formGroup]="formDate" (submit)="findByDate()">
+    <div class="salary-filter">
+      <div class="row mt-2 ml-2">
+        <span class="mt-4 ml-2 mr-2" style="font-size: 17px"
+          >Търсете обяви по дата</span
+        >
+        <button class="btn btn-search mt-4" type="submit">
+          <i class="fas fa-search"></i> Търси
+        </button>
+      </div>
+      <hr />
+      <div class="mr-4 ml-4 mt-1 mb-4 text-left">
+        <div class="custom-control custom-switch rounded">
+          <input
+            type="radio"
+            id="customRadio6"
+            class="custom-control-input"
+            name="query"
+            formControlName="query"
+            value="{{ getTodayDate() | date: 'yyyy-MM-dd' }}"
+          />
+          <label
+            class="custom-control-label"
+            style="font-size: 20px"
+            for="customRadio6"
+            >Днес</label
+          >
+        </div>
+        <div class="custom-control custom-switch rounded">
+          <input
+            type="radio"
+            id="customRadio7"
+            class="custom-control-input"
+            name="query"
+            value="{{ getYesterdayDate() | date: 'yyyy-MM-dd' }}"
+            formControlName="query"
+          />
+          <label
+            class="custom-control-label"
+            style="font-size: 20px"
+            for="customRadio7"
+            >Вчера</label
+          >
+        </div>
+        <div class="custom-control custom-switch rounded">
+          <input
+            type="radio"
+            id="customRadio8"
+            class="custom-control-input"
+            name="query"
+            value="{{ getLastFiveDate() | date: 'yyyy-MM-dd' }}"
+            formControlName="query"
+          />
+          <label
+            class="custom-control-label"
+            style="font-size: 20px"
+            for="customRadio8"
+            >Последните 5 дни</label
+          >
+        </div>
+        <div class="custom-control custom-switch rounded">
+          <input
+            type="radio"
+            id="customRadio9"
+            class="custom-control-input"
+            name="query"
+            value="{{ getLastTenDate() | date: 'yyyy-MM-dd' }}"
+            formControlName="query"
+          />
+          <label
+            class="custom-control-label"
+            style="font-size: 20px"
+            for="customRadio9"
+            >Последните 10 дни</label
+          >
+        </div>
+      </div>
+    </div>
+  </form>
+</div> -->

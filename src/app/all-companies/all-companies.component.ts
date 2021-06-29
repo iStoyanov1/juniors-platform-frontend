@@ -12,6 +12,7 @@ export class AllCompaniesComponent implements OnInit {
   allCompanies: any
   name:any
   formGroup:FormGroup
+  companiesSize: number
 
   constructor(private companyService: CompanyService, private fb: FormBuilder) {
 
@@ -25,19 +26,19 @@ export class AllCompaniesComponent implements OnInit {
     this.getAllCompanies()
   }
   getAllCompanies(){
-    console.log(this.formGroup.controls['query'].value);
     this.name = this.formGroup.controls['query'].value
     this.companyService.getAllCompanies(this.name).subscribe((data)=>{
       console.log(data)
       this.allCompanies = data
+      this.companiesSize = this.allCompanies.length
+      console.log(this.allCompanies)
     })
   }
   searchCompanyByName(){
-    console.log(this.formGroup.controls['query'].value);
     this.name = this.formGroup.controls['query'].value
     this.companyService.getAllCompanies(this.name).subscribe((data)=>{
-      console.log(data)
       this.allCompanies = data
+      this.companiesSize = this.allCompanies.length
     })
   }
 }

@@ -44,9 +44,7 @@ export class CompanyProfileContactsComponent implements OnInit{
   getCompanyContacts(){
     setTimeout(()=>{
       this.companyService.getCompanyContacts().subscribe((data)=>{
-        if(data['message'] != null){
-          this.toastr.info(data['message'],"Съобщение")
-        }else{
+        if(data !== null || data !== undefined){
           this.companyContacts = data
         }
       })

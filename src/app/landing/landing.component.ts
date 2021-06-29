@@ -54,4 +54,8 @@ export class LandingComponent implements OnInit {
       })
     }, 1000)
   }
+
+  get isAuthenticated(){
+    return this.authService.isAuthenticated();
+  }
 }

@@ -19,15 +19,14 @@
   cursor: pointer;
 }
 .delete-cv {
-  background: rgb(209, 56, 56);
-  color: white;
+  background: #fce8e6;
+  color: #a50e0e;
+  font-weight: bold;
   font-size: 0.8rem;
-  border-bottom-left-radius: 30px;
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
 }
 .delete-cv:hover {
-  background: #dd3748;
+  background: #a50e0e;
+  color: #fce8e6;
 }
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 

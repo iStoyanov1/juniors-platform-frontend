@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div class="text-center">
   <img
     src="https://cleverhub.vn/assets/images/slide-show/1578638966438.JPEG"
     width="1200px"
@@ -6,12 +6,12 @@
     style="border-bottom-left-radius: 15px; border-bottom-right-radius: 15px"
   />
 </div>
-<div class="container" *ngIf="allCompanies; else loader">
+<div class="container-fluid mt-4" *ngIf="allCompanies; else loader">
   <div class="row justify-content-center">
-    <div class="custom-alert alert alert-info text-center">
-      <span style="font-size: 13px"
-        >Можете да търсите по избрана от вас ключова дума: (Име на компания, ИТ
-        технология, град, описание)
+    <div class="custom-alert alert alert-warning text-center">
+      <span style="font-size: 13px; font-weight: bold"
+        ><i class="fas fa-info-circle"></i> Можете да търсите по избрана от вас
+        ключова дума: (Име на компания, ИТ технология, град, описание)
       </span>
     </div>
   </div>
@@ -28,11 +28,25 @@
       placeholder="Търси IT компания по ключова дума"
       aria-label="Search"
     />
-    <button class="btn btn-search" type="submit">
-      <i class="fas fa-search"></i>
+    <button
+      class="btn btn-search"
+      style="font-size: 0.9rem; width: 150px"
+      type="submit"
+    >
+      <i class="fas fa-search"></i> Търси
     </button>
   </form>
   <div class="row ml-4 mt-4">
+    <div *ngIf="companiesSize === 0">
+      <div class="ml-4 container">
+        <h2 class="ml-4" style="color: rgb(199, 53, 53)">
+          <i class="far fa-frown"></i> Няма намерени резултати
+        </h2>
+        <p class="ml-4" style="color: rgb(199, 53, 53); font-size: 14px">
+          За съжаление не успяхме да открием резулати спoред избраните критерии.
+        </p>
+      </div>
+    </div>
     <div class="ml-4" *ngFor="let c of allCompanies">
       <table class="table">
         <tbody>
@@ -43,19 +57,30 @@
               title="Преглед"
               [routerLink]="['/company', c.id]"
             >
-              <td style="border-right: rgb(220, 221, 221) ridge 1px">
+              <td style="border-top: none">
                 <img
                   src="data:image/png;base64,{{ c.logo['bytes'] }}"
                   width="75"
                   height="22"
                 />
               </td>
-              <td style="color: grey; font-weight: bold">
+              <td style="color: grey; font-weight: bold; border-top: none">
                 {{ c.name }}
               </td>
-              <td style="border-left: rgb(220, 221, 221) ridge 1px">
+              <td style="color: grey; font-weight: bold; border-top: none">
+                <button
+                  type="button"
+                  title="Публикувани обяви"
+                  disabled
+                  class="btn btn-count-jobs btn-primary"
+                  style="border-radius: 20px; font-size: 0.8rem"
+                >
+                  {{ c.jobOffers.length }}
+                </button>
+              </td>
+              <td style="border-top: none">
                 <a
-                  style="text-decoration: none"
+                  style="text-decoration: none; border-top: none"
                   class="btn-edit"
                   [routerLink]="['/company', c.id]"
                   title="Преглед"

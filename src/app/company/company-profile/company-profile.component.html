@@ -13,14 +13,14 @@
           </div>
           <hr class="hr-subtitle mb-2" />
           <div class="mb-4">
-            <textarea
-              class="form-control"
+            <angular-editor
+              class="te-basic-tools"
               rows="20"
               name="information"
               formControlName="information"
               [(ngModel)]="company.information"
             >
-            </textarea>
+            </angular-editor>
           </div>
         </div>
         <div *ngIf="!getCompanyInformation()">
@@ -30,12 +30,12 @@
           <hr class="hr-subtitle" />
           <span class="mb-4">Добавете описание за компанията.</span>
           <div class="form-group mt-2">
-            <textarea
-              class="form-control"
+            <angular-editor
+              class="te-basic-tools"
               rows="20"
               name="information"
               formControlName="information"
-            ></textarea>
+            ></angular-editor>
           </div>
         </div>
       </div>

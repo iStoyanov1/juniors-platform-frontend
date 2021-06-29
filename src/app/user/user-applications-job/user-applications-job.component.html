@@ -9,15 +9,17 @@
               title="{{ uj.title }}"
               [routerLink]="['/job/view', uj.id]"
             >
-              <td style="color: grey">{{ uj.title.substring(0, 24) }}...</td>
-              <td style="color: grey">
+              <td style="color: grey; border-top: none">
+                {{ uj.title.substring(0, 24) }}...
+              </td>
+              <td style="color: grey; border-top: none">
                 <i
                   style="color: rgb(16, 127, 201)"
                   class="fas fa-street-view"
                 ></i>
                 гр. {{ uj.city }}
               </td>
-              <td>
+              <td style="border-top: none">
                 <button class="btn btn-date">
                   <i class="fas fa-calendar-alt"></i>
                   {{ uj.date | date: "MMM, d" }}

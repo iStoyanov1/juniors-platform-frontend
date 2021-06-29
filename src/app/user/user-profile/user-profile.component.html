@@ -9,10 +9,10 @@
           <div class="form-group mt-4 mr-4 ml-4 email-section">
             <div class="row mr-4 mt-2">
               <div class="col-sm-6">
-                <span class="mt-4" style="font-size: 18px">
+                <span class="mt-4" style="font-size: 16px">
                   <i
                     class="mr-2 fa fa-envelope-open"
-                    style="color: grey"
+                    style="color: #5477eb"
                     aria-hidden="true"
                   ></i
                   >Имейл:
@@ -29,12 +29,7 @@
                 />
               </div>
             </div>
-            <div class="row mb-2">
-              <span style="font-size: 11px">
-                Това е имейлът, който работодателите виждат като част от Вашата
-                кандидатура.
-              </span>
-            </div>
+            <div class="row mb-2"></div>
           </div>
           <div class="form-group border name-section">
             <div class="row mr-4 mt-2">
@@ -66,12 +61,7 @@
                 />
               </div>
             </div>
-            <div class="row mr-4 ml-4 mb-2">
-              <span style="font-size: 11px">
-                В случай че кандидатствате, това е името, което работодателите
-                виждат като част от Вашата кандидатура.
-              </span>
-            </div>
+            <div class="row mr-4 ml-4 mb-2"></div>
           </div>
           <div class="form-group ml-4 cv-section" *ngIf="isHasCV()">
             <div class="row">
@@ -79,7 +69,7 @@
                 <span style="font-size: 15px">
                   <i
                     class="mr-2 fa fa-file-pdf"
-                    style="color: grey"
+                    style="color: #b44136"
                     aria-hidden="true"
                   ></i
                   >Моетo CV:</span
@@ -88,6 +78,9 @@
               <div class="row mr-4 ml-4 mb-2">
                 <span style="font-size: 11px; font-weight: bold">
                   Разрешено е качването само на един файл във формат .PDF
+                </span>
+                <span style="font-size: 11px">
+                  Каченият файл ще бъде използван при кандидастване.
                 </span>
               </div>
             </div>
@@ -115,7 +108,7 @@
                 <span style="font-size: 15px">
                   <i
                     class="mr-2 fa fa-file-pdf"
-                    style="color: grey"
+                    style="color: #b44136"
                     aria-hidden="true"
                   ></i
                   >Моетo CV:</span
@@ -124,6 +117,9 @@
               <div class="row mr-4 ml-4 mb-2">
                 <span style="font-size: 11px; font-weight: bold">
                   Разрешено е качването само на един файл във формат .PDF
+                </span>
+                <span style="font-size: 11px">
+                  Каченият файл ще бъде използван при кандидастване.
                 </span>
               </div>
             </div>
@@ -265,12 +261,10 @@
       <span>Тук може да видите всички запазени обяви</span>
       <hr style="background: #179bd3" />
       <app-user-favourite-jobs></app-user-favourite-jobs>
-      <div class="ml-1 row">
-        <h3>Моите кандидатсвания:</h3>
-        <span>Тук може да видите всички Ваши кандидатсвания.</span>
-        <hr style="background: #179bd3" />
-        <app-user-applications-job></app-user-applications-job>
-      </div>
+      <h3>Моите кандидатсвания:</h3>
+      <span>Тук може да видите всички Ваши кандидатсвания.</span>
+      <hr style="background: #179bd3" />
+      <app-user-applications-job></app-user-applications-job>
     </div>
   </div>
 </div>

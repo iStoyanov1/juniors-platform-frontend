@@ -6,9 +6,7 @@
 }
 .table {
   box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-top-right-radius: 15px;
+  border-radius: 10px;
   width: 600px;
 }
 .table:hover {
@@ -21,7 +19,7 @@
   text-decoration: none;
 }
 .technologies-group {
-  box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09);
+  /* box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09); */
   border-radius: 10px;
   width: 115px;
 }
@@ -39,7 +37,7 @@
   background: #179bd3;
   margin: 0px;
   padding: 0px;
-  width: 35px;
+  width: 60px;
 }
 .company-contacts {
   /* box-shadow: -1px 2px 27px 3px rgba(0, 0, 0, 0.09); */
@@ -50,7 +48,26 @@
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
-
+.btn-date {
+  font-size: 0.9rem;
+  background: rgba(66, 133, 244, 0.15);
+  color: #1967d2;
+  font-weight: bold;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.btn-date:hover {
+  cursor: text;
+}
+.t-input {
+  font-size: 16;
+  font-weight: bold;
+  background-color: white;
+  color: #1a73e8;
+  border: 1px solid#1a73e8;
+  border-radius: 10px;
+}
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 body {

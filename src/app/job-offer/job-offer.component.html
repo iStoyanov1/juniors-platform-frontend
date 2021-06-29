@@ -141,6 +141,48 @@
         Полето е задължително.
       </div>
     </div>
+    <div class="ml-4 mt-2 row">
+      <h4>*Възможност за работа от вкъщи:</h4>
+      <div class="ml-2 mr-3 custom-control custom-switch rounded">
+        <input
+          type="radio"
+          id="customRadio3"
+          class="custom-control-input"
+          name="remoteWork"
+          formControlName="remoteWork"
+          value="true"
+        />
+        <label
+          class="custom-control-label"
+          style="font-size: 20px"
+          for="customRadio3"
+          >Да</label
+        >
+      </div>
+      <div class="custom-control custom-switch rounded">
+        <input
+          type="radio"
+          id="customRadio4"
+          class="custom-control-input"
+          formControlName="remoteWork"
+          name="remoteWork"
+          value="false"
+        />
+        <label
+          class="custom-control-label"
+          style="font-size: 20px"
+          for="remoteWork"
+          >Не</label
+        >
+      </div>
+      <div
+        class="w-75 mt-1 text-danger text-center"
+        style="margin-left: 80px"
+        *ngIf="f.remoteWork.touched && f.remoteWork.errors?.required"
+      >
+        Полето е задължително.
+      </div>
+    </div>
     <div class="row mt-4 ml-4 mr-4">
       <h4>*Град:</h4>
 
@@ -186,47 +228,35 @@
       </div>
     </div>
     <div class="row mt-4 ml-4 mr-4">
-      <h5>Заплата</h5>
+      <h5>*Заплата</h5>
       <input
         class="custom-range w-25 mr-2 ml-2"
         type="range"
         id="rangeInput"
         name="salary"
-        min="0"
+        min="325"
         max="5000"
-        step="50"
+        step="25"
         value="0"
         oninput="amount.value=rangeInput.value"
       />
-      <output name="amount" id="amount" for="salary">0</output
+      <output name="amount" id="amount" for="salary">325</output
       ><span class="mr-2">лв.</span>
       <span style="font-size: 14px"
-        >(Заплата е в BGN(лв.), а нивото на заплащане е НЕТО.)</span
+        >Заплата е в BGN(лв.), а нивото на заплащане е НЕТО.</span
       >
-      <span style="font-size: 15px"
-        >*Оставете 0лв. като заплащане, ако не желаете да добавите информация за
-        заплащането в обявата.
-      </span>
-      <!--<label for="customRange">Custom range</label>
-      <input
-        type="range"
-        class="custom-range"
-        id="customRange"
-        oninput="amount.value=rangeInput.value"
-      />
-      <output name="amount" id="amount" for="rangeInput">0</output> -->
     </div>
     <div class="container-fluid mt-4">
       <div class="row justify-content-center">
         <h3 class="text-center">*Описание на обявата</h3>
       </div>
       <div class="row mt-2 justify-content-center">
-        <textarea
-          class="form-control w-75"
+        <angular-editor
+          class="te-basic-tools w-75"
           rows="12"
           name="description"
           formControlName="description"
-        ></textarea>
+        ></angular-editor>
       </div>
     </div>
     <div
@@ -252,7 +282,11 @@
     <div class="container-fluid mt-4">
       <div class="row justify-content-center">
         <div class="col-sm-12 text-center">
-          <button type="submit" class="btn w-25 add-button ml-4 text-center">
+          <button
+            type="submit"
+            class="btn w-25 add-button ml-4 text-center"
+            [disabled]="invalid"
+          >
             <i class="fas fa-plus-circle" aria-hidden="true"></i> Добави
           </button>
         </div>

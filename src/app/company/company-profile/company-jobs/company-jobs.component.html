@@ -9,31 +9,32 @@
               title="{{ c.title }}"
               [routerLink]="['/job/view', c.id]"
             >
-              <td style="border-right: rgb(93, 190, 133) dotted 1px">
+              <td style="border-top: none">
                 <img
                   src="data:image/png;base64,{{ c.logo['bytes'] }}"
                   width="75"
                   height="22"
                 />
               </td>
-              <td style="color: grey">{{ c.title.substring(0, 24) }}...</td>
-              <td style="color: grey">
+              <td style="color: grey; border-top: none">
+                {{ c.title.substring(0, 24) }}...
+              </td>
+              <td style="color: grey; border-top: none">
                 <i
                   style="color: rgb(16, 127, 201)"
                   class="fas fa-street-view"
                 ></i>
                 гр. {{ c.city }}
               </td>
-              <td style="color: grey">
-                <i
-                  style="color: rgb(236, 144, 108)"
-                  class="fas fa-calendar-alt"
-                ></i>
-                {{ c.date }}
+              <td style="color: grey; border-top: none">
+                <button class="btn btn-date">
+                  <i class="fas fa-calendar-alt"></i>
+                  {{ c.date }}
+                </button>
               </td>
             </a>
           </div>
-          <td style="border-left: rgb(93, 190, 133) dotted 1px">
+          <td style="border-top: none">
             <a
               class="btn-edit"
               [routerLink]="['/company/edit/job', c.id]"

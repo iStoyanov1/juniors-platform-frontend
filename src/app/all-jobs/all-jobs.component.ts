@@ -21,6 +21,7 @@ page:number=0;
  query:any;
  formGroup: FormGroup
  formSalary:FormGroup
+ formDate:FormGroup
 
   constructor(private jobService: JobService, private render: Renderer2, private fb: FormBuilder) { 
     this.pages = new Array<number>()
@@ -34,6 +35,9 @@ page:number=0;
       query:['', Validators.nullValidator]
     })
     this.formSalary = this.fb.group({
+      query: ['', Validators.nullValidator]
+    })
+    this.formDate = this.fb.group({
       query: ['', Validators.nullValidator]
     })
     this.getAllJobs()
@@ -76,7 +80,7 @@ page:number=0;
   }
 
   findBySalary(){
-    console.log(this.formSalary.controls['query'].value);
+    //console.log(this.formSalary.controls['query'].value);
     this.query = this.formSalary.controls['query'].value
     this.jobService.getAllJobs(this.page, this.query).subscribe((data)=>{
       this.jobs = data['content']
@@ -86,7 +90,17 @@ page:number=0;
     })
   }
 
-  searchJobByTitle(){
+  findByDate(){
+    this.query = this.formDate.controls['query'].value
+    this.jobService.getAllJobs(this.page, this.query).subscribe((data)=>{
+      this.jobs = data['content']
+      this.pages = new Array(data['totalPages'])
+      this.jobsPerPage=data['numberOfElements']
+      this.totalJobs = data['totalElements']
+    })
+  }
+
+  searchJobByQuery(){
     this.query = this.formGroup.controls['query'].value
     this.jobService.getAllJobs(this.page, this.query).subscribe((data)=>{
       this.jobs = data['content']
@@ -94,5 +108,22 @@ page:number=0;
       this.jobsPerPage=data['numberOfElements']
       this.totalJobs = data['totalElements']
     })
+  }
+
+  getTodayDate(){
+    let date = new Date();
+    return date
+  }
+  getYesterdayDate(){
+    let date = new Date();
+    return date.getDate() - 1;
+  }
+  getLastFiveDate(){
+    let date = new Date();
+    return date.getDate() - 5;
+  }
+  getLastTenDate(){
+    let date = new Date();
+    return date.getDate() - 10;
   }
 }

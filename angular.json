@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@geoapify/geocoder-autocomplete/styles/round-borders.css",
              "src/styles.css"
              
              

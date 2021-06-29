@@ -14,4 +14,5 @@ export interface JobOfferView{
     company: Company
     date:any
     isDeleted:Boolean
+    applyCount:Number
 }

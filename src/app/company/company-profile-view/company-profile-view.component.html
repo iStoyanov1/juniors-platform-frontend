@@ -3,25 +3,33 @@
   *ngIf="companyProfile && companyTechnologies && companyBenefits; else loader"
 >
   <div class="row ml-4">
-    <div class="col-sm-4">
+    <div
+      class="col-sm-4"
+      style="border-left: 3px solid #50c083; margin-left: 10vh"
+    >
       <h2>За компанията</h2>
       <hr class="mt-2 mb-4" />
       <h4 class="mt-4">Описание</h4>
-      <hr class="sub-line mt-1" />
-      <span class="mb-4">
-        {{ companyProfile.description.information }}
+      <hr class="sub-line mt-1 mb-2" />
+      <span
+        [innerHTML]="companyProfile.description.information"
+        class="mb-4 mt-2"
+        style="font-size: 18px"
+      >
       </span>
       <div class="row ml-1 mt-4">
-        <h4>Технологии</h4>
+        <h4 class="mt-4">Технологии</h4>
       </div>
-      <hr class="sub-line mt-1" />
+      <span class="mb-4 ml-2" style="font-size: 13px"
+        >Технологии, които използва компанията:</span
+      >
+      <hr class="sub-line mt-1 mb-1 ml-2" />
       <div class="row mt-1 ml-2">
         <div class="col-sm-4 mt-2" *ngFor="let t of companyTechnologies">
           <div class="form-group input-group technologies-group">
             <input
               disabled
-              class="form-control"
-              style="font-size: 20; background: none; border: none"
+              class="form-control form-control-sm t-input"
               value="{{ t.technology }}"
             />
           </div>
@@ -30,7 +38,7 @@
     </div>
     <div class="col-sm-1"></div>
     <div class="col-sm-6">
-      <div class="row mb-1">
+      <div class="row mb-1 ml-2">
         <img
           src="data:image/png;base64,{{ companyLogo['bytes'] }}"
           width="120"
@@ -102,29 +110,28 @@
                     title="{{ c.title }}"
                     [routerLink]="['/job/view', c.id]"
                   >
-                    <td style="border-right: rgb(93, 190, 133) dotted 1px">
+                    <td style="border-top: none">
                       <img
                         src="data:image/png;base64,{{ companyLogo['bytes'] }}"
                         width="75"
                         height="22"
                       />
                     </td>
-                    <td style="color: grey">
+                    <td style="color: grey; border-top: none">
                       {{ c.title.substring(0, 24) }}..
                     </td>
-                    <td style="color: grey">
+                    <td style="color: grey; border-top: none">
                       <i
                         style="color: rgb(16, 127, 201)"
                         class="fas fa-street-view"
                       ></i>
                       гр. {{ c.city }}
                     </td>
-                    <td style="color: grey">
-                      <i
-                        style="color: rgb(236, 144, 108)"
-                        class="fas fa-calendar-alt"
-                      ></i>
-                      {{ c.date }}
+                    <td style="color: grey; border-top: none">
+                      <button class="btn btn-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        {{ c.date | date: "longDate" }}
+                      </button>
                     </td>
                   </a>
                 </tr>
@@ -139,11 +146,17 @@
     <div class="col-sm-4"></div>
   </div>
   <div class="row ml-4 mt-4">
-    <div class="col-sm-6">
+    <div
+      class="col-sm-6"
+      style="border-left: 3px solid #50c083; margin-left: 10vh"
+    >
       <div class="row ml-1">
         <h4>Придобивки</h4>
       </div>
-      <hr class="sub-line mt-1" />
+      <span class="mb-4 ml-2" style="font-size: 13px"
+        >Придобивки, които компанията осигурява на своите служители:</span
+      >
+      <hr class="sub-line mt-1 ml-2" />
       <div class="benefits mt-2">
         <div class="row mt ml-1">
           <div class="col-sm-6" *ngFor="let b of companyBenefits">

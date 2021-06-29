@@ -193,34 +193,30 @@
         type="range"
         id="rangeInput"
         name="salary"
-        min="0"
+        min="325"
         max="5000"
-        step="50"
+        step="25"
         value="0"
         oninput="amount.value=rangeInput.value"
       />
-      <output name="amount" id="amount" for="salary">0</output
+      <output name="amount" id="amount" for="salary">325</output
       ><span class="mr-2">лв.</span>
-      <span style="font-size: 14px"
-        >(Заплата е в BGN(лв.), а нивото на заплащане е НЕТО.)</span
+      <span style="font-size: 12px"
+        >Заплата е в BGN(лв.), а нивото на заплащане е НЕТО.</span
       >
-      <span style="font-size: 15px"
-        >*Оставете 0лв. като заплащане, ако не желаете да добавите информация за
-        заплащането в обявата.
-      </span>
     </div>
     <div class="container-fluid mt-4">
       <div class="row justify-content-center">
         <h3 class="text-center">*Описание на обявата</h3>
       </div>
       <div class="row mt-2 justify-content-center">
-        <textarea
-          class="form-control w-75 shadow-none"
+        <angular-editor
+          class="te-basic-tools w-75 shadow-none"
           rows="12"
           name="description"
           formControlName="description"
           [(ngModel)]="companyJobView.description"
-        ></textarea>
+        ></angular-editor>
       </div>
     </div>
     <div

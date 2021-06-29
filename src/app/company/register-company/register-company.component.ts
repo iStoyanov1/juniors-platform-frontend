@@ -29,6 +29,7 @@ export class RegisterCompanyComponent implements OnInit {
       username: ['', [Validators.required, Validators.pattern('^([\\w\\.\\-]+)@([\\w\\-]+)(\\D(\\.(\\w){2,3})+)$')]],
       password: ['', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$')]],
       confirmPassword: ['', Validators.required],
+      applyEmail:['',[Validators.required, Validators.pattern('^([\\w\\.\\-]+)@([\\w\\-]+)(\\D(\\.(\\w){2,3})+)$')]],
       acceptTerms:[false, Validators.pattern('true')]
     },{
       validator: MustMatch('password', 'confirmPassword')
@@ -49,8 +50,10 @@ export class RegisterCompanyComponent implements OnInit {
     formData.append('username', this.form.get('username')?.value);
     formData.append('password', this.form.get('password')?.value);
     formData.append('confirmPassword', this.form.get('confirmPassword')?.value);
+    formData.append('applyEmail', this.form.get('applyEmail')?.value);
 
     this.companyService.createCompany(formData).subscribe((data)=>{
+      this.form.reset()
       this.router.navigate['/']
     })
   }

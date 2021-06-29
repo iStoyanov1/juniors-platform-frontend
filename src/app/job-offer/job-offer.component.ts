@@ -33,6 +33,7 @@ export class JobOfferComponent implements OnInit {
       title:['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       category:['',Validators.required],
       remoteInterview:[true,Validators.required],
+      remoteWork:[true,Validators.required],
       city:['', Validators.required],
       workingTime:['',Validators.required],
       technologies: ['', Validators.nullValidator],
@@ -73,7 +74,6 @@ export class JobOfferComponent implements OnInit {
       this.route.navigate(['/company/profile'])
     },2000)
   })
-  // console.log(this.form.controls)
    }
    get f(){
      return this.form.controls

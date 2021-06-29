@@ -36,6 +36,9 @@ import { UserFavouriteJobsComponent } from './user/user-favourite-jobs/user-favo
 import { UserApplicationsJobComponent } from './user/user-applications-job/user-applications-job.component';
 import { AllCompaniesComponent } from './all-companies/all-companies.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { GeoapifyGeocoderAutocompleteModule } from '@geoapify/angular-geocoder-autocomplete';
+import { ContactsComponent } from './contacts/contacts.component';
 
 
 
@@ -69,7 +72,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     UserFavouriteJobsComponent,
     UserApplicationsJobComponent,
     AllCompaniesComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ContactsComponent
     
   ],
   imports: [
@@ -84,6 +88,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
       positionClass: 'toast-top-center',
     }),
     BrowserAnimationsModule,
+    AngularEditorModule,
+    GeoapifyGeocoderAutocompleteModule.withConfig('c40b6885c70645ef8ec1a7c23f79c519')
   ],
   providers: [UserService, 
     {provide: HTTP_INTERCEPTORS, useClass: ResponseHandlerInterceptorService, multi:true},
